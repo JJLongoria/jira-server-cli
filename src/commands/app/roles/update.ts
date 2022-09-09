@@ -8,9 +8,9 @@ import { UX } from "../../../libs/core/ux";
 export default class List extends BaseCommand {
     static description = 'Updates the ApplicationRole with the passed data. Only the groups and default groups setting of the role may be updated. Requests to change the key or the name of the role will be silently ignored. If versionHash is passed through the If-Match header the request will be rejected if not the same as server. Return the updated role. ' + UX.processDocumentation('<doc:ApplicationRole>');
     static examples = [
-        `$ jiraserver app:roles:update -a "MyAlias" --role "theRoleId" --groups "group1, group2" --default-groups "group3, group4" --json`,
-        `$ jiraserver app:roles:update -a "MyAlias" --role "theRoleId" --groups "group1, group2" --csv`,
-        `$ jiraserver app:roles:update -a "MyAlias" --role "theRoleId" --default-groups "group3, group4"`,
+        `$ jiraserver app:roles:update -a "MyAlias" --role "theRoleKey" --groups "group1, group2" --default-groups "group3, group4" --json`,
+        `$ jiraserver app:roles:update -a "MyAlias" --role "theRoleKey" --groups "group1, group2" --csv`,
+        `$ jiraserver app:roles:update -a "MyAlias" --role "theRoleKey" --default-groups "group3, group4"`,
     ];
     static flags = {
         ...BaseCommand.flags,
@@ -18,9 +18,9 @@ export default class List extends BaseCommand {
         csv: BuildFlags.csv,
         extended: BuildFlags.extended,
         role: Flags.string({
-            description: '',
+            description: 'The Role key to update',
             required: true,
-            name: 'Role Id'
+            name: 'Role Key'
         }),
         match: Flags.string({
             description: 'The hash of the version to update',
