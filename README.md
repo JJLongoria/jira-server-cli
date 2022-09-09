@@ -56,6 +56,7 @@ Now Stil in BETA Version because is not fully tested.
 - [**JSON Objects Schemes**](#json-objects-schemes)
   - [**ApplicationProperty**](#applicationproperty)
   - [**ApplicationRole**](#applicationrole)
+  - [**ApplicationRoleInput**](#applicationroleinput)
   - [**Instance**](#instance)
 
 
@@ -468,6 +469,15 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "userCountDescription": "string",
     "hasUnlimitedSeats": "boolean",
     "platform": "boolean",
+}
+```
+---
+## [**ApplicationRoleInput**]()
+```json
+{
+    "key": "string",
+    "group?s": "string[]",
+    "defaultGroups?": "string[]",
 }
 ```
 ---
