@@ -55,6 +55,7 @@ Now Stil in BETA Version because is not fully tested.
 - [**Main CLI Topics**](#main-cli-topics)
 - [**JSON Objects Schemes**](#json-objects-schemes)
   - [**ApplicationProperty**](#applicationproperty)
+  - [**ApplicationRole**](#applicationrole)
   - [**Instance**](#instance)
 
 
@@ -449,6 +450,24 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "defaultValue": "string",
     "example?": "string",
     "allowedValues?": "string[]",
+}
+```
+---
+## [**ApplicationRole**]()
+```json
+{
+    "key": "string",
+    "groups": "string[]",
+    "name": "string",
+    "defaultGroups": "string[]",
+    "selectedByDefault": "boolean",
+    "defined": "boolean",
+    "numberOfSeats": "number",
+    "remainingSeats": "number",
+    "userCount": "number",
+    "userCountDescription": "string",
+    "hasUnlimitedSeats": "boolean",
+    "platform": "boolean",
 }
 ```
 ---

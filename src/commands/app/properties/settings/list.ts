@@ -15,6 +15,7 @@ export default class List extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
+        extended: BuildFlags.extended,
     };
     async run(): Promise<JiraCLIResponse<ApplicationProperty[]>> {
         const response = new JiraCLIResponse<ApplicationProperty[]>();

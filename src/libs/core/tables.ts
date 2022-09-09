@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -18,6 +18,57 @@ export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>
 };
 
 export const AppPropertyColumns: CliUx.Table.table.Columns<Record<string, ApplicationProperty>> = {
+    key: {
+        header: 'Key',
+    },
+    name: {
+        header: 'Name',
+    },
+    groups: {
+        header: 'Groups',
+        get: (row: any) => {
+            return row.groups && row.groups.length ? row.groups.join(', ') : '';
+        },
+    },
+    defaultGroups: {
+        header: 'Default Groups',
+        get: (row: any) => {
+            return row.defaultGroups && row.groups.defaultGroups ? row.defaultGroups.join(', ') : '';
+        },
+    },
+    selectedByDefault: {
+        header: 'Default Selected',
+    },
+    defined: {
+        header: 'Defined',
+    },
+    numberOfSeats: {
+        header: 'Number of Seats',
+        extended: true,
+    },
+    remainingSeats: {
+        header: 'Remaining Seats',
+        extended: true,
+    },
+    userCount: {
+        header: 'User Count',
+        extended: true,
+    },
+    userCountDescription: {
+        header: 'User Count Description',
+        extended: true,
+    },
+    hasUnlimitedSeats: {
+        header: 'Unlimited Seats',
+        extended: true,
+    },
+    platform: {
+        header: 'Patform',
+        extended: true,
+    },
+};
+
+export const AppRoleColumns: CliUx.Table.table.Columns<Record<string, ApplicationRole>> = {
     id: {
         header: 'ID',
     },
@@ -52,3 +103,4 @@ export const AppPropertyColumns: CliUx.Table.table.Columns<Record<string, Applic
         },
     }
 };
+

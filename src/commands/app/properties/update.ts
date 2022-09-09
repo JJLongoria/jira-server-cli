@@ -16,6 +16,7 @@ export default class Update extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
+        extended: BuildFlags.extended,
         property: Flags.string({
             description: 'The property key to update',
             required: true,

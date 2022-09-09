@@ -16,6 +16,7 @@ export default class List extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
+        extended: BuildFlags.extended,
         key: Flags.string({
             description: 'A String containing the property key',
             required: false,
