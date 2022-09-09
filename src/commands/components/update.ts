@@ -29,7 +29,7 @@ export default class Update extends BaseCommand {
         const response = new JiraCLIResponse<Component>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.components.create(this.getJSONInputData());
+            const result = await connector.components.update(this.flags.component, this.getJSONInputData());
             response.result = result
             response.status = 0;
             response.message = this.getRecordUpdatedText('Component');
