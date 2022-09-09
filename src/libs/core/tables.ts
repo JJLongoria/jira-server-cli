@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -129,3 +129,13 @@ export const AttachmentColumns: CliUx.Table.table.Columns<Record<string, Attachm
         header: 'Mime Type',
     },
 };
+
+export const AttachmentMetaColumns: CliUx.Table.table.Columns<Record<string, AttachmentMeta>> = {
+    enabled: {
+        header: 'Enabled',
+    },
+    uploadLimit: {
+        header: 'Upload Limit',
+    },
+};
+

@@ -58,7 +58,11 @@ Now Stil in BETA Version because is not fully tested.
   - [**ApplicationRole**](#applicationrole)
   - [**ApplicationRoleInput**](#applicationroleinput)
   - [**Attachment**](#attachment)
+  - [**AttachmentMeta**](#attachmentmeta)
   - [**Instance**](#instance)
+  - [**Group**](#group)
+  - [**ListWrapper**](#listwrapper)
+  - [**User**](#user)
 
 
 # [**Installation Guide**]()
@@ -496,6 +500,16 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "thumbnail": "string",
 }
 ```
+- See [**User**](#user) Definition.
+
+---
+## [**AttachmentMeta**]()
+```json
+{
+    "enabled": "boolean",
+    "uploadLimit?": "number",
+}
+```
 ---
 ## [**Instance**]()
 ```json
@@ -505,4 +519,54 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "token": "string",
 }
 ```
+---
+## [**Group**]()
+```json
+{
+    "name": "string",
+    "users": "ListWrapper<User>",
+    "expand": "string",
+    "self?": "string",
+}
+```
+- See [**ListWrapper**](#listwrapper) Definition.
+- See [**User**](#user) Definition.
+
+---
+## [**ListWrapper**]()
+
+This type support **Generic Types** (**`T`**). That means can be of many types (The specified between <> symbols on parent definition)
+
+```json
+{
+    "size": "number",
+    "max-results?": "number",
+    "start-index?": "number",
+    "end-index?": "number",
+    "items": "T[]",
+}
+```
+---
+## [**User**]()
+```json
+{
+    "key": "string",
+    "name": "string",
+    "emailAddress": "string",
+    "avatarUrls": "{ [key: string]: string }",
+    "displayName": "string",
+    "active": "boolean",
+    "deleted": "boolean",
+    "timeZone": "string",
+    "locale": "string",
+    "groups": "ListWrapper<Group>",
+    "applicationRoles": "ListWrapper<ApplicationRole>",
+    "expand": "string",
+    "self?": "string",
+}
+```
+- See [**ListWrapper**](#listwrapper) Definition.
+- See [**Group**](#group) Definition.
+- See [**ApplicationRole**](#applicationrole) Definition.
+
 
