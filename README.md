@@ -57,6 +57,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**ApplicationProperty**](#applicationproperty)
   - [**ApplicationRole**](#applicationrole)
   - [**ApplicationRoleInput**](#applicationroleinput)
+  - [**Attachment**](#attachment)
   - [**Instance**](#instance)
 
 
@@ -478,6 +479,21 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "key": "string",
     "group?s": "string[]",
     "defaultGroups?": "string[]",
+}
+```
+---
+## [**Attachment**]()
+```json
+{
+    "id": "string",
+    "filename": "string",
+    "author": "User",
+    "created": "string",
+    "size": "number",
+    "mimeType": "string",
+    "properties": "any",
+    "content": "string",
+    "thumbnail": "string",
 }
 ```
 ---

@@ -5,7 +5,7 @@ import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
 import { AppRoleColumns } from "../../../libs/core/tables";
 import { UX } from "../../../libs/core/ux";
 
-export default class List extends BaseCommand {
+export default class Get extends BaseCommand {
     static description = 'Return an application properties list. ' + UX.processDocumentation('<doc:ApplicationRole>');
     static examples = [
         `$ jiraserver app:roles:get -a "MyAlias" --role "theRoleKey" --json`,

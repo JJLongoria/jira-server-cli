@@ -6,7 +6,7 @@ import { AppRoleColumns } from "../../../../libs/core/tables";
 import { UX } from "../../../../libs/core/ux";
 
 export default class Update extends BaseCommand {
-    static description = 'Updates the ApplicationRoles with the passed data if the version hash is the same as the server. Only the groups and default groups setting of the role may be updated. Requests to change the key or the name of the role will be silently ignored. Return the updated roles. ' + UX.processDocumentation('<doc:ApplicationRole>');
+    static description = 'Updates the Application Roles with the passed data if the version hash is the same as the server. Only the groups and default groups setting of the role may be updated. Requests to change the key or the name of the role will be silently ignored. Return the updated roles. ' + UX.processDocumentation('<doc:ApplicationRole>');
     static examples = [
         `$ jiraserver app:roles:bulk:update -a "MyAlias" --data "{'key':'jira-software', 'groups':['jira-software-users','jira-testers'], 'defaultGroups':['jira-software-users']}"  --json`,
         `$ jiraserver app:roles:bulk:update -a "MyAlias" --file "path/to/the/json/data/file" --csv`,
