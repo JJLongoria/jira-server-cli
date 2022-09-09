@@ -38,7 +38,8 @@ export default class Update extends BaseCommand {
             response.message = this.getRecordUpdatedText('Application Property');
             this.ux.log(response.message);
             this.ux.table<ApplicationProperty>([result], AppPropertyColumns, {
-                csv: this.flags.csv
+                csv: this.flags.csv,
+                extended: this.flags.extended,
             });
         } catch (error) {
             this.processError(response, error);

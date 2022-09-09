@@ -27,7 +27,8 @@ export default class List extends BaseCommand {
             response.message = this.getRecordsFoundText(response.result.length, 'Application Role');
             this.ux.log(response.message);
             this.ux.table<ApplicationRole>(response.result, AppRoleColumns, {
-                csv: this.flags.csv
+                csv: this.flags.csv,
+                extended: this.flags.extended,
             });
         } catch (error) {
             this.processError(response, error);

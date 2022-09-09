@@ -47,7 +47,8 @@ export default class List extends BaseCommand {
             response.message = this.getRecordsFoundText(response.result.length, 'Application Property');
             this.ux.log(response.message);
             this.ux.table<ApplicationProperty>(response.result, AppPropertyColumns, {
-                csv: this.flags.csv
+                csv: this.flags.csv,
+                extended: this.flags.extended,
             });
         } catch (error) {
             this.processError(response, error);

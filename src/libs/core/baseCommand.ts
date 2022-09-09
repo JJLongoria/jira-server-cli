@@ -1,5 +1,5 @@
 import { Command, Flags } from "@oclif/core";
-import { OutputArgs, OutputFlags } from "@oclif/core/lib/interfaces";
+import { AlphabetLowercase, AlphabetUppercase, OptionFlag, OutputArgs, OutputFlags } from "@oclif/core/lib/interfaces";
 import { PageOptions, JiraError } from "jira-server-connector";
 import { FileReader } from "../fileSystem";
 import { Config } from "./config";
@@ -37,6 +37,12 @@ export class BuildFlags {
         name: 'CSV',
         exclusive: ['json']
     });
+    static array = (options: Partial<OptionFlag<string>>) => {
+        options.parse = (input): any => {
+            return BuildFlags.parseArray(input);
+        }
+        return Flags.string(options);
+    }
     static extended = Flags.boolean({ char: 'x', description: 'Show extra columns when format output as table. (Format by default)', name: 'Extended' });
     static filter = (description: string) => {
         return Flags.string({
@@ -50,7 +56,7 @@ export class BuildFlags {
             description: description,
             required: false,
             name: 'Context'
-        })
+        });
     };
     static input = {
         keyvalue: (doc: string, required?: boolean, exclusive?: string[]) => {
