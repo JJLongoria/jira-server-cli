@@ -30,7 +30,7 @@ export default class Get extends BaseCommand {
             const result = await connector.components.get(this.flags.component);
             response.result = result
             response.status = 0;
-            response.message = this.getRecordCreatedText('Component');
+            response.message = this.getRecordRetrievedText('Component');
             this.ux.log(response.message);
             this.ux.table<Component>([result], ComponentColumns, {
                 csv: this.flags.csv,

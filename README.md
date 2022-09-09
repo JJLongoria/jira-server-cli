@@ -63,6 +63,8 @@ Now Stil in BETA Version because is not fully tested.
   - [**Component**](#component)
   - [**ComponentInput**](#componentinput)
   - [**ComponentIssuesCount**](#componentissuescount)
+  - [**Configuration**](#configuration)
+  - [**ConfigurationTimeTracking**](#configurationtimetracking)
   - [**Instance**](#instance)
   - [**Group**](#group)
   - [**ListWrapper**](#listwrapper)
@@ -569,6 +571,30 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 {
     "issueCount": "number",
     "self?": "string",
+}
+```
+---
+## [**Configuration**]()
+```json
+{
+    "votingEnabled": "boolean",
+    "watchingEnabled": "boolean",
+    "unassignedIssuesAllowed": "boolean",
+    "subTasksEnabled": "boolean",
+    "issueLinkingEnabled": "boolean",
+    "timeTrackingEnabled": "boolean",
+    "attachmentsEnabled": "boolean",
+    "timeTrackingConfiguration?": "ConfigurationTimeTracking",
+}
+```
+---
+## [**ConfigurationTimeTracking**]()
+```json
+{
+    "workingHoursPerDay": 8,
+    "workingDaysPerWeek": 5,
+    "timeFormat?": "'pretty' | 'days' | 'hours'",
+    "defaultUnit?": "'minute' | 'hour' | 'day' | 'week'",
 }
 ```
 ---

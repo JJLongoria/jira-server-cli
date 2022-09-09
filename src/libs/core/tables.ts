@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -227,6 +227,54 @@ export const ComponentColumns: CliUx.Table.table.Columns<Record<string, Componen
 export const ComponentIssuesCountColumns: CliUx.Table.table.Columns<Record<string, ComponentIssuesCount>> = {
     issueCount: {
         header: 'Issue Count',
+    },
+};
+
+export const ConfigurationColumns: CliUx.Table.table.Columns<Record<string, Configuration>> = {
+    votingEnabled: {
+        header: 'Voting Enabled',
+    },
+    watchingEnabled: {
+        header: 'Watching Enabled',
+    },
+    unassignedIssuesAllowed: {
+        header: 'Unassigned Issues Allowed',
+    },
+    subTasksEnabled: {
+        header: 'Sub-Task Enabled',
+    },
+    issueLinkingEnabled: {
+        header: 'Issue Linking Enabled',
+    },
+    timeTrackingEnabled: {
+        header: 'Time Tracking Enabled',
+    },
+    attachmentsEnabled: {
+        header: 'Attachments Enabled',
+    },
+    workingHoursPerDay: {
+        header: 'Working Hours',
+        get(row: any) {
+            return row.timeTrackingEnabled && row.timeTrackingConfiguration?.workingHoursPerDay ? row.timeTrackingConfiguration.workingHoursPerDay : '';
+        },
+    },
+    workingDaysPerWeek: {
+        header: 'Working Days',
+        get(row: any) {
+            return row.timeTrackingEnabled && row.timeTrackingConfiguration?.workingDaysPerWeek ? row.timeTrackingConfiguration.workingDaysPerWeek : '';
+        },
+    },
+    timeFormat: {
+        header: 'Time Format',
+        get(row: any) {
+            return row.timeTrackingEnabled && row.timeTrackingConfiguration?.timeFormat ? row.timeTrackingConfiguration.timeFormat : '';
+        },
+    },
+    defaultUnit: {
+        header: 'Default Unit',
+        get(row: any) {
+            return row.timeTrackingEnabled && row.timeTrackingConfiguration?.defaultUnit ? row.timeTrackingConfiguration.defaultUnit : '';
+        },
     },
 };
 
