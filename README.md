@@ -58,10 +58,12 @@ Now Stil in BETA Version because is not fully tested.
   - [**ApplicationRole**](#applicationrole)
   - [**ApplicationRoleInput**](#applicationroleinput)
   - [**Attachment**](#attachment)
+  - [**Avatar**](#avatar)
   - [**AttachmentMeta**](#attachmentmeta)
   - [**Instance**](#instance)
   - [**Group**](#group)
   - [**ListWrapper**](#listwrapper)
+  - [**SystemAvatars**](#systemavatars)
   - [**User**](#user)
 
 
@@ -502,6 +504,18 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 ```
 - See [**User**](#user) Definition.
 
+## [**Avatar**]()
+```json
+{
+    "id": "string",
+    "owner": "string",
+    "isSystemAvatar": "boolean",
+    "isSelected": "boolean",
+    "isDeletable": "boolean",
+    "urls": "{ [key: string]: string }",
+    "selected": "boolean",
+}
+```
 ---
 ## [**AttachmentMeta**]()
 ```json
@@ -546,6 +560,15 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
     "items": "T[]",
 }
 ```
+---
+## [**SystemAvatars**]()
+```json
+{
+    "system": "Avatar[]"
+}
+```
+- See [**Avatar**](#avatar) Definition.
+
 ---
 ## [**User**]()
 ```json

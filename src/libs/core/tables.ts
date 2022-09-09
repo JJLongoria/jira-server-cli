@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -136,6 +136,30 @@ export const AttachmentMetaColumns: CliUx.Table.table.Columns<Record<string, Att
     },
     uploadLimit: {
         header: 'Upload Limit',
+    },
+};
+
+export const AvatarColumns: CliUx.Table.table.Columns<Record<string, Avatar>> = {
+    id: {
+        header: 'ID',
+    },
+    owner: {
+        header: 'Owner',
+    },
+    isSystemAvatar: {
+        header: 'System Avatar',
+    },
+    isSelected: {
+        header: 'Is Selected',
+    },
+    isDeletable: {
+        header: 'Deletable',
+    },
+    urls: {
+        header: 'URLs',
+    },
+    selected: {
+        header: 'Selected',
     },
 };
 
