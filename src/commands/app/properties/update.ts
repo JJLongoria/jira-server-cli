@@ -8,12 +8,13 @@ import { UX } from "../../../libs/core/ux";
 export default class Update extends BaseCommand {
     static description = 'Modify an application property. The "value" field present in will override the existing value. ' + UX.processDocumentation('<doc:ApplicationProperty>');
     static examples = [
-        `$ jiraserver app:properties:update --property "propertyKey" --value "TheValue" --json`,
-        `$ jiraserver app:properties:update --property "propertyKey" --value "TheValue" --csv`,
-        `$ jiraserver app:properties:update --property "propertyKey" --value "TheValue"`,
+        `$ jiraserver app:properties:update -a "MyAlias" --property "propertyKey" --value "TheValue" --json`,
+        `$ jiraserver app:properties:update -a "MyAlias" --property "propertyKey" --value "TheValue" --csv`,
+        `$ jiraserver app:properties:update -a "MyAlias" --property "propertyKey" --value "TheValue"`,
     ];
     static flags = {
         ...BaseCommand.flags,
+        alias: BuildFlags.alias,
         csv: BuildFlags.csv,
         property: Flags.string({
             description: 'The property key to update',

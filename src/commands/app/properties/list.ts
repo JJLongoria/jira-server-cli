@@ -8,12 +8,13 @@ import { UX } from "../../../libs/core/ux";
 export default class List extends BaseCommand {
     static description = 'Return an application properties list. ' + UX.processDocumentation('<doc:ApplicationProperty>');
     static examples = [
-        `$ jiraserver app:properties:list --key "propertyKey" --json`,
-        `$ jiraserver app:properties:list --filter "filterValue" --csv`,
-        `$ jiraserver app:properties:list`,
+        `$ jiraserver app:properties:list -a "MyAlias" --key "propertyKey" --json`,
+        `$ jiraserver app:properties:list -a "MyAlias" --filter "filterValue" --csv`,
+        `$ jiraserver app:properties:list -a "MyAlias"`,
     ];
     static flags = {
         ...BaseCommand.flags,
+        alias: BuildFlags.alias,
         csv: BuildFlags.csv,
         key: Flags.string({
             description: 'A String containing the property key',
