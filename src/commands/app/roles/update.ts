@@ -31,17 +31,11 @@ export default class List extends BaseCommand {
             description: 'Comma separated values of the groups to add',
             required: false,
             name: 'Groups',
-            parse: (input): any => {
-                return BuildFlags.parseArray(input);
-            }
         }),
         'default-groups': BuildFlags.array({
             description: 'Comma separated values of the default groups to add',
             required: false,
             name: 'Default Groups',
-            parse: (input): any => {
-                return BuildFlags.parseArray(input);
-            }
         }),
     };
     async run(): Promise<JiraCLIResponse<ApplicationRole>> {

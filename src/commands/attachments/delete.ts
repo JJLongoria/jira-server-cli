@@ -13,8 +13,6 @@ export default class Delete extends BaseCommand {
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
-        csv: BuildFlags.csv,
-        extended: BuildFlags.extended,
         attachment: Flags.string({
             description: 'The Attachment Id to delete',
             required: true,
