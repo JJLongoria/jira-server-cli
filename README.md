@@ -62,6 +62,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**AttachmentMeta**](#attachmentmeta)
   - [**Component**](#component)
   - [**ComponentInput**](#componentinput)
+  - [**ComponentIssuesCount**](#componentissuescount)
   - [**Instance**](#instance)
   - [**Group**](#group)
   - [**ListWrapper**](#listwrapper)
@@ -563,6 +564,13 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 ```
 - See [**User**](#user) Definition.
 
+## [**ComponentIssuesCount**]()
+```json
+{
+    "issueCount": "number",
+    "self?": "string",
+}
+```
 ---
 ## [**Instance**]()
 ```json
