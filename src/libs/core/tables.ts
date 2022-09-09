@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -160,6 +160,67 @@ export const AvatarColumns: CliUx.Table.table.Columns<Record<string, Avatar>> = 
     },
     selected: {
         header: 'Selected',
+    },
+};
+
+export const ComponentColumns: CliUx.Table.table.Columns<Record<string, Component>> = {
+    id: {
+        header: 'ID',
+    },
+    name: {
+        header: 'Name',
+    },
+    description: {
+        header: 'Description',
+    },
+    lead: {
+        header: 'Lead',
+        get(row: any) {
+            return row.lead ? row.lead.name : '';
+        },
+        extended: true,
+    },
+    leadUserName: {
+        header: 'Lead Username',
+    },
+    assigneeType: {
+        header: 'Assignee Type',
+    },
+    assignee: {
+        header: 'Assignee',
+        get(row: any) {
+            return row.assignee ? row.assignee.name : '';
+        },
+        extended: true,
+    },
+    realAssigneeType: {
+        header: 'Real Type Assignee',
+    },
+    realAssignee: {
+        header: 'Real Assignee',
+        get(row: any) {
+            return row.realAssignee ? row.realAssignee.name : '';
+        },
+        extended: true,
+    },
+    isAssigneeTypeValid: {
+        header: 'Valid Assignee Type',
+        extended: true,
+    },
+    project: {
+        header: 'Project',
+    },
+    projectId: {
+        header: 'Project ID',
+        extended: true,
+    },
+    archived: {
+        header: 'Archived',
+        extended: true,
+    },
+    deleted: {
+        header: 'Delete',
+        extended: true,
     },
 };
 

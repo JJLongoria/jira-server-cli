@@ -60,6 +60,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**Attachment**](#attachment)
   - [**Avatar**](#avatar)
   - [**AttachmentMeta**](#attachmentmeta)
+  - [**Component**](#component)
   - [**Instance**](#instance)
   - [**Group**](#group)
   - [**ListWrapper**](#listwrapper)
@@ -524,6 +525,28 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "uploadLimit?": "number",
 }
 ```
+---
+## [**Component**]()
+```json
+{
+    "id?": "string",
+    "name": "string",
+    "description": "string",
+    "lead?": "User",
+    "leadUserName": "string",
+    "assigneeType": "'PROJECT_DEFAULT' | 'COMPONENT_LEAD' | 'PROJECT_LEAD' | 'UNASSIGNED'",
+    "assignee?": "User",
+    "realAssigneeType?": "'PROJECT_DEFAULT' | 'COMPONENT_LEAD' | 'PROJECT_LEAD' | 'UNASSIGNED'",
+    "realAssignee?": "User",
+    "isAssigneeTypeValid": "boolean",
+    "project": "string",
+    "projectId": "number",
+    "archived?": "boolean",
+    "deleted?": "boolean",
+}
+```
+- See [**User**](#user) Definition.
+
 ---
 ## [**Instance**]()
 ```json
