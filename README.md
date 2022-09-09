@@ -61,6 +61,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**Avatar**](#avatar)
   - [**AttachmentMeta**](#attachmentmeta)
   - [**Component**](#component)
+  - [**ComponentInput**](#componentinput)
   - [**Instance**](#instance)
   - [**Group**](#group)
   - [**ListWrapper**](#listwrapper)
@@ -543,6 +544,21 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "projectId": "number",
     "archived?": "boolean",
     "deleted?": "boolean",
+}
+```
+- See [**User**](#user) Definition.
+
+---
+## [**ComponentInput**]()
+```json
+{
+    "name": "string",
+    "description": "string",
+    "leadUserName": "string",
+    "assigneeType": "'PROJECT_DEFAULT' | 'COMPONENT_LEAD' | 'PROJECT_LEAD' | 'UNASSIGNED'",
+    "isAssigneeTypeValid": "boolean",
+    "project": "string",
+    "projectId": "number",
 }
 ```
 - See [**User**](#user) Definition.
