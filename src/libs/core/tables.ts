@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -428,6 +428,43 @@ export const FieldColumns: CliUx.Table.table.Columns<Record<string, Field>> = {
         get(row: any) {
             return row.schema && row.schema.type ? row.schema.type : '';
         },
+        extended: true,
+    },
+};
+
+export const FilterColumns: CliUx.Table.table.Columns<Record<string, Filter>> = {
+    id: {
+        header: 'ID',
+    },
+    name: {
+        header: 'Name',
+    },
+    description: {
+        header: 'Description',
+    },
+    owner: {
+        header: 'owner',
+        get(row: any) {
+            return row.owner ? row.owner.name : '';
+        },
+    },
+    jql: {
+        header: 'JQL',
+    },
+    viewUrl: {
+        header: 'View URL',
+        extended: true,
+    },
+    searchUrl: {
+        header: 'Search URL',
+        extended: true,
+    },
+    favourite: {
+        header: 'Favourite',
+        extended: true,
+    },
+    editable: {
+        header: 'Editable',
         extended: true,
     },
 };

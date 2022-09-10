@@ -150,6 +150,15 @@ export class BuildFlags {
             });
         },
     }
+    static expand = (description?: string) => {
+        return Flags.string({
+            description: description || 'Extra parameters to expand',
+            required: false,
+            name: 'Expand',
+            char: 'e',
+            exclusive: [],
+        });
+    }
     static pagination = (allowExpand?: boolean, allowOrder?: boolean, allowColumn?: boolean) => {
         const flags: any = {
             all: Flags.boolean({

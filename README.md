@@ -76,11 +76,25 @@ Now Stil in BETA Version because is not fully tested.
   - [**Field**](#field)
   - [- See **FieldSchema** Definition.](#--see-fieldschema-definition)
   - [**FieldSchema**](#fieldschema)
-  - [**Instance**](#instance)
+  - [**Filter**](#filter)
+  - [**FilterInput**](#filterinput)
+  - [**FilterPermission**](#filterpermission)
+  - [**FilterPermissionInput**](#filterpermissioninput)
+  - [**FilterSubscription**](#filtersubscription)
+  - [**FilterSubscriptionInput**](#filtersubscriptioninput)
   - [**Group**](#group)
+  - [**Instance**](#instance)
+  - [**IssueType**](#issuetype)
   - [**ListWrapper**](#listwrapper)
+  - [**Project**](#project)
+  - [**ProjectCategory**](#projectcategory)
+  - [**ProjectRole**](#projectrole)
+  - [**RemoteEntityLink**](#remoteentitylink)
+  - [**RoleActor**](#roleactor)
+  - [**SimpleLink**](#simplelink)
   - [**SystemAvatars**](#systemavatars)
   - [**User**](#user)
+  - [**Version**](#version)
 
 
 # [**Installation Guide**]()
@@ -723,12 +737,81 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 }
 ```
 ---
-## [**Instance**]()
+## [**Filter**]()
 ```json
 {
-    "alias": "string",
-    "host": "string",
-    "token": "string",
+    "id": "string",
+    "name": "string",
+    "description": "string",
+    "owner": "User",
+    "jql": "string",
+    "viewUrl": "string",
+    "searchUrl": "string",
+    "favourite": "boolean",
+    "sharePermissions": "FilterPermission[]",
+    "sharedUsers": "ListWrapper<User>",
+    "subscriptions": "ListWrapper<FilterSubscription>",
+    "editable": "boolean",
+}
+```
+- See [**ListWrapper**](#listwrapper) Definition.
+- See [**FilterPermission**](#filterpermission) Definition.
+- See [**FilterSubscription**](#filtersubscription) Definition.
+- See [**User**](#user) Definition.
+
+---
+## [**FilterInput**]()
+```json
+{
+    "name": "string",
+    "description": "string",
+    "jql": "string",
+    "favourite": "boolean",
+    "editable": "boolean",
+}
+```
+---
+## [**FilterPermission**]()
+```json
+{
+    "id": "string",
+    "type": "string",
+    "project": "Project",
+    "role": "ProjectRole",
+    "group": "Group",
+    "user": "User",
+    "view": "boolean",
+    "edit": "boolean",
+}
+```
+- See [**User**](#user) Definition.
+- See [**Group**](#group) Definition.
+- See [**ProjectRole**](#projectrole) Definition.
+- See [**Project**](#project) Definition.
+
+---
+## [**FilterPermissionInput**]()
+```json
+{
+    "view": "boolean",
+    "edit": "boolean",
+}
+```
+---
+## [**FilterSubscription**]()
+```json
+{
+    "id": "number",
+    "user?": "User",
+    "group?": "Group",
+}
+```
+---
+## [**FilterSubscriptionInput**]()
+```json
+{
+    "user?": "User",
+    "group?": "Group",
 }
 ```
 ---
@@ -745,6 +828,27 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 - See [**User**](#user) Definition.
 
 ---
+## [**Instance**]()
+```json
+{
+    "alias": "string",
+    "host": "string",
+    "token": "string",
+}
+```
+---
+## [**IssueType**]()
+```json
+{
+    "id": "string",
+    "description": "string",
+    "iconUrl?": "string",
+    "name": "string",
+    "subtask": "boolean",
+    "avatarId?": "number",
+}
+```
+---
 ## [**ListWrapper**]()
 
 This type support **Generic Types** (**`T`**). That means can be of many types (The specified between <> symbols on parent definition)
@@ -756,6 +860,88 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
     "start-index?": "number",
     "end-index?": "number",
     "items": "T[]",
+}
+```
+---
+## [**Project**]()
+```json
+{
+    "id": "string",
+    "key": "string",
+    "description": "string",
+    "lead?": "User",
+    "components?": "Component[]",
+    "issueTypes?": "IssueType[]",
+    "url": "string",
+    "email": "string",
+    "assigneeType": "'PROJECT_LEAD' | 'UNASSIGNED'",
+    "versions": "Version[]",
+    "name": "string",
+    "roles": "{ [key: string]: string }",
+    "avatarUrls": "{ [key: string]: string }",
+    "projectKeys": "string[]",
+    "projectCategory": "ProjectCategory",
+    "projectTypeKey": "string",
+    "archived": "boolean",
+}
+```
+- See [**User**](#user) Definition.
+- See [**Component**](#component) Definition.
+- See [**IssueType**](#issuetype) Definition.
+- See [**Version**](#version) Definition.
+- See [**ProjectCategory**](#projectcategory) Definition.
+
+---
+## [**ProjectCategory**]()
+```json
+{
+    "id": "string",
+    "name": "string",
+    "description": "string",
+}
+```
+---
+## [**ProjectRole**]()
+```json
+{
+    "id": "string",
+    "name": "string",
+    "description": "string",
+    "actors": "RoleActor[]",
+}
+```
+- See [**RoleActor**](#roleactor) Definition.
+
+---
+## [**RemoteEntityLink**]()
+```json
+{
+    "name": "string",
+    "link": "any",
+}
+```
+---
+## [**RoleActor**]()
+```json
+{
+    "id": "string",
+    "name": "string",
+    "displayName": "string",
+    "type": "string",
+    "avatarUrl": "string",
+}
+```
+---
+## [**SimpleLink**]()
+```json
+{
+    "id": "string",
+    "styleClass": "string",
+    "iconClass": "string",
+    "label": "string",
+    "title": "string",
+    "href": "string",
+    "weight": "number",
 }
 ```
 ---
@@ -790,4 +976,25 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
 - See [**Group**](#group) Definition.
 - See [**ApplicationRole**](#applicationrole) Definition.
 
+---
+## [**Version**]()
+```json
+{
+    "id": "string",
+    "description": "string",
+    "name": "string",
+    "archived": "boolean",
+    "released": "boolean",
+    "overdue": "boolean",
+    "userStartDate": "string",
+    "userReleaseDate": "string",
+    "project": "string",
+    "projectId": "number",
+    "moveUnfixedIssuesTo": "string",
+    "operations": "SimpleLink[]",
+    "remotelinks": "RemoteEntityLink[]",
+}
+```
+- See [**SimpleLink**](#simplelink) Definition.
+- See [**RemoteEntityLink**](#remoteentitylink) Definition.
 
