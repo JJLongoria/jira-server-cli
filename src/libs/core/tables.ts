@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomFieldOption } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -275,6 +275,15 @@ export const ConfigurationColumns: CliUx.Table.table.Columns<Record<string, Conf
         get(row: any) {
             return row.timeTrackingEnabled && row.timeTrackingConfiguration?.defaultUnit ? row.timeTrackingConfiguration.defaultUnit : '';
         },
+    },
+};
+
+export const CustomFieldOptionColumns: CliUx.Table.table.Columns<Record<string, CustomFieldOption>> = {
+    value: {
+        header: 'Value',
+    },
+    disabled: {
+        header: 'Disabled',
     },
 };
 

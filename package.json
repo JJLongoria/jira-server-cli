@@ -2,7 +2,7 @@
   "name": "jira-server-cli",
   "productName": "Jira Server CLI",
   "displayName": "Jira Server CLI",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CLI application to manage and work with Atlassian Jira. Work with your Jira projects and issues (amonth to many other options) from Command lines.",
   "author": "Juan José Longoria López <Kanko>",
   "bin": {
