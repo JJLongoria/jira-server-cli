@@ -60,6 +60,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**Attachment**](#attachment)
   - [**Avatar**](#avatar)
   - [**AttachmentMeta**](#attachmentmeta)
+  - [**ColumnItem**](#columnitem)
   - [**Component**](#component)
   - [**ComponentInput**](#componentinput)
   - [**ComponentIssuesCount**](#componentissuescount)
@@ -552,6 +553,14 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 {
     "enabled": "boolean",
     "uploadLimit?": "number",
+}
+```
+---
+## [**ColumnItem**]()
+```json
+{
+    "label": "string",
+    "value": "string",
 }
 ```
 ---

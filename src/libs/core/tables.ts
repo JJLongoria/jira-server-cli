@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -466,6 +466,15 @@ export const FilterColumns: CliUx.Table.table.Columns<Record<string, Filter>> = 
     editable: {
         header: 'Editable',
         extended: true,
+    },
+};
+
+export const ColumnItemColumns: CliUx.Table.table.Columns<Record<string, ColumnItem>> = {
+    label: {
+        header: 'Label',
+    },
+    value: {
+        header: 'Value',
     },
 };
 
