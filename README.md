@@ -69,6 +69,8 @@ Now Stil in BETA Version because is not fully tested.
   - [**CustomFieldOption**](#customfieldoption)
   - [**Dashboard**](#dashboard)
   - [**DeletedFieldsOutput**](#deletedfieldsoutput)
+  - [**EntityPropertyKey**](#entitypropertykey)
+  - [**EntityPropertyKeys**](#entitypropertykeys)
   - [**Instance**](#instance)
   - [**Group**](#group)
   - [**ListWrapper**](#listwrapper)
@@ -642,6 +644,23 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "self?": "string",
 }
 ```
+---
+## [**EntityPropertyKey**]()
+```json
+{
+    "key": "string",
+    "self?": "string",
+}
+```
+---
+## [**EntityPropertyKeys**]()
+```json
+{
+    "keys": "EntityPropertyKey[]",
+}
+```
+- See [**EntityPropertyKey**](#entitypropertykey) Definition.
+
 ---
 ## [**Instance**]()
 ```json
