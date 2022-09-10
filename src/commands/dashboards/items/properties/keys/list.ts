@@ -5,12 +5,12 @@ import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
 import { EntityPropertyKeyColumns } from "../../../../libs/core/tables";
 import { UX } from "../../../../libs/core/ux";
 
-export default class Get extends BaseCommand {
+export default class List extends BaseCommand {
     static description = 'Returns the keys of all properties for the dashboard item identified by the id. ' + UX.processDocumentation('<doc:EntityPropertyKeys>');
     static examples = [
-        `$ jiraserver dashboards:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId" --json`,
-        `$ jiraserver dashboards:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId" --csv`,
-        `$ jiraserver dashboards:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId"`,
+        `$ jiraserver dashboards:items:properties:keys:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId" --json`,
+        `$ jiraserver dashboards:items:properties:keys:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId" --csv`,
+        `$ jiraserver dashboards:items:properties:keys:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId"`,
     ];
     static flags = {
         ...BaseCommand.flags,
