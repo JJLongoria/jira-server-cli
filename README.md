@@ -67,6 +67,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**ConfigurationTimeTracking**](#configurationtimetracking)
   - [**CustomField**](#customfield)
   - [**CustomFieldOption**](#customfieldoption)
+  - [**Dashboard**](#dashboard)
   - [**DeletedFieldsOutput**](#deletedfieldsoutput)
   - [**Instance**](#instance)
   - [**Group**](#group)
@@ -620,6 +621,16 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "message": "string",
     "deletedCustomFields": "string[]",
     "notDeletedCustomFields": "string[]",
+}
+```
+---
+## [**Dashboard**]()
+```json
+{
+    "id": "string",
+    "name": "string",
+    "view": "string",
+    "self?": "string",
 }
 ```
 ---

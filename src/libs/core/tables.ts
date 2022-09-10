@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, DeletedFieldsOutput } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -332,6 +332,18 @@ export const DeletedFieldsColumns: CliUx.Table.table.Columns<Record<string, Dele
         get(row: any) {
             return row.notDeletedCustomFields && row.notDeletedCustomFields.length ? row.notDeletedCustomFields.join(', ') : '';
         },
+    },
+};
+
+export const DashboardColumns: CliUx.Table.table.Columns<Record<string, Dashboard>> = {
+    id: {
+        header: 'ID',
+    },
+    name: {
+        header: 'Name',
+    },
+    view: {
+        header: 'view',
     },
 };
 
