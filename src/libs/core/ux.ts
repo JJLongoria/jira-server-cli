@@ -43,7 +43,7 @@ export class UX {
     }
 
     static processDocumentation(desc?: string): string | undefined {
-        const readmeURL = 'https://github.com/JJLongoria/stash-cli/blob/main/README.md';
+        const readmeURL = 'https://github.com/JJLongoria/jira-server-cli/blob/main/README.md';
         if (desc) {
             if (StrUtils.containsIgnorecase(desc, '<doc:')) {
                 const docData = desc.substring(desc.indexOf('<doc:'), desc.indexOf('>') + 1);
