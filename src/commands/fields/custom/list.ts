@@ -16,6 +16,7 @@ export default class List extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
+        extended: BuildFlags.extended,
         ...BuildFlags.pagination(false, true, true),
         search: Flags.string({
             description: 'The search string to filter fields',
@@ -83,6 +84,7 @@ export default class List extends BaseCommand {
             this.ux.log(response.message);
             this.ux.table<CustomField>([result.values], CustomFieldColumns, {
                 csv: this.flags.csv,
+                extended: this.flags.extended || this.flags.csv,
             });
         } catch (error) {
             this.processError(response, error);

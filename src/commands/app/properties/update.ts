@@ -39,7 +39,7 @@ export default class Update extends BaseCommand {
             this.ux.log(response.message);
             this.ux.table<ApplicationProperty>([result], AppPropertyColumns, {
                 csv: this.flags.csv,
-                extended: this.flags.extended,
+                extended: this.flags.extended || this.flags.csv,
             });
         } catch (error) {
             this.processError(response, error);

@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -308,12 +308,50 @@ export const CustomFieldColumns: CliUx.Table.table.Columns<Record<string, Custom
         get(row: any) {
             return row.projectIds && row.projectIds.length ? row.projectIds.join(', ') : '';
         },
+        extended: true,
     },
     issueTypeIds: {
         header: 'Issue Type Ids',
         get(row: any) {
             return row.issueTypeIds && row.issueTypeIds.length ? row.issueTypeIds.join(', ') : '';
         },
+        extended: true,
+    },
+    numericId: {
+        header: 'Numeric ID',
+        extended: true,
+    },
+    isLocked: {
+        header: 'Locked',
+        extended: true,
+    },
+    isManaged: {
+        header: 'Managed',
+        extended: true,
+    },
+    isAllProjects: {
+        header: 'All Projects',
+        extended: true,
+    },
+    isTrusted: {
+        header: 'Trusted',
+        extended: true,
+    },
+    projectsCount: {
+        header: 'Project Counts',
+        extended: true,
+    },
+    screensCount: {
+        header: 'Screen Counts',
+        extended: true,
+    },
+    lastValueUpdate: {
+        header: 'Last Value Update',
+        extended: true,
+    },
+    issuesWithValue: {
+        header: 'Issues with Value',
+        extended: true,
     },
 };
 
@@ -356,6 +394,41 @@ export const EntityPropertyKeyColumns: CliUx.Table.table.Columns<Record<string, 
 export const EntityPropertyColumns: CliUx.Table.table.Columns<Record<string, EntityProperty>> = {
     key: {
         header: 'Key',
+    },
+};
+
+export const FieldColumns: CliUx.Table.table.Columns<Record<string, Field>> = {
+    id: {
+        header: 'ID',
+    },
+    name: {
+        header: 'Name',
+    },
+    custom: {
+        header: 'Custom',
+    },
+    orderable: {
+        header: 'Orderable',
+    },
+    navigable: {
+        header: 'Navigable',
+    },
+    searchable: {
+        header: 'Searchable',
+    },
+    clauseNames: {
+        header: 'Clause Names',
+        get(row: any) {
+            return row.clauseNames && row.clauseNames.length ? row.clauseNames.join(', ') : '';
+        },
+        extended: true,
+    },
+    schema: {
+        header: 'Schema',
+        get(row: any) {
+            return row.schema && row.schema.type ? row.schema.type : '';
+        },
+        extended: true,
     },
 };
 

@@ -39,7 +39,7 @@ export default class List extends BaseCommand {
             this.ux.log(response.message);
             this.ux.table<Avatar>([result.system], AvatarColumns, {
                 csv: this.flags.csv,
-                extended: this.flags.extended,
+                extended: this.flags.extended || this.flags.csv,
             });
         } catch (error) {
             this.processError(response, error);

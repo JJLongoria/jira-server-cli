@@ -72,6 +72,9 @@ Now Stil in BETA Version because is not fully tested.
   - [**EntityProperty**](#entityproperty)
   - [**EntityPropertyKey**](#entitypropertykey)
   - [**EntityPropertyKeys**](#entitypropertykeys)
+  - [**Field**](#field)
+  - [- See **FieldSchema** Definition.](#--see-fieldschema-definition)
+  - [**FieldSchema**](#fieldschema)
   - [**Instance**](#instance)
   - [**Group**](#group)
   - [**ListWrapper**](#listwrapper)
@@ -615,6 +618,15 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "searchKey": "string",
     "projectIds": "number[]",
     "issueTypeIds": "string[]",
+    "numericId": "number",
+    "isLocked": "boolean",
+    "isManaged": "boolean",
+    "isAllProjects": "boolean",
+    "isTrusted": "boolean",
+    "projectsCount": "number",
+    "screensCount": "number",
+    "lastValueUpdate": "string",
+    "issuesWithValue": "number",
 }
 ```
 ---
@@ -670,6 +682,32 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 ```
 - See [**EntityPropertyKey**](#entitypropertykey) Definition.
 
+---
+## [**Field**]()
+```json
+{
+    "id": "string",
+    "name": "string",
+    "custom": "boolean",
+    "orderable": "boolean",
+    "navigable": "boolean",
+    "searchable": "boolean",
+    "clauseNames": "string[]",
+    "schema": "FieldSchema",
+}
+```
+- See [**FieldSchema**](#fieldschema) Definition.
+---
+## [**FieldSchema**]()
+```json
+{
+    "type": "string",
+    "items": "string",
+    "system": "string",
+    "custom": "string",
+    "customId": "number",
+}
+```
 ---
 ## [**Instance**]()
 ```json

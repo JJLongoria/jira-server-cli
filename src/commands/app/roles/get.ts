@@ -34,7 +34,7 @@ export default class Get extends BaseCommand {
             this.ux.log(response.message);
             this.ux.table<ApplicationRole>([result], AppRoleColumns, {
                 csv: this.flags.csv,
-                extended: this.flags.extended,
+                extended: this.flags.extended || this.flags.csv,
             });
         } catch (error) {
             this.processError(response, error);
