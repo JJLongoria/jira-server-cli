@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, DeletedFieldsOutput } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -313,6 +313,24 @@ export const CustomFieldColumns: CliUx.Table.table.Columns<Record<string, Custom
         header: 'Issue Type Ids',
         get(row: any) {
             return row.issueTypeIds && row.issueTypeIds.length ? row.issueTypeIds.join(', ') : '';
+        },
+    },
+};
+
+export const DeletedFieldsColumns: CliUx.Table.table.Columns<Record<string, DeletedFieldsOutput>> = {
+    message: {
+        header: 'Message',
+    },
+    deletedCustomFields: {
+        header: 'Deleted Fields',
+        get(row: any) {
+            return row.deletedCustomFields && row.deletedCustomFields.length ? row.deletedCustomFields.join(', ') : '';
+        },
+    },
+    notDeletedCustomFields: {
+        header: 'Not Deleted Fields',
+        get(row: any) {
+            return row.notDeletedCustomFields && row.notDeletedCustomFields.length ? row.notDeletedCustomFields.join(', ') : '';
         },
     },
 };

@@ -5,7 +5,7 @@ import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
 import { CustomFieldColumns } from "../../../libs/core/tables";
 import { UX } from "../../../libs/core/ux";
 
-export default class Get extends BaseCommand {
+export default class List extends BaseCommand {
     static description = 'Return a filtered page of Custom Fields JSON representation. ' + UX.processDocumentation('<doc:CustomField>');
     static examples = [
         `$ jiraserver fields:custom:list -a "MyAlias" --json`,
