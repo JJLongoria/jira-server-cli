@@ -16,7 +16,7 @@ export default class Download extends BaseCommand {
         alias: BuildFlags.alias,
         'output-folder': BuildFlags.output.folder('', false, ['raw']),
         raw: Flags.boolean({
-            description: '',
+            description: 'Return the raw file data instead save file.',
             required: false,
             name: 'Raw',
             exclusive: ['output-folder']
