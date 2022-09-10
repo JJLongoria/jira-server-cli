@@ -1,9 +1,9 @@
 import { Flags } from "@oclif/core";
 import { EntityPropertyKey, EntityPropertyKeys, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
-import { EntityPropertyKeyColumns } from "../../../../libs/core/tables";
-import { UX } from "../../../../libs/core/ux";
+import { BaseCommand, BuildFlags } from "../../../../../libs/core/baseCommand";
+import { JiraCLIResponse } from "../../../../../libs/core/jiraResponse";
+import { EntityPropertyKeyColumns } from "../../../../../libs/core/tables";
+import { UX } from "../../../../../libs/core/ux";
 
 export default class List extends BaseCommand {
     static description = 'Returns the keys of all properties for the dashboard item identified by the id. ' + UX.processDocumentation('<doc:EntityPropertyKeys>');

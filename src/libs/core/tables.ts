@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityPropertyKey } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -348,6 +348,12 @@ export const DashboardColumns: CliUx.Table.table.Columns<Record<string, Dashboar
 };
 
 export const EntityPropertyKeyColumns: CliUx.Table.table.Columns<Record<string, EntityPropertyKey>> = {
+    key: {
+        header: 'Key',
+    },
+};
+
+export const EntityPropertyColumns: CliUx.Table.table.Columns<Record<string, EntityProperty>> = {
     key: {
         header: 'Key',
     },
