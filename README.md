@@ -65,6 +65,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**ComponentIssuesCount**](#componentissuescount)
   - [**Configuration**](#configuration)
   - [**ConfigurationTimeTracking**](#configurationtimetracking)
+  - [**CustomField**](#customfield)
   - [**CustomFieldOption**](#customfieldoption)
   - [**Instance**](#instance)
   - [**Group**](#group)
@@ -596,6 +597,19 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "workingDaysPerWeek": 5,
     "timeFormat?": "'pretty' | 'days' | 'hours'",
     "defaultUnit?": "'minute' | 'hour' | 'day' | 'week'",
+}
+```
+---
+## [**CustomField**]()
+```json
+{
+    "id": "string",
+    "name": "string",
+    "description": "string",
+    "type": "string",
+    "searchKey": "string",
+    "projectIds": "number[]",
+    "issueTypeIds": "string[]",
 }
 ```
 ---

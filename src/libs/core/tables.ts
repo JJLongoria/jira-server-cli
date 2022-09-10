@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomFieldOption } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -284,6 +284,36 @@ export const CustomFieldOptionColumns: CliUx.Table.table.Columns<Record<string, 
     },
     disabled: {
         header: 'Disabled',
+    },
+};
+
+export const CustomFieldColumns: CliUx.Table.table.Columns<Record<string, CustomField>> = {
+    id: {
+        header: 'ID',
+    },
+    name: {
+        header: 'Name',
+    },
+    description: {
+        header: 'Description',
+    },
+    type: {
+        header: 'Type',
+    },
+    searchKey: {
+        header: 'Search Key',
+    },
+    projectIds: {
+        header: 'Project Ids',
+        get(row: any) {
+            return row.projectIds && row.projectIds.length ? row.projectIds.join(', ') : '';
+        },
+    },
+    issueTypeIds: {
+        header: 'Issue Type Ids',
+        get(row: any) {
+            return row.issueTypeIds && row.issueTypeIds.length ? row.issueTypeIds.join(', ') : '';
+        },
     },
 };
 

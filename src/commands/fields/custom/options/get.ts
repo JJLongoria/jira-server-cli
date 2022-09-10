@@ -29,7 +29,7 @@ export default class Get extends BaseCommand {
             const result = await connector.customFields.options(this.flags.field);
             response.result = result
             response.status = 0;
-            response.message = this.getRecordRetrievedText('Component');
+            response.message = this.getRecordRetrievedText('Custom Field Option');
             this.ux.log(response.message);
             this.ux.table<CustomFieldOption>([result], CustomFieldOptionColumns, {
                 csv: this.flags.csv,

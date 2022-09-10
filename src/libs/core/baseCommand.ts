@@ -150,7 +150,7 @@ export class BuildFlags {
             });
         },
     }
-    static pagination = (allowExpand?: boolean, allowOrder?: boolean) => {
+    static pagination = (allowExpand?: boolean, allowOrder?: boolean, allowColumn?: boolean) => {
         const flags: any = {
             all: Flags.boolean({
                 description: 'Return all records on the same page (instead paginate results)',
@@ -185,12 +185,29 @@ export class BuildFlags {
                 exclusive: [],
             });
         }
-        if (allowOrder) {
+        if (allowOrder && !allowColumn) {
             flags.order = Flags.string({
                 description: 'Ordering can be ascending or descending. By default it\'s ascending. To specify the ordering use "-" or "+" sign. Examples: --order "+name"; --order "name"; --order "-name"',
                 required: false,
                 name: 'Order By',
                 char: 'o',
+                exclusive: [],
+            });
+        } else if (allowOrder && allowColumn) {
+            flags.order = Flags.string({
+                description: 'The results order',
+                required: false,
+                name: 'Order By',
+                char: 'o',
+                exclusive: [],
+            });
+        }
+        if (allowColumn) {
+            flags.column = Flags.string({
+                description: 'The column to order results',
+                required: false,
+                name: 'Order Column',
+                char: 'c',
                 exclusive: [],
             });
         }
@@ -224,8 +241,6 @@ export class BaseCommand extends Command {
             return {
                 maxResults: this.flags.limit,
                 startAt: this.flags.start,
-                orderBy: this.flags.order,
-                expand: this.flags.expand,
             }
         }
         return undefined;
@@ -236,8 +251,6 @@ export class BaseCommand extends Command {
             return {
                 maxResults: 100,
                 startAt: this.flags.start,
-                orderBy: this.flags.order,
-                expand: this.flags.expand,
             }
         }
         return undefined;
