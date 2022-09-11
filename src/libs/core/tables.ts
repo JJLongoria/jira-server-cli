@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission, ShareScope } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission, Group, ShareScope } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -514,5 +514,14 @@ export const FilterPermissionsColumns: CliUx.Table.table.Columns<Record<string, 
 export const ShareScopeColumns: CliUx.Table.table.Columns<Record<string, ShareScope>> = {
     scope: {
         header: 'Scope',
+    },
+};
+
+export const GroupColumns: CliUx.Table.table.Columns<Record<string, Group>> = {
+    name: {
+        header: 'Name',
+    },
+    expand: {
+        header: 'Expand',
     },
 };
