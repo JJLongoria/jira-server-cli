@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, ShareScope, User } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -588,5 +588,46 @@ export const IssueColumns: CliUx.Table.table.Columns<Record<string, Issue>> = {
     },
     expand: {
         header: 'Expand',
+    },
+};
+
+export const CommentColumns: CliUx.Table.table.Columns<Record<string, Comment>> = {
+    id: {
+        header: 'ID',
+    },
+    body: {
+        header: 'Body',
+    },
+    author: {
+        header: 'Author',
+        get(row: any) {
+            return row.user ? row.user.name : '';
+        },
+    },
+    renderedBody: {
+        header: 'Rendered Body',
+        extended: true,
+    },
+    updateAuthor: {
+        header: 'Updated Author',
+        get(row: any) {
+            return row.updateAuthor ? row.updateAuthor.name : '';
+        },
+        extended: true,
+    },
+    created: {
+        header: 'Created',
+        extended: true,
+    },
+    updated: {
+        header: 'Updated',
+        extended: true,
+    },
+    visibility: {
+        header: 'Visibility',
+        get(row: any) {
+            return row.visibility ? row.visibility.type + ': ' + row.visibility.value : '';
+        },
+        extended: true,
     },
 };

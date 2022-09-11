@@ -64,6 +64,8 @@ Now Stil in BETA Version because is not fully tested.
   - [**ChangeItem**](#changeitem)
   - [**ChangeLog**](#changelog)
   - [**ColumnItem**](#columnitem)
+  - [**Comment**](#comment)
+  - [- See **EntityProperty** Definition.](#--see-entityproperty-definition)
   - [**Component**](#component)
   - [**ComponentInput**](#componentinput)
   - [**ComponentIssuesCount**](#componentissuescount)
@@ -619,6 +621,24 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "value": "string",
 }
 ```
+---
+## [**Comment**]()
+```json
+{
+    "id": "string",
+    "author": "User",
+    "body": "string",
+    "renderedBody": "string",
+    "updateAuthor": "User",
+    "created": "string",
+    "updated": "string",
+    "visibility": "Visibility",
+    "properties": "EntityProperty[]",
+}
+```
+- See [**User**](#user) Definition.
+- See [**Visibility**](#visibility) Definition.
+- See [**EntityProperty**](#entityproperty) Definition.
 ---
 ## [**Component**]()
 ```json

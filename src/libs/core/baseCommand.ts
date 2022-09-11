@@ -250,6 +250,8 @@ export class BaseCommand extends Command {
             return {
                 maxResults: this.flags.limit,
                 startAt: this.flags.start,
+                expand: this.flags.expand,
+                orderBy: this.flags.order,
             }
         }
         return undefined;
@@ -257,10 +259,13 @@ export class BaseCommand extends Command {
 
     get allPageOptions(): PageOptions | undefined {
         if (this.flags.all) {
-            return {
+            const options: PageOptions = {
                 maxResults: 100,
                 startAt: this.flags.start,
-            }
+                expand: this.flags.expand,
+                orderBy: this.flags.order,
+            };
+            return options;
         }
         return undefined;
     }
