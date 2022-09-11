@@ -102,6 +102,9 @@ Now Stil in BETA Version because is not fully tested.
   - [**IssueInput**](#issueinput)
   - [**IssueLink**](#issuelink)
   - [**IssueLinks**](#issuelinks)
+  - [**IssuePicker**](#issuepicker)
+  - [**IssuePickerOutput**](#issuepickeroutput)
+  - [**IssuePickerSection**](#issuepickersection)
   - [**IssueNotification**](#issuenotification)
   - [**IssueNotificationTo**](#issuenotificationto)
   - [**IssueNotificationPermission**](#issuenotificationpermission)
@@ -1126,6 +1129,39 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 }
 ```
 - See [**IssueLink**](#issuelink) Definition.
+
+---
+## [**IssuePicker**]()
+```json
+{
+    "key": "string",
+    "keyHtml": "string",
+    "img": "string",
+    "summary": "string",
+    "summaryText": "string",
+}
+```
+---
+## [**IssuePickerOutput**]()
+```json
+{
+    "sections": "IssuePickerSection[]",
+}
+```
+- See [**IssuePickerSection**](#issuepickersection) Definition.
+
+---
+## [**IssuePickerSection**]()
+```json
+{
+    "label": "string",
+    "sub": "string",
+    "id": "string",
+    "msg": "string",
+    "issues": "IssuePicker[]",
+}
+```
+- See [**IssuePicker**](#issuepicker) Definition.
 
 ---
 ## [**IssueNotification**]()

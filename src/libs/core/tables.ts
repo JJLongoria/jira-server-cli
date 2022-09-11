@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, ShareScope, User } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -785,5 +785,26 @@ export const CreateMetaColumns: CliUx.Table.table.Columns<Record<string, CreateM
     },
     expand: {
         header: 'Expand',
+    },
+};
+
+export const IssuePickerSectionColumns: CliUx.Table.table.Columns<Record<string, IssuePickerSection>> = {
+    id: {
+        header: 'ID',
+    },
+    label: {
+        header: 'Label',
+    },
+    sub: {
+        header: 'Sub',
+    },
+    msg: {
+        header: 'Message',
+    },
+    issues: {
+        header: 'Issues',
+        get(row: any) {
+            return row.issues.length;
+        },
     },
 };
