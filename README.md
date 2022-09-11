@@ -92,6 +92,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**Instance**](#instance)
   - [**IssueInput**](#issueinput)
   - [**IssueLink**](#issuelink)
+  - [**IssueLinks**](#issuelinks)
   - [**IssueTransition**](#issuetransition)
   - [**IssueType**](#issuetype)
   - [**JsonType**](#jsontype)
@@ -951,6 +952,16 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "self?": "string",
 }
 ```
+---
+## [**IssueLinks**]()
+```json
+{
+    "issues": "IssueLink[]",
+    "errors?": "string[]",
+}
+```
+- See [**IssueLink**](#issuelink) Definition.
+
 ---
 ## [**IssueTransition**]()
 ```json
