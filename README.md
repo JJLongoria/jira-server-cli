@@ -106,6 +106,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**IssueTransitions**](#issuetransitions)
   - [**IssueTransitionInput**](#issuetransitioninput)
   - [**IssueType**](#issuetype)
+  - [**IssueVotes**](#issuevotes)
   - [**JsonType**](#jsontype)
   - [**LinkGroup**](#linkgroup)
   - [**ListWrapper**](#listwrapper)
@@ -1168,6 +1169,18 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "avatarId?": "number",
 }
 ```
+---
+## [**IssueVotes**]()
+```json
+{
+    "votes": "number",
+    "hasVoted": "boolean",
+    "voters": "User[]",
+}
+```
+- See [**User**](#user) Definition.
+
+---
 ## [**JsonType**]()
 ```json
 {
