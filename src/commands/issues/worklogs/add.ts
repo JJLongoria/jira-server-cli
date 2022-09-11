@@ -40,7 +40,7 @@ export default class Add extends BaseCommand {
             dependsOn: ['adjust']
         }),
         reduce: Flags.string({
-            description: 'the amount to reduce the remaining estimate by (e.g. "2d"). Required when "manual" is selected for --adjust',
+            description: 'The amount to reduce the remaining estimate by (e.g. "2d"). Required when "manual" is selected for --adjust',
             required: false,
             name: 'Reduce By',
             exclusive: ['new'],
