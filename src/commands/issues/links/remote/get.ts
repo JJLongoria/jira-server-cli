@@ -5,7 +5,7 @@ import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
 import { IssueRemoteLinkColumns } from "../../../../libs/core/tables";
 import { UX } from "../../../../libs/core/ux";
 
-export default class Upsert extends BaseCommand {
+export default class Get extends BaseCommand {
     static description = 'Get the remote issue link with the given id on the issue. ' + UX.processDocumentation('<doc:IssueRemoteLink>');
     static examples = [
         `$ jiraserver issues:links:remote:get -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkId" --json`,

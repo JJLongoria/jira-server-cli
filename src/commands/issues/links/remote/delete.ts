@@ -3,7 +3,7 @@ import { JiraServerConnector } from "jira-server-connector";
 import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
 import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
 
-export default class Upsert extends BaseCommand {
+export default class Delete extends BaseCommand {
     static description = 'Delete the remote issue link with the given global id on the issue.';
     static examples = [
         `$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --global --link "theLinkGlobalId" --json`,
