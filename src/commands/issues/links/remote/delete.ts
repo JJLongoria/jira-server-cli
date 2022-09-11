@@ -6,9 +6,9 @@ import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
 export default class Upsert extends BaseCommand {
     static description = 'Delete the remote issue link with the given global id on the issue.';
     static examples = [
-        `$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkGlobalId" --json`,
-        `$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkGlobalId" --csv`,
-        `$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkGlobalId"`,
+        `$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --global --link "theLinkGlobalId" --json`,
+        `$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkId" --csv`,
+        `$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkId"`,
     ];
     static flags = {
         ...BaseCommand.flags,
@@ -19,16 +19,22 @@ export default class Upsert extends BaseCommand {
             name: 'Issue Key or Id',
         }),
         link: Flags.string({
-            description: 'The Link Global Id to delete',
+            description: 'The Link Global Id or Link Id to delete',
             required: true,
-            name: 'Link Global Id',
+            name: 'Link Id',
+        }),
+        global: Flags.boolean({
+            description: 'True if the link passes is a Link Global Id',
+            required: false,
+            name: 'Is Global',
+            dependsOn: ['link'],
         }),
     };
     async run(): Promise<JiraCLIResponse<any>> {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.issues.remoteLinks(this.flags.issue).delete(this.flags.link);
+            const result = this.flags.global ? await connector.issues.remoteLinks(this.flags.issue).deleteByGlobalId(this.flags.link) : await connector.issues.remoteLinks(this.flags.issue).delete(this.flags.link);
             response.status = 0;
             response.message = this.getRecordDeletedText('Issue Remote Link');
             this.ux.log(response.message);
