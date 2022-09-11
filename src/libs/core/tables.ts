@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueRemoteLink, IssueTransition, IssueVotes, ShareScope, User } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -701,5 +701,14 @@ export const IssueVotesColumns: CliUx.Table.table.Columns<Record<string, IssueVo
     },
     hasVoted: {
         header: 'Has Voted',
+    },
+};
+
+export const IssueWatchersColumns: CliUx.Table.table.Columns<Record<string, IssueWatchers>> = {
+    isWatching: {
+        header: 'Is Watching',
+    },
+    watchCount: {
+        header: 'Watch Count',
     },
 };

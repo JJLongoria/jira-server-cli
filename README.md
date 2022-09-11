@@ -107,6 +107,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**IssueTransitionInput**](#issuetransitioninput)
   - [**IssueType**](#issuetype)
   - [**IssueVotes**](#issuevotes)
+  - [**IssueWatchers**](#issuewatchers)
   - [**JsonType**](#jsontype)
   - [**LinkGroup**](#linkgroup)
   - [**ListWrapper**](#listwrapper)
@@ -1176,6 +1177,19 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "votes": "number",
     "hasVoted": "boolean",
     "voters": "User[]",
+    "self?": "string",
+}
+```
+- See [**User**](#user) Definition.
+
+---
+## [**IssueWatchers**]()
+```json
+{
+    "isWatching": "boolean",
+    "watchCount": "number",
+    "watchers": "User[]",
+    "self?": "string",
 }
 ```
 - See [**User**](#user) Definition.
