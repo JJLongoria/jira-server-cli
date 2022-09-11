@@ -2,7 +2,6 @@ import { Flags } from "@oclif/core";
 import { JiraServerConnector } from "jira-server-connector";
 import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
 import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
-import { UX } from "../../../../libs/core/ux";
 
 export default class Upsert extends BaseCommand {
     static description = 'Delete the remote issue link with the given global id on the issue.';
