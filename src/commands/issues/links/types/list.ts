@@ -6,7 +6,7 @@ import { IssueLinkTypeColumns } from "../../../../libs/core/tables";
 import { UX } from "../../../../libs/core/ux";
 
 export default class List extends BaseCommand {
-    static description = 'Returns an issue link with the specified id. ' + UX.processDocumentation('<doc:IssueLinkTypes>');
+    static description = 'Returns a list of available issue link types, if issue linking is enabled. Each issue link type has an id, a name and a label for the outward and inward link relationship. ' + UX.processDocumentation('<doc:IssueLinkTypes>');
     static examples = [
         `$ jiraserver issues:links:types:list -a "MyAlias" --json`,
         `$ jiraserver issues:links:types:list -a "MyAlias" --csv`,

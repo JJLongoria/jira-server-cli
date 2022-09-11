@@ -1145,6 +1145,7 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "name": "string",
     "inward": "string",
     "outward": "string",
+    "self?": "string",
 }
 ```
 ---
