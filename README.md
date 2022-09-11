@@ -24,7 +24,7 @@ Supported Operative Systems:
 - Linux
 - Mac OS X
 
-Now Stil in BETA Version because is not fully tested.
+Now Stil in BETA Version because is not fully tested and continue in development.
 
 --- 
 
@@ -134,6 +134,8 @@ Now Stil in BETA Version because is not fully tested.
   - [**RemoteObject**](#remoteobject)
   - [**RemoteObjectStatus**](#remoteobjectstatus)
   - [**RoleActor**](#roleactor)
+  - [**SecurityScheme**](#securityscheme)
+  - [**SecuritySchemeLevel**](#securityschemelevel)
   - [**ShareScope**](#sharescope)
   - [**SimpleLink**](#simplelink)
   - [**Status**](#status)
@@ -1541,6 +1543,26 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
     "displayName": "string",
     "type": "string",
     "avatarUrl": "string",
+}
+```
+## [**SecurityScheme**]()
+```json
+{
+    "id": "string",
+    "name": "string",
+    "description": "string",
+    "defaultSecurityLevelId": "number",
+    "levels": "SecuritySchemeLevel[]",
+}
+```
+- See [**SecuritySchemeLevel**](#securityschemelevel) Definition.
+
+## [**SecuritySchemeLevel**]()
+```json
+{
+    "id": "string",
+    "name": "string",
+    "description": "string",
 }
 ```
 ---

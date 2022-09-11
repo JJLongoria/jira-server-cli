@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, ShareScope, User } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, SecurityScheme, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -848,5 +848,20 @@ export const IssueLinkTypeColumns: CliUx.Table.table.Columns<Record<string, Issu
     },
     outward: {
         header: 'Outward',
+    },
+};
+
+export const SecuritySchemeColumns: CliUx.Table.table.Columns<Record<string, SecurityScheme>> = {
+    id: {
+        header: 'ID',
+    },
+    name: {
+        header: 'Name',
+    },
+    description: {
+        header: 'Description',
+    },
+    defaultSecurityLevelId: {
+        header: 'Default Level Id',
     },
 };
