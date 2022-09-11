@@ -82,7 +82,6 @@ Now Stil in BETA Version because is not fully tested.
   - [**EntityPropertyKey**](#entitypropertykey)
   - [**EntityPropertyKeys**](#entitypropertykeys)
   - [**Field**](#field)
-  - [- See **FieldSchema** Definition.](#--see-fieldschema-definition)
   - [**FieldSchema**](#fieldschema)
   - [**Filter**](#filter)
   - [**FilterInput**](#filterinput)
@@ -844,6 +843,7 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 }
 ```
 - See [**FieldSchema**](#fieldschema) Definition.
+
 ---
 ## [**FieldSchema**]()
 ```json
