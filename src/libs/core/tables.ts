@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, ShareScope, User } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -833,5 +833,20 @@ export const LinkIssueColumns: CliUx.Table.table.Columns<Record<string, LinkIssu
         get(row: any) {
             return row.comment ? row.comment.body : '';
         },
+    },
+};
+
+export const IssueLinkTypeColumns: CliUx.Table.table.Columns<Record<string, IssueLinkType>> = {
+    id: {
+        header: 'ID',
+    },
+    name: {
+        header: 'Name',
+    },
+    inward: {
+        header: 'Inward',
+    },
+    outward: {
+        header: 'Outward',
     },
 };
