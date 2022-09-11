@@ -65,7 +65,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**ChangeLog**](#changelog)
   - [**ColumnItem**](#columnitem)
   - [**Comment**](#comment)
-  - [- See **EntityProperty** Definition.](#--see-entityproperty-definition)
+  - [**CommentInput**](#commentinput)
   - [**Component**](#component)
   - [**ComponentInput**](#componentinput)
   - [**ComponentIssuesCount**](#componentissuescount)
@@ -116,6 +116,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**SystemAvatars**](#systemavatars)
   - [**User**](#user)
   - [**Version**](#version)
+  - [**Visibility**](#visibility)
 
 
 # [**Installation Guide**]()
@@ -639,6 +640,17 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 - See [**User**](#user) Definition.
 - See [**Visibility**](#visibility) Definition.
 - See [**EntityProperty**](#entityproperty) Definition.
+
+---
+## [**CommentInput**]()
+```json
+{
+    "body": "string",
+    "visibility": "Visibility",
+}
+```
+- See [**Visibility**](#visibility) Definition.
+
 ---
 ## [**Component**]()
 ```json
@@ -1281,4 +1293,14 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
 ```
 - See [**SimpleLink**](#simplelink) Definition.
 - See [**RemoteEntityLink**](#remoteentitylink) Definition.
+
+---
+## [**Visibility**]()
+```json
+{
+    "type": "'group' | 'role'",
+    "value": "string",
+}
+```
+
 
