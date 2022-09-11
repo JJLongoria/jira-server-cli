@@ -8,9 +8,9 @@ import { UX } from "../../../../libs/core/ux";
 export default class Get extends BaseCommand {
     static description = 'Returns for a given issue link type id all information about this issue link type. ' + UX.processDocumentation('<doc:IssueLinkType>');
     static examples = [
-        `$ jiraserver issues:links:get -a "MyAlias" --type "theIssueLinkTypeId" --json`,
-        `$ jiraserver issues:links:get -a "MyAlias" --type "theIssueLinkTypeId" --csv`,
-        `$ jiraserver issues:links:get -a "MyAlias" --type "theIssueLinkTypeId"`,
+        `$ jiraserver issues:links:types:get -a "MyAlias" --type "theIssueLinkTypeId" --json`,
+        `$ jiraserver issues:links:types:get -a "MyAlias" --type "theIssueLinkTypeId" --csv`,
+        `$ jiraserver issues:links:types:get -a "MyAlias" --type "theIssueLinkTypeId"`,
     ];
     static flags = {
         ...BaseCommand.flags,
