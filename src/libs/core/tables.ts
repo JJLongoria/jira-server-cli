@@ -639,6 +639,12 @@ export const IssueRemoteLinkColumns: CliUx.Table.table.Columns<Record<string, Is
     globalId: {
         header: 'Global Id',
     },
+    application: {
+        header: 'Global Id',
+        get(row: any) {
+            return row.application.name;
+        },
+    },
     relationship: {
         header: 'Relationship',
     },
