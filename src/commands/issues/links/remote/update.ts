@@ -5,7 +5,7 @@ import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
 import { IssueRemoteLinkColumns } from "../../../../libs/core/tables";
 
 export default class Update extends BaseCommand {
-    static description = 'Creates or updates a remote issue link from a JSON representation. If a globalId is provided and a remote issue link exists with that globalId, the remote issue link is updated. Otherwise, the remote issue link is created. ' + UX.processDocumentation('<doc:IssueRemoteLink>');
+    static description = 'Updates a remote issue link from a JSON representation. Any fields not provided are set to null.';
     static examples = [
         `$ jiraserver issues:links:remote:update -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkId" --data "{'globalId':'system=http://www.mycompany.com/support&id=1','application':{'type':'com.acme.tracker','name':'My Acme Tracker'},'relationship':'causes','object':{'url':'http://www.mycompany.com/support?id=1','title':'TSTSUP-111','summary':'Crazy customer support issue','icon':{'url16x16':'http://www.mycompany.com/support/ticket.png','title':'Support Ticket'},'status':{'resolved':true,'icon':{'url16x16':'http://www.mycompany.com/support/resolved.png','title':'Case Closed','link':'http://www.mycompany.com/support?id=1&details=closed'}}}}" --json`,
         `$ jiraserver issues:links:remote:update -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkId" --file "path/to/the/json/data/file" --csv`,
