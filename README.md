@@ -92,6 +92,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**ProjectRole**](#projectrole)
   - [**RemoteEntityLink**](#remoteentitylink)
   - [**RoleActor**](#roleactor)
+  - [**ShareScope**](#sharescope)
   - [**SimpleLink**](#simplelink)
   - [**SystemAvatars**](#systemavatars)
   - [**User**](#user)
@@ -941,6 +942,13 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
     "displayName": "string",
     "type": "string",
     "avatarUrl": "string",
+}
+```
+---
+## [**ShareScope**]()
+```json
+{
+    "scope": "'GLOBAL' | 'AUTHENTICATED' | 'PRIVATE'",
 }
 ```
 ---
