@@ -26,7 +26,7 @@ export default class Add extends BaseCommand {
             name: 'Issue Key or Id',
         }),
         body: Flags.string({
-            description: 'Create issues in bulk, this expect and array of IssueInput as data (instead a single IssueInput). With this options, return an IssueLinks response (instead single issue link)' + UX.processDocumentation('<doc:IssueLinks>'),
+            description: 'The comment body',
             required: false,
             name: 'Comment Body',
             exclusive: ['data', 'file'],

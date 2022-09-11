@@ -118,6 +118,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**IssueWatchers**](#issuewatchers)
   - [**JsonType**](#jsontype)
   - [**LinkGroup**](#linkgroup)
+  - [**LinkIssueRequest**](#linkissuerequest)
   - [**ListWrapper**](#listwrapper)
   - [**Participant**](#participant)
   - [**Project**](#project)
@@ -1326,6 +1327,24 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 }
 ```
 - See [**SimpleLink**](#simplelink) Definition.
+
+---
+## [**LinkIssueRequest**]()
+```json
+{
+    "type": {
+        "name": "string",
+    },
+    "inwardIssue": {
+        "key": "string",
+    },
+    "outwardIssue": {
+        "key": "string",
+    },
+    "comment?": "CommentInput",
+}
+```
+- See [**CommentInput**](#commentinput) Definition.
 
 ---
 ## [**ListWrapper**]()
