@@ -5,7 +5,7 @@ import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
 import { CommentColumns } from "../../../libs/core/tables";
 import { UX } from "../../../libs/core/ux";
 
-export default class Add extends BaseCommand {
+export default class Update extends BaseCommand {
     static description = 'Updates an existing comment using its JSON representation. ' + UX.processDocumentation('<doc:Comment>');
     static examples = [
         `$ jiraserver issues:comments:update -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId" --data "{'body':'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper.','visibility':{'type':'role','value':'Administrators'}}" --json`,
