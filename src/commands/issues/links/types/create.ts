@@ -15,6 +15,7 @@ export default class Create extends BaseCommand {
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
+        csv: BuildFlags.csv,
         name: Flags.string({
             description: 'The name of the issue type',
             required: true,
