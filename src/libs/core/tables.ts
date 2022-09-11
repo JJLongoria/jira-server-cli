@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, ShareScope, User } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -713,7 +713,6 @@ export const IssueWatchersColumns: CliUx.Table.table.Columns<Record<string, Issu
     },
 };
 
-
 export const IssueWorklogColumns: CliUx.Table.table.Columns<Record<string, IssueWorklog>> = {
     id: {
         header: 'ID',
@@ -763,4 +762,28 @@ export const IssueWorklogColumns: CliUx.Table.table.Columns<Record<string, Issue
         extended: true,
     },
 
+};
+
+export const CreateMetaColumns: CliUx.Table.table.Columns<Record<string, CreateMeta>> = {
+    id: {
+        header: 'ID',
+    },
+    name: {
+        header: 'Name',
+    },
+    description: {
+        header: 'Description',
+    },
+    iconUrl: {
+        header: 'Icon URL',
+    },
+    subtask: {
+        header: 'Subtask',
+    },
+    avatarId: {
+        header: 'Avatar Id',
+    },
+    expand: {
+        header: 'Expand',
+    },
 };

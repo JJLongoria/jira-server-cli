@@ -13,7 +13,6 @@ export default class Delete extends BaseCommand {
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
-        extended: BuildFlags.extended,
         issue: Flags.string({
             description: 'The Issue key or id to delete worklog',
             required: true,

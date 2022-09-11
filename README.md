@@ -72,6 +72,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**ComponentIssuesCount**](#componentissuescount)
   - [**Configuration**](#configuration)
   - [**ConfigurationTimeTracking**](#configurationtimetracking)
+  - [**CreateMeta**](#createmeta)
   - [**CustomField**](#customfield)
   - [**CustomFieldDefinition**](#customfielddefinition)
   - [**CustomFieldOption**](#customfieldoption)
@@ -739,6 +740,23 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "defaultUnit?": "'minute' | 'hour' | 'day' | 'week'",
 }
 ```
+---
+## [**CreateMeta**]()
+```json
+{
+    "id": "string",
+    "description": "string",
+    "iconUrl": "string",
+    "name": "string",
+    "subtask": "boolean",
+    "avatarId": "number",
+    "expand": "string",
+    "fields": "{ [key: string]: FieldMeta }",
+    "self?": "string",
+}
+```
+- See [**FieldMeta**](#fieldmeta) Definition.
+
 ---
 ## [**CustomField**]()
 ```json

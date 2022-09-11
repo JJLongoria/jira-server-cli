@@ -5,7 +5,7 @@ import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
 import { FieldMetaColumns } from "../../../../libs/core/tables";
 import { UX } from "../../../../libs/core/ux";
 
-export default class Edit extends BaseCommand {
+export default class Get extends BaseCommand {
     static description = 'Returns the meta data for editing an issue. The fields in the editmeta correspond to the fields in the edit screen for the issue. Fields not in the screen will not be in the editmeta. ' + UX.processDocumentation('<doc:EditMeta>');
     static examples = [
         `$ jiraserver issues:meta:edit:get -a "MyAlias" --issue "theIssueKeyOrId" --json`,
