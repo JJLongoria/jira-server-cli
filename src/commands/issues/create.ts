@@ -26,7 +26,7 @@ export default class Create extends BaseCommand {
         }),
         'update-history': Flags.boolean({
             description: 'If true then the user\'s project history is updated',
-            required: true,
+            required: false,
             name: 'Update History',
             exclusive: ['bulk'],
         }),

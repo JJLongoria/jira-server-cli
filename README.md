@@ -60,6 +60,9 @@ Now Stil in BETA Version because is not fully tested.
   - [**Attachment**](#attachment)
   - [**Avatar**](#avatar)
   - [**AttachmentMeta**](#attachmentmeta)
+  - [**ChangeHistory**](#changehistory)
+  - [**ChangeItem**](#changeitem)
+  - [**ChangeLog**](#changelog)
   - [**ColumnItem**](#columnitem)
   - [**Component**](#component)
   - [**ComponentInput**](#componentinput)
@@ -71,6 +74,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**CustomFieldOption**](#customfieldoption)
   - [**Dashboard**](#dashboard)
   - [**DeletedFieldsOutput**](#deletedfieldsoutput)
+  - [**EditMeta**](#editmeta)
   - [**EntityProperty**](#entityproperty)
   - [**EntityPropertyKey**](#entitypropertykey)
   - [**EntityPropertyKeys**](#entitypropertykeys)
@@ -90,12 +94,14 @@ Now Stil in BETA Version because is not fully tested.
   - [**GroupSuggestionLabel**](#groupsuggestionlabel)
   - [**HistoryMetadata**](#historymetadata)
   - [**Instance**](#instance)
+  - [**Issue**](#issue)
   - [**IssueInput**](#issueinput)
   - [**IssueLink**](#issuelink)
   - [**IssueLinks**](#issuelinks)
   - [**IssueTransition**](#issuetransition)
   - [**IssueType**](#issuetype)
   - [**JsonType**](#jsontype)
+  - [**LinkGroup**](#linkgroup)
   - [**ListWrapper**](#listwrapper)
   - [**Participant**](#participant)
   - [**Project**](#project)
@@ -568,6 +574,44 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 }
 ```
 ---
+## [**ChangeHistory**]()
+```json
+{
+    "id": "string",
+    "author": "User",
+    "created": "string",
+    "items": "ChangeItem[]",
+    "historyMetadata": "HistoryMetadata",
+}
+```
+- See [**ChangeItem**](#changeitem) Definition.
+- See [**HistoryMetadata**](#historymetadata) Definition.
+
+---
+## [**ChangeItem**]()
+```json
+{
+    "field": "string",
+    "fieldtype": "string",
+    "from": "string",
+    "fromString": "string",
+    "to": "string",
+    "toString": "string",
+}
+```
+---
+## [**ChangeLog**]()
+```json
+{
+    "startAt": "number",
+    "maxResults": "number",
+    "total": "number",
+    "histories": "ChangeHistory[]",
+}
+```
+- See [**ChangeHistory**](#changehistory) Definition.
+
+---
 ## [**ColumnItem**]()
 ```json
 {
@@ -706,6 +750,15 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "self?": "string",
 }
 ```
+---
+## [**EditMeta**]()
+```json
+{
+     "fields": "{ [key: string]: FieldMeta }",
+}
+```
+- See [**FieldMeta**](#fieldmeta) Definition.
+
 ---
 ## [**EntityProperty**]()
 ```json
@@ -928,6 +981,34 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 }
 ```
 ---
+## [**Issue**]()
+```json
+{
+    "expand": "string",
+    "id": "string",
+    "key": "string",
+    "fields": "{ [key: string]: any }",
+    "renderedFields": "{ [key: string]: any }",
+    "properties": {
+        "properties": "{ [key: string]: string }",
+    },
+    "names": "{ [key: string]: string }",
+    "schema": "{ [key: string]: JsonType }",
+    "transitions": "IssueTransition[]",
+    "operations": "LinkGroup[]",
+    "editmeta": "EditMeta",
+    "changelog": "ChangeLog",
+    "versionedRepresentations": "any",
+    "fieldsToInclude": "any",
+}
+```
+- See [**JsonType**](#jsontype) Definition.
+- See [**IssueTransition**](#issuetransition) Definition.
+- See [**LinkGroup**](#linkgroup) Definition.
+- See [**EditMeta**](#editmeta) Definition.
+- See [**ChangeLog**](#changelog) Definition.
+
+---
 ## [**IssueInput**]()
 ```json
 {
@@ -998,6 +1079,20 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "customId": "number",
 }
 ```
+---
+## [**LinkGroup**]()
+```json
+{
+    "id": "string",
+    "styleClass": "string",
+    "header": "SimpleLink",
+    "weight": "number",
+    "links": "SimpleLink[]",
+    "groups": "LinkGroup[]",
+}
+```
+- See [**SimpleLink**](#simplelink) Definition.
+
 ---
 ## [**ListWrapper**]()
 
