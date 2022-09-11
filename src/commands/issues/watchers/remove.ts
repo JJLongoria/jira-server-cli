@@ -4,7 +4,7 @@ import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
 import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
 
 export default class Remove extends BaseCommand {
-    static description = 'Adds a user to an issue\'s watcher list.';
+    static description = 'Removes a user from an issue\'s watcher list.';
     static examples = [
         `$ jiraserver issues:watchers:remove -a "MyAlias" --issue "theIssueKeyOrId" --user "theUsername" --json`,
         `$ jiraserver issues:watchers:remove -a "MyAlias" --issue "theIssueKeyOrId" --user "theUsername" --csv`,

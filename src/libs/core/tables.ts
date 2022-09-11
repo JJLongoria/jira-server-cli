@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, ShareScope, User } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -711,4 +711,56 @@ export const IssueWatchersColumns: CliUx.Table.table.Columns<Record<string, Issu
     watchCount: {
         header: 'Watch Count',
     },
+};
+
+
+export const IssueWorklogColumns: CliUx.Table.table.Columns<Record<string, IssueWorklog>> = {
+    id: {
+        header: 'ID',
+    },
+    issueId: {
+        header: 'Issue Id',
+    },
+    comment: {
+        header: 'Comment',
+    },
+    created: {
+        header: 'Created',
+    },
+    updated: {
+        header: 'Updated',
+        extended: true,
+    },
+    visibility: {
+        get(row: any) {
+            return row.visibility.type + ': ' + row.visibility.value;
+        },
+        extended: true,
+    },
+    started: {
+        header: 'Started',
+        extended: true,
+    },
+    timeSpent: {
+        header: 'Time Spent',
+        extended: true,
+    },
+    timeSpentSeconds: {
+        header: 'Time Spent (s)',
+        extended: true,
+    },
+    author: {
+        header: 'Author',
+        get(row: any) {
+            return row.author.name;
+        },
+    },
+    updateAuthor: {
+        header: 'Update Author',
+        get(row: any) {
+            return row.updateAuthor.name;
+        },
+        extended: true,
+    },
+
 };

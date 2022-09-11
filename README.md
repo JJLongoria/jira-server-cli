@@ -127,6 +127,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**User**](#user)
   - [**Version**](#version)
   - [**Visibility**](#visibility)
+  - [**IssueWorklog**](#issueworklog)
 
 
 # [**Installation Guide**]()
@@ -1443,5 +1444,26 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
     "value": "string",
 }
 ```
+---
+## [**IssueWorklog**]()
+```json
+{
+    "id": "string",
+    "author": "User",
+    "updateAuthor": "User",
+    "comment": "string",
+    "created": "string",
+    "updated": "string",
+    "visibility": "Visibility",
+    "started": "string",
+    "timeSpent": "string",
+    "timeSpentSeconds": "number",
+    "issueId": "string",
+    "self?": "string",
+}
+```
+- See [**Visibility**](#visibility) Definition.
+- See [**User**](#user) Definition.
+
 
 
