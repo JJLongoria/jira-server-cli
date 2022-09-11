@@ -84,6 +84,9 @@ Now Stil in BETA Version because is not fully tested.
   - [**FilterSubscription**](#filtersubscription)
   - [**FilterSubscriptionInput**](#filtersubscriptioninput)
   - [**Group**](#group)
+  - [**GroupSuggestions**](#groupsuggestions)
+  - [**GroupSuggestion**](#groupsuggestion)
+  - [**GroupSuggestionLabel**](#groupsuggestionlabel)
   - [**Instance**](#instance)
   - [**IssueType**](#issuetype)
   - [**ListWrapper**](#listwrapper)
@@ -840,6 +843,37 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 - See [**ListWrapper**](#listwrapper) Definition.
 - See [**User**](#user) Definition.
 
+---
+## [**GroupSuggestions**]()
+```json
+{
+    "header": "string",
+    "total": "number",
+    "groups": "GroupSuggestion[]",
+}
+```
+- See [**GroupSuggestion**](#groupsuggestion) Definition.
+
+---
+## [**GroupSuggestion**]()
+```json
+{
+    "name": "string",
+    "html": "string",
+    "labels?": "GroupSuggestionLabel[]",
+}
+```
+- See [**GroupSuggestionLabel**](#groupsuggestionlabel) Definition.
+
+---
+## [**GroupSuggestionLabel**]()
+```json
+{
+    "text": "string",
+    "title": "string",
+    "type": "'ADMIN' | 'SINGLE' | 'MULTIPLE'",
+}
+```
 ---
 ## [**Instance**]()
 ```json
