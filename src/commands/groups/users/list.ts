@@ -35,30 +35,27 @@ export default class Create extends BaseCommand {
         try {
             let result: Page<User> = new Page();
             if (this.flags.all) {
-                let tmp = await connector.groups.members().list({
+                let tmp = await connector.groups.members(this.flags.group).list({
                     maxResults: 100,
                     startAt: 0,
-                    groupname: this.flags.group,
                     includeInactiveUsers: this.flags.inactive,
                 });
                 result.values.push(...tmp.values);
                 result.isLast = true;
                 result.startAt = tmp.startAt;
                 while (!tmp.isLast) {
-                    tmp = await connector.groups.members().list({
+                    tmp = await connector.groups.members(this.flags.group).list({
                         startAt: tmp.nextPageStart,
                         maxResults: 100,
-                        groupname: this.flags.group,
                         includeInactiveUsers: this.flags.inactive,
                     });
                     result.values.push(...tmp.values);
                 }
                 result.maxResults = result.values.length;
             } else {
-                result = await connector.groups.members().list({
+                result = await connector.groups.members(this.flags.group).list({
                     maxResults: this.flags.limit,
                     startAt: this.flags.start,
-                    groupname: this.flags.group,
                     includeInactiveUsers: this.flags.inactive
                 });
             }
