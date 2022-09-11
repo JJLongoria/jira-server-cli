@@ -17,6 +17,7 @@ export default class Add extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
+        extended: BuildFlags.extended,
         data: BuildFlags.input.jsonData('<doc:CommentInput>', false, ['body', 'type', 'value']),
         file: BuildFlags.input.jsonFile('<doc:CommentInput>', false, ['body', 'type', 'value']),
         issue: Flags.string({
@@ -66,10 +67,11 @@ export default class Add extends BaseCommand {
             }
             response.result = result
             response.status = 0;
-            response.message = this.getRecordCreatedText('Issue(s)');
+            response.message = this.getRecordCreatedText('Comment');
             this.ux.log(response.message);
             this.ux.table<Comment>([result], CommentColumns, {
                 csv: this.flags.csv,
+                extended: this.flags.extended || this.flags.csv,
             });
         } catch (error) {
             this.processError(response, error);
