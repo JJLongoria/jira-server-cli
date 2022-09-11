@@ -25,7 +25,7 @@ export default class Vote extends BaseCommand {
         try {
             const result = await connector.issues.votes(this.flags.issue).vote();
             response.status = 0;
-            response.message = 'Issue voted successffully';
+            response.message = 'Issue voted successfully';
             this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
