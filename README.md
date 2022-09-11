@@ -54,6 +54,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**`jiraserver plugins:uninstall PLUGIN...`**](#jiraserver-pluginsuninstall-plugin)
 - [**Main CLI Topics**](#main-cli-topics)
 - [**JSON Objects Schemes**](#json-objects-schemes)
+  - [**Application**](#application)
   - [**ApplicationProperty**](#applicationproperty)
   - [**ApplicationRole**](#applicationrole)
   - [**ApplicationRoleInput**](#applicationroleinput)
@@ -95,11 +96,13 @@ Now Stil in BETA Version because is not fully tested.
   - [**GroupSuggestion**](#groupsuggestion)
   - [**GroupSuggestionLabel**](#groupsuggestionlabel)
   - [**HistoryMetadata**](#historymetadata)
+  - [**Icon**](#icon)
   - [**Instance**](#instance)
   - [**Issue**](#issue)
   - [**IssueInput**](#issueinput)
   - [**IssueLink**](#issuelink)
   - [**IssueLinks**](#issuelinks)
+  - [**IssueRemoteLink**](#issueremotelink)
   - [**IssueTransition**](#issuetransition)
   - [**IssueType**](#issuetype)
   - [**JsonType**](#jsontype)
@@ -110,6 +113,8 @@ Now Stil in BETA Version because is not fully tested.
   - [**ProjectCategory**](#projectcategory)
   - [**ProjectRole**](#projectrole)
   - [**RemoteEntityLink**](#remoteentitylink)
+  - [**RemoteObject**](#remoteobject)
+  - [**RemoteObjectStatus**](#remoteobjectstatus)
   - [**RoleActor**](#roleactor)
   - [**ShareScope**](#sharescope)
   - [**SimpleLink**](#simplelink)
@@ -497,6 +502,14 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 }
 ```
 ---
+---
+## [**Application**]()
+```json
+{
+    "type": "string",
+    "name": "string",
+}
+```
 ---
 ## [**ApplicationProperty**]()
 ```json
@@ -1004,6 +1017,15 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 - See [**Participant**](#participant) Definition.
 
 ---
+## [**Icon**]()
+```json
+{
+    "url16x16": "string",
+    "title": "string",
+    "link": "string",
+}
+```
+---
 ## [**Instance**]()
 ```json
 {
@@ -1074,6 +1096,20 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 }
 ```
 - See [**IssueLink**](#issuelink) Definition.
+
+---
+## [**IssueRemoteLink**]()
+```json
+{
+    "id": "number",
+    "globalId": "string",
+    "application": "Application",
+    "relationship": "string",
+    "object": "RemoteObject",
+}
+```
+- See [**Application**](#application) Definition.
+- See [**RemoteObject**](#remoteobject) Definition.
 
 ---
 ## [**IssueTransition**]()
@@ -1209,6 +1245,30 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
     "link": "any",
 }
 ```
+---
+## [**RemoteObject**]()
+```json
+{
+    "url": "string",
+    "title": "string",
+    "summary": "string",
+    "icon": "Icon",
+    "status": "RemoteObjectStatus",
+}
+```
+- See [**RemoteObjectStatus**](#remoteobjectstatus) Definition.
+- See [**Icon**](#icon) Definition.
+
+---
+## [**RemoteObjectStatus**]()
+```json
+{
+    "resolved": "boolean",
+    "icon": "Icon",
+}
+```
+- See [**Icon**](#icon) Definition.
+
 ---
 ## [**RoleActor**]()
 ```json

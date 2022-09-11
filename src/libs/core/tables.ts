@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, ShareScope, User } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueRemoteLink, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -629,5 +629,17 @@ export const CommentColumns: CliUx.Table.table.Columns<Record<string, Comment>> 
             return row.visibility ? row.visibility.type + ': ' + row.visibility.value : '';
         },
         extended: true,
+    },
+};
+
+export const IssueRemoteLinkColumns: CliUx.Table.table.Columns<Record<string, IssueRemoteLink>> = {
+    id: {
+        header: 'ID',
+    },
+    globalId: {
+        header: 'Global Id',
+    },
+    relationship: {
+        header: 'Relationship',
     },
 };
