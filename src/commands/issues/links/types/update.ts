@@ -8,9 +8,9 @@ import { UX } from "../../../../libs/core/ux";
 export default class Update extends BaseCommand {
     static description = 'Update the specified issue link type. ' + UX.processDocumentation('<doc:IssueLinkType>');
     static examples = [
-        `$ jiraserver issues:links:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue" --json`,
-        `$ jiraserver issues:links:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue" --csv`,
-        `$ jiraserver issues:links:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue"`,
+        `$ jiraserver issues:links:types:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue" --json`,
+        `$ jiraserver issues:links:types:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue" --csv`,
+        `$ jiraserver issues:links:types:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue"`,
     ];
     static flags = {
         ...BaseCommand.flags,
