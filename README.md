@@ -802,6 +802,9 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 ## [**FilterPermissionInput**]()
 ```json
 {
+    "groupname?": "string",
+    "userKey?": "string",
+    "type": "string",
     "view": "boolean",
     "edit": "boolean",
 }

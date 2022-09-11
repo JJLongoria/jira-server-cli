@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -475,6 +475,39 @@ export const ColumnItemColumns: CliUx.Table.table.Columns<Record<string, ColumnI
     },
     value: {
         header: 'Value',
+    },
+};
+
+export const FilterPermissionsColumns: CliUx.Table.table.Columns<Record<string, FilterPermission>> = {
+    id: {
+        header: 'ID',
+    },
+    type: {
+        header: 'Type',
+    },
+    project: {
+        header: 'Project',
+        get(row: any) {
+            return row.project ? row.project.key : '';
+        },
+    },
+    group: {
+        header: 'Group',
+        get(row: any) {
+            return row.group ? row.group.name : '';
+        },
+    },
+    user: {
+        header: 'User',
+        get(row: any) {
+            return row.user ? row.user.name : '';
+        },
+    },
+    view: {
+        header: 'View',
+    },
+    edit: {
+        header: 'Edit',
     },
 };
 
