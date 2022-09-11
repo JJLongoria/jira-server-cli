@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueRemoteLink, IssueTransition, ShareScope, User } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueRemoteLink, IssueTransition, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -668,5 +668,29 @@ export const IssueTransitionColumns: CliUx.Table.table.Columns<Record<string, Is
     },
     expand: {
         header: 'Expand',
+    },
+};
+
+export const FieldMetaColumns: CliUx.Table.table.Columns<Record<string, FieldMeta>> = {
+    fieldId: {
+        header: 'Field Id',
+    },
+    name: {
+        header: 'Name',
+    },
+    required: {
+        header: 'Required',
+    },
+    autoCompleteUrl: {
+        header: 'Autocomplete URL',
+    },
+    hasDefaultValue: {
+        header: 'Has Default Value',
+    },
+    operations: {
+        header: 'Operations',
+        get(row: any) {
+            return row.operations && row.operations.length ? row.operations.join(', ') : '';
+        },
     },
 };
