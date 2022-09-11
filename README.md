@@ -102,6 +102,10 @@ Now Stil in BETA Version because is not fully tested.
   - [**IssueInput**](#issueinput)
   - [**IssueLink**](#issuelink)
   - [**IssueLinks**](#issuelinks)
+  - [**IssueNotification**](#issuenotification)
+  - [**IssueNotificationTo**](#issuenotificationto)
+  - [**IssueNotificationPermission**](#issuenotificationpermission)
+  - [**IssueNotificationRetrict**](#issuenotificationretrict)
   - [**IssueRemoteLink**](#issueremotelink)
   - [**IssueTransition**](#issuetransition)
   - [**IssueTransitions**](#issuetransitions)
@@ -1122,6 +1126,54 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 }
 ```
 - See [**IssueLink**](#issuelink) Definition.
+
+---
+## [**IssueNotification**]()
+```json
+{
+    "subject": "string",
+    "textBody": "string",
+    "htmlBody?": "string",
+    "to": "IssueNotificationTo",
+    "restrict": "IssueNotificationRetrict",
+}
+```
+- See [**IssueNotificationTo**](#issuenotificationto) Definition.
+- See [**IssueNotificationRetrict**](#issuenotificationretrict) Definition.
+
+---
+## [**IssueNotificationTo**]()
+```json
+{
+    "reporter?": "boolean",
+    "assignee?": "boolean",
+    "watchers?": "boolean",
+    "voters?": "boolean",
+    "users?": "User[]",
+    "groups?": "Group[]",
+}
+```
+- See [**User**](#user) Definition.
+- See [**Group**](#group) Definition.
+
+---
+## [**IssueNotificationPermission**]()
+```json
+{
+    "id": "string",
+    "key": "string",
+}
+```
+---
+## [**IssueNotificationRetrict**]()
+```json
+{
+    "groups?": "Group[]",
+    "permissions?": "IssueNotificationPermission[]",
+}
+```
+- See [**Group**](#group) Definition.
+- See [**IssueNotificationPermission**](#issuenotificationpermission) Definition.
 
 ---
 ## [**IssueRemoteLink**]()
