@@ -1143,13 +1143,18 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 ## [**IssueTransitionInput**]()
 ```json
 {
-    "name": "string",
-    "opsbarSequence": "number",
-    "to": "Status",
-    "fields": "{ [key: string]: FieldMeta }",
+    "transition": {
+        "id": "string",
+    },
+    "fields?": "{ [key: string]: any }",
+    "update?": "{ [key: string]: any[] }",
+    "historyMetadata?": "HistoryMetadata",
+    "properties?": "EntityProperty[]",
 }
 ```
-- See [**Status**](#status) Definition.
+- See [**IssueTransition**](#issuetransition) Definition.
+- See [**HistoryMetadata**](#historymetadata) Definition.
+- See [**EntityProperty**](#entityproperty) Definition.
 
 ---
 ## [**IssueType**]()
