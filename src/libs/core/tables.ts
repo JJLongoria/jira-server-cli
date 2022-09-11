@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission, Group, ShareScope } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission, Group, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -524,4 +524,39 @@ export const GroupColumns: CliUx.Table.table.Columns<Record<string, Group>> = {
     expand: {
         header: 'Expand',
     },
+};
+
+export const UserColumns: CliUx.Table.table.Columns<Record<string, User>> = {
+    key: {
+        header: 'Key',
+    },
+    name: {
+        header: 'Name',
+    },
+    emailAddress: {
+        header: 'Email',
+    },
+    displayName: {
+        header: 'Display Name',
+    },
+    active: {
+        header: 'Active',
+        extended: true,
+    },
+    deleted: {
+        header: 'Deleted',
+        extended: true,
+    },
+    timeZone: {
+        header: 'Time Zone',
+        extended: true,
+    },
+    locale: {
+        header: 'Locale',
+        extended: true,
+    },
+    expand: {
+        header: 'Expand',
+        extended: true,
+    }
 };
