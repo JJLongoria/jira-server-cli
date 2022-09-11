@@ -103,6 +103,8 @@ Now Stil in BETA Version because is not fully tested.
   - [**IssueLinks**](#issuelinks)
   - [**IssueRemoteLink**](#issueremotelink)
   - [**IssueTransition**](#issuetransition)
+  - [**IssueTransitions**](#issuetransitions)
+  - [**IssueTransitionInput**](#issuetransitioninput)
   - [**IssueType**](#issuetype)
   - [**JsonType**](#jsontype)
   - [**LinkGroup**](#linkgroup)
@@ -117,6 +119,8 @@ Now Stil in BETA Version because is not fully tested.
   - [**RoleActor**](#roleactor)
   - [**ShareScope**](#sharescope)
   - [**SimpleLink**](#simplelink)
+  - [**Status**](#status)
+  - [**StatusCategory**](#statuscategory)
   - [**SystemAvatars**](#systemavatars)
   - [**User**](#user)
   - [**Version**](#version)
@@ -1115,15 +1119,37 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 ## [**IssueTransition**]()
 ```json
 {
-    "id?": "string",
+    "id": "string",
     "name": "string",
     "opsbarSequence": "number",
     "to": "Status",
     "fields": "{ [key: string]: FieldMeta }",
-    "expand?": "string",
+    "expand": "string",
 }
 ```
 - See [**FieldMeta**](#fieldmeta) Definition.
+
+---
+## [**IssueTransitions**]()
+```json
+{
+    "expand": "string",
+    "transitions": "IssueTransition[]",
+}
+```
+- See [**IssueTransition**](#issuetransition) Definition.
+
+---
+## [**IssueTransitionInput**]()
+```json
+{
+    "name": "string",
+    "opsbarSequence": "number",
+    "to": "Status",
+    "fields": "{ [key: string]: FieldMeta }",
+}
+```
+- See [**Status**](#status) Definition.
 
 ---
 ## [**IssueType**]()
@@ -1298,6 +1324,29 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
     "title": "string",
     "href": "string",
     "weight": "number",
+}
+```
+## [**Status**]()
+```json
+{
+    "id": "string",
+    "statusColor": "string",
+    "description": "string",
+    "iconUrl": "string",
+    "name": "string",
+    "statusCategory": "StatusCategory",
+    "self?": "string",
+}
+```
+- See [**StatusCategory**](#statuscategory) Definition.
+
+## [**StatusCategory**]()
+```json
+{
+    "id": "string",
+    "key": "string",
+    "colorName": "string",
+    "name": "string",
 }
 ```
 ---
