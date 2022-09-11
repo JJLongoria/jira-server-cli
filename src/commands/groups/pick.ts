@@ -34,7 +34,7 @@ export default class Pick extends BaseCommand {
             required: true,
             name: 'Query',
         }),
-        user: Flags.boolean({
+        user: Flags.string({
             description: 'The user to find groups',
             required: false,
             name: 'User',

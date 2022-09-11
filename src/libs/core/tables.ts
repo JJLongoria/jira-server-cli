@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, ShareScope, User } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Component, ComponentIssuesCount, Configuration, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, IssueLink, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -567,5 +567,14 @@ export const GroupSuggestionColumns: CliUx.Table.table.Columns<Record<string, Gr
     },
     total: {
         header: 'Total',
+    },
+};
+
+export const IssueLinkColumns: CliUx.Table.table.Columns<Record<string, IssueLink>> = {
+    id: {
+        header: 'ID',
+    },
+    key: {
+        header: 'Key',
     },
 };

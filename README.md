@@ -79,6 +79,7 @@ Now Stil in BETA Version because is not fully tested.
   - [**FieldSchema**](#fieldschema)
   - [**Filter**](#filter)
   - [**FilterInput**](#filterinput)
+  - [**FieldMeta**](#fieldmeta)
   - [**FilterPermission**](#filterpermission)
   - [**FilterPermissionInput**](#filterpermissioninput)
   - [**FilterSubscription**](#filtersubscription)
@@ -87,9 +88,15 @@ Now Stil in BETA Version because is not fully tested.
   - [**GroupSuggestions**](#groupsuggestions)
   - [**GroupSuggestion**](#groupsuggestion)
   - [**GroupSuggestionLabel**](#groupsuggestionlabel)
+  - [**HistoryMetadata**](#historymetadata)
   - [**Instance**](#instance)
+  - [**IssueInput**](#issueinput)
+  - [**IssueLink**](#issuelink)
+  - [**IssueTransition**](#issuetransition)
   - [**IssueType**](#issuetype)
+  - [**JsonType**](#jsontype)
   - [**ListWrapper**](#listwrapper)
+  - [**Participant**](#participant)
   - [**Project**](#project)
   - [**ProjectCategory**](#projectcategory)
   - [**ProjectRole**](#projectrole)
@@ -784,6 +791,23 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 }
 ```
 ---
+## [**FieldMeta**]()
+```json
+{
+    "required": "boolean",
+    "schema": "JsonType",
+    "name": "string",
+    "fieldId": "string",
+    "autoCompleteUrl": "string",
+    "hasDefaultValue": "boolean",
+    "operations": "string[]",
+    "allowedValues": "any[]",
+    "defaultValue": "any",
+}
+```
+- See [**JsonType**](#jsontype) Definition.
+
+---
 ## [**FilterPermission**]()
 ```json
 {
@@ -875,6 +899,25 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 }
 ```
 ---
+## [**HistoryMetadata**]()
+```json
+{
+    "type": "string",
+    "description": "string",
+    "descriptionKey": "string",
+    "activityDescription": "string",
+    "activityDescriptionKey": "string",
+    "emailDescription": "string",
+    "emailDescriptionKey": "string",
+    "actor": "Participant",
+    "generator": "Participant",
+    "cause": "Participant",
+    "extraData": "{ [key: string]: string }",
+}
+```
+- See [**Participant**](#participant) Definition.
+
+---
 ## [**Instance**]()
 ```json
 {
@@ -883,6 +926,45 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "token": "string",
 }
 ```
+---
+## [**IssueInput**]()
+```json
+{
+    "transition?": "IssueTransition",
+    "fields?": "{ [key: string]: any }",
+    "update?": "{ [key: string]: any[] }",
+    "historyMetadata?": "HistoryMetadata",
+    "properties?": "EntityProperty[]",
+}
+```
+- See [**IssueTransition**](#issuetransition) Definition.
+- See [**HistoryMetadata**](#historymetadata) Definition.
+- See [**EntityProperty**](#entityproperty) Definition.
+
+
+---
+## [**IssueLink**]()
+```json
+{
+    "id": "string",
+    "key": "string",
+    "self?": "string",
+}
+```
+---
+## [**IssueTransition**]()
+```json
+{
+    "id?": "string",
+    "name": "string",
+    "opsbarSequence": "number",
+    "to": "Status",
+    "fields": "{ [key: string]: FieldMeta }",
+    "expand?": "string",
+}
+```
+- See [**FieldMeta**](#fieldmeta) Definition.
+
 ---
 ## [**IssueType**]()
 ```json
@@ -893,6 +975,16 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "name": "string",
     "subtask": "boolean",
     "avatarId?": "number",
+}
+```
+## [**JsonType**]()
+```json
+{
+    "type": "string",
+    "items?": "string",
+    "system": "string",
+    "custom": "string",
+    "customId": "number",
 }
 ```
 ---
@@ -907,6 +999,18 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
     "start-index?": "number",
     "end-index?": "number",
     "items": "T[]",
+}
+```
+---
+## [**Participant**]()
+```json
+{
+    "id": "string",
+    "displayName": "string",
+    "displayNameKey": "string",
+    "type": "string",
+    "avatarUrl": "string",
+    "url": "string",
 }
 ```
 ---
