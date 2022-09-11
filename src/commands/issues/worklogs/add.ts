@@ -2,6 +2,7 @@ import { Flags } from "@oclif/core";
 import { IssueWorklog, JiraServerConnector } from "jira-server-connector";
 import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
 import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
+import { IssueWorklogColumns } from "../../../libs/core/tables";
 import { UX } from "../../../libs/core/ux";
 
 export default class Add extends BaseCommand {
@@ -27,6 +28,7 @@ export default class Add extends BaseCommand {
             description: 'Allows you to provide specific instructions to update the remaining time estimate of the issue',
             required: false,
             options: ['new', 'leave', 'manual', 'auto'],
+            default: 'auto',
             type: "option",
             name: 'Adjust Estimate',
         }),
@@ -58,6 +60,11 @@ export default class Add extends BaseCommand {
             response.status = 0;
             response.message = this.getRecordCreatedText('Worklog');
             this.ux.log(response.message);
+            this.ux.table<IssueWorklog>([result], IssueWorklogColumns, {
+                csv: this.flags.csv,
+                extended: this.flags.extended || this.flags.csv,
+
+            });
         } catch (error) {
             this.processError(response, error);
         }
