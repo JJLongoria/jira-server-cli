@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, ShareScope, User } from "jira-server-connector";
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, ShareScope, User } from "jira-server-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -805,6 +805,33 @@ export const IssuePickerSectionColumns: CliUx.Table.table.Columns<Record<string,
         header: 'Issues',
         get(row: any) {
             return row.issues.length;
+        },
+    },
+};
+
+export const LinkIssueColumns: CliUx.Table.table.Columns<Record<string, LinkIssue>> = {
+    type: {
+        header: 'Type',
+        get(row: any) {
+            return row.type.name;
+        },
+    },
+    inwardIssue: {
+        header: 'Inward Issue',
+        get(row: any) {
+            return row.inwardIssue.key;
+        },
+    },
+    outwardIssue: {
+        header: 'Outward Issue',
+        get(row: any) {
+            return row.outwardIssue.key;
+        },
+    },
+    comment: {
+        header: 'Type',
+        get(row: any) {
+            return row.comment ? row.comment.body : '';
         },
     },
 };

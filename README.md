@@ -109,6 +109,8 @@ Now Stil in BETA Version because is not fully tested.
   - [**IssueNotificationTo**](#issuenotificationto)
   - [**IssueNotificationPermission**](#issuenotificationpermission)
   - [**IssueNotificationRetrict**](#issuenotificationretrict)
+  - [**IssueReference**](#issuereference)
+  - [**IssueReferenceFields**](#issuereferencefields)
   - [**IssueRemoteLink**](#issueremotelink)
   - [**IssueTransition**](#issuetransition)
   - [**IssueTransitions**](#issuetransitions)
@@ -118,9 +120,11 @@ Now Stil in BETA Version because is not fully tested.
   - [**IssueWatchers**](#issuewatchers)
   - [**JsonType**](#jsontype)
   - [**LinkGroup**](#linkgroup)
+  - [**LinkIssue**](#linkissue)
   - [**LinkIssueRequest**](#linkissuerequest)
   - [**ListWrapper**](#listwrapper)
   - [**Participant**](#participant)
+  - [**Priority**](#priority)
   - [**Project**](#project)
   - [**ProjectCategory**](#projectcategory)
   - [**ProjectRole**](#projectrole)
@@ -1213,6 +1217,33 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 - See [**IssueNotificationPermission**](#issuenotificationpermission) Definition.
 
 ---
+## [**IssueReference**]()
+```json
+{
+    "id": "string",
+    "key": "string",
+    "fields": "IssueReferenceFields",
+    "user": "User",
+}
+```
+- See [**IssueReferenceFields**](#issuereferencefields) Definition.
+- See [**User**](#user) Definition.
+
+---
+## [**IssueReferenceFields**]()
+```json
+{
+    "summary": "string",
+    "status": "Status",
+    "issuetype": "IssueType",
+    "priority": "Priority",
+}
+```
+- See [**Status**](#status) Definition.
+- See [**IssueType**](#issuetype) Definition.
+- See [**Priority**](#priority) Definition.
+
+---
 ## [**IssueRemoteLink**]()
 ```json
 {
@@ -1329,6 +1360,20 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 - See [**SimpleLink**](#simplelink) Definition.
 
 ---
+## [**LinkIssue**]()
+```json
+{
+    "type": "IssueLinkType",
+    "inwardIssue": "IssueReference",
+    "outwardIssue": "IssueReference",
+    "comment?": "Comment",
+}
+```
+- See [**IssueLinkType**](#issuelinktype) Definition.
+- See [**IssueReference**](#issuereference) Definition.
+- See [**Comment**](#comment) Definition.
+
+---
 ## [**LinkIssueRequest**]()
 ```json
 {
@@ -1370,6 +1415,17 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
     "type": "string",
     "avatarUrl": "string",
     "url": "string",
+}
+```
+---
+## [**Priority**]()
+```json
+{
+    "id": "string",
+    "statusColor": "string",
+    "description": "string",
+    "iconUrl": "string",
+    "name": "string",
 }
 ```
 ---
