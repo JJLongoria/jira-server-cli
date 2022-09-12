@@ -5,7 +5,7 @@ import { JiraCLIResponse } from '../../libs/core/jiraResponse';
 import { IssueColumns } from '../../libs/core/tables';
 import { UX } from '../../libs/core/ux';
 
-export default class Delete extends BaseCommand {
+export default class Get extends BaseCommand {
     static description = 'Returns a full representation of the issue for the given issue key. ' + UX.processDocumentation('<doc:Issue>') + '. See https://docs.atlassian.com/software/jira/docs/api/REST/9.2.0/#api/2/issue-getIssue to get more info about the input parameters';
     static examples = [
         '$ jiraserver issues:get -a "MyAlias" --issue "theIssueKeyOrId" --expand "renderedFields, schema" --json',
@@ -19,7 +19,7 @@ export default class Delete extends BaseCommand {
         csv: BuildFlags.csv,
         expand: BuildFlags.expand(),
         issue: Flags.string({
-            description: 'The Issue key or id to delete',
+            description: 'The Issue key or id to retrieve',
             required: true,
             name: 'Issue Key or Id',
         }),
