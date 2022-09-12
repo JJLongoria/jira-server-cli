@@ -1,3 +1,9 @@
+/* eslint-disable unicorn/numeric-separators-style */
+/* eslint-disable unicorn/prefer-date-now */
+/* eslint-disable unicorn/prefer-math-trunc */
+/* eslint-disable no-mixed-operators */
+/* eslint-disable unicorn/no-for-loop */
+/* eslint-disable unicorn/no-static-only-class */
 export class MathUtils {
     
     /**

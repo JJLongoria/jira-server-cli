@@ -1,3 +1,9 @@
+/* eslint-disable unicorn/numeric-separators-style */
+/* eslint-disable unicorn/prefer-date-now */
+/* eslint-disable unicorn/prefer-math-trunc */
+/* eslint-disable no-mixed-operators */
+/* eslint-disable unicorn/no-for-loop */
+/* eslint-disable unicorn/no-static-only-class */
 export class StrUtils {
 
     /**
@@ -31,7 +37,7 @@ export class StrUtils {
      * @returns {boolean} true if "strToCheck" exists on "str", false in otherwise
      */
     static contains(str: string, strToCheck: string): boolean {
-        return str.indexOf(strToCheck) !== -1;
+        return str.includes(strToCheck);
     }
 
     /**
@@ -42,20 +48,20 @@ export class StrUtils {
      * @returns {boolean} true if "strToCheck" exists on "str", false in otherwise
      */
     static containsIgnorecase(str: string, strToCheck: string): boolean {
-        return str.toLowerCase().indexOf(strToCheck.toLowerCase()) !== -1;
+        return str.toLowerCase().includes(strToCheck.toLowerCase());
     }
 
-    static normalize(value: string | null, toUpper?: boolean) {
+    static normalize(value: string | null, toUpper?: boolean): string {
         if (!value) {
             return '';
         }
         let normalized = value.toLowerCase();
-        normalized = normalized.replace(/[é]/g, 'e');
-        normalized = normalized.replace(/[ú]/g, 'u');
-        normalized = normalized.replace(/[í]/g, 'i');
-        normalized = normalized.replace(/[á]/g, 'a');
-        normalized = normalized.replace(/[ó]/g, 'o');
-        normalized = normalized.replace(/[^a-zA-Z0-9\s]/g, '').trim();
+        normalized = normalized.replace(/é/g, 'e');
+        normalized = normalized.replace(/ú/g, 'u');
+        normalized = normalized.replace(/í/g, 'i');
+        normalized = normalized.replace(/á/g, 'a');
+        normalized = normalized.replace(/ó/g, 'o');
+        normalized = normalized.replace(/[^\d\sA-Za-z]/g, '').trim();
         return toUpper ? normalized.toUpperCase() : normalized;
     }
 }

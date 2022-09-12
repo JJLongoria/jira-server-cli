@@ -114,6 +114,7 @@ Now Stil in BETA Version because is not fully tested and continue in development
   - [**IssueReference**](#issuereference)
   - [**IssueReferenceFields**](#issuereferencefields)
   - [**IssueRemoteLink**](#issueremotelink)
+  - [**IssueSecuritySchemes**](#issuesecurityschemes)
   - [**IssueTransition**](#issuetransition)
   - [**IssueTransitions**](#issuetransitions)
   - [**IssueTransitionInput**](#issuetransitioninput)
@@ -1280,6 +1281,15 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 ```
 - See [**Application**](#application) Definition.
 - See [**RemoteObject**](#remoteobject) Definition.
+
+---
+## [**IssueSecuritySchemes**]()
+```json
+{
+    "issueSecuritySchemes": "SecurityScheme[]",
+}
+```
+- See [**SecurityScheme**](#securityscheme) Definition.
 
 ---
 ## [**IssueTransition**]()

@@ -12,6 +12,7 @@ export default class List extends BaseCommand {
         `$ jiraserver issues:subtasks:list -a "MyAlias" --issue "theIssueKeyOrId" --csv`,
         `$ jiraserver issues:subtasks:list -a "MyAlias" --issue "theIssueKeyOrId"`,
     ];
+    
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -22,6 +23,7 @@ export default class List extends BaseCommand {
             name: 'Issue Key or Id',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Issue[]>> {
         const response = new JiraCLIResponse<Issue[]>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));

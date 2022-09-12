@@ -1,3 +1,9 @@
+/* eslint-disable unicorn/numeric-separators-style */
+/* eslint-disable unicorn/prefer-date-now */
+/* eslint-disable unicorn/prefer-math-trunc */
+/* eslint-disable no-mixed-operators */
+/* eslint-disable unicorn/no-for-loop */
+/* eslint-disable unicorn/no-static-only-class */
 export class Utils {
 
     /**
@@ -154,24 +160,6 @@ export class Utils {
     }
 
     /**
-     * Method to get the callback function from function arguments
-     * @param {arguments} args function arguments to get the callback
-     * 
-     * @returns {Function | undefined} Returns a function if exists, or undefined if not exists. 
-     */
-    static getCallbackFunction(args: any[]): Function | undefined {
-        if (args.length === 0) {
-            return undefined;
-        }
-        for (let i = 0; i < args.length; i++) {
-            if (Utils.isFunction(args[i])) {
-                return args[i];
-            }
-        }
-        return undefined;
-    }
-
-    /**
      * Method to sort an Array. You can use fields from elements to sort and sort with case sensitive or insensitive
      * @param {Array<any>} elements Array with the elements to sort
      * @param {Array<string>} [fields] fields from child to sort
@@ -187,8 +175,8 @@ export class Utils {
                     let nameB = '';
                     let counter = 0;
                     for (const field of fields) {
-                        let valA = (a[field] !== undefined) ? a[field] : "";
-                        let valB = (b[field] !== undefined) ? b[field] : "";
+                        const valA = (a[field] !== undefined) ? a[field] : "";
+                        const valB = (b[field] !== undefined) ? b[field] : "";
                         if (counter === 0) {
                             nameA = valA;
                             nameB = valB;
@@ -209,11 +197,7 @@ export class Utils {
                     } else {
                         nameA = '' + nameA;
                         nameB = '' + nameB;
-                        if (caseSensitive) {
-                            return nameA.localeCompare(nameB);
-                        } else {
-                            return nameA.toLowerCase().localeCompare(nameB.toLowerCase());
-                        }
+                        return caseSensitive ? nameA.localeCompare(nameB) : nameA.toLowerCase().localeCompare(nameB.toLowerCase());
                     }
                 } else {
                     if (Utils.isNumber(a) && Utils.isNumber(b)) {
@@ -225,11 +209,7 @@ export class Utils {
                             return 0;
                         }
                     } else {
-                        if (caseSensitive) {
-                            return a.localeCompare(b);
-                        } else {
-                            return a.toLowerCase().localeCompare(b.toLowerCase());
-                        }
+                        return caseSensitive ? a.localeCompare(b) : a.toLowerCase().localeCompare(b.toLowerCase());
                     }
                 }
             });
@@ -253,8 +233,8 @@ export class Utils {
                     let nameB = '';
                     let counter = 0;
                     for (const field of fields) {
-                        let valA = (a[field] !== undefined) ? a[field] : "";
-                        let valB = (b[field] !== undefined) ? b[field] : "";
+                        const valA = (a[field] !== undefined) ? a[field] : "";
+                        const valB = (b[field] !== undefined) ? b[field] : "";
                         if (counter === 0) {
                             nameA = valA;
                             nameB = valB;
@@ -275,11 +255,7 @@ export class Utils {
                     } else {
                         nameA = '' + nameA;
                         nameB = '' + nameB;
-                        if (caseSensitive) {
-                            return nameB.localeCompare(nameA);
-                        } else {
-                            return nameB.toLowerCase().localeCompare(nameA.toLowerCase());
-                        }
+                        return caseSensitive ? nameB.localeCompare(nameA) : nameB.toLowerCase().localeCompare(nameA.toLowerCase());
                     }
                 } else {
                     if (Utils.isNumber(a) && Utils.isNumber(b)) {
@@ -290,11 +266,7 @@ export class Utils {
                         }
                         return 0;
                     } else {
-                        if (caseSensitive) {
-                            return b.localeCompare(a);
-                        } else {
-                            return b.toLowerCase().localeCompare(a.toLowerCase());
-                        }
+                        return caseSensitive ? b.localeCompare(a) : b.toLowerCase().localeCompare(a.toLowerCase());
                     }
                 }
             });
@@ -302,21 +274,21 @@ export class Utils {
         return elements;
     }
 
-    static deserializeObject<T>(object: any, type: new (a?: any) => T): { [key: string]: T } {
+    static deserializeObject<T>(object: any, Type: new (a?: any) => T): { [key: string]: T } {
         const result: { [key: string]: T } = {};
         if (Utils.isObject(object) && Utils.hasKeys(object)) {
             for (const key of Object.keys(object)) {
-                result[key] = new type(object[key]);
+                result[key] = new Type(object[key]);
             }
         }
         return result;
     }
 
-    static deserializeArray<T>(collection: any[], type: new (a?: any) => T): T[] {
+    static deserializeArray<T>(collection: any[], Type: new (a?: any) => T): T[] {
         const result: T[] = [];
-        if (collection && collection.length) {
+        if (collection && collection.length > 0) {
             for (const data of collection) {
-                result.push(new type(data));
+                result.push(new Type(data));
             }
         }
         return result;
@@ -332,17 +304,17 @@ export class Utils {
     static createUUID(): string {
         let dt = new Date().getTime();
         const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = (dt + Math.random() * 16) % 16 | 0;
+            const r = (dt + Math.random() * 16) % 16 | 0;
             dt = Math.floor(dt / 16);
             return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
         });
         return uuid;
     }
 
-    static toNumber(value: number | string | null){
-        if(value !== null){
+    static toNumber(value: number | string | null): number {
+        if (value !== null) {
             const strValue = '' + value;
-            if(strValue.indexOf(',')){
+            if (strValue.indexOf(',')) {
                 return Number(strValue.split(',').join('.'));
             }
             return Number(strValue);
@@ -350,7 +322,7 @@ export class Utils {
         return 0;
     }
 
-    static randomColor(){
+    static randomColor(): string {
         return '#' + Math.floor(Math.random() * 16777215).toString(16);
     }
 

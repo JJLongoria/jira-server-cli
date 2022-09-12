@@ -2,5 +2,22 @@
   "extends": [
     "oclif",
     "oclif-typescript"
-  ]
+  ],
+  "rules": {
+    "object-curly-spacing": "off",
+    "semi": "off",
+    "quotes": "off",
+    "no-tabs": "off",
+    "indent": "off",
+    "no-trailing-spaces": "off",
+    "padding-line-between-statements": "off",
+    "eol-last": "off",
+    "padded-blocks": "off",
+    "no-negated-condition": "off",
+    "no-else-return": "off",
+    "no-implicit-coercion": "off",
+    "no-lonely-if": "off",
+    "eqeqeq": "off",
+    "space-before-blocks": "off",
+  }
 }
