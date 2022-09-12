@@ -19,7 +19,6 @@ export default class Archive extends BaseCommand {
             description: 'The Issue key or id to archive (or a Comma Separated Values of issues to archive in bulk)',
             required: true,
             name: 'Issue Key or Id',
-            exclusive: ['issues'],
         }),
         notify: Flags.boolean({
             description: 'Send the email with notification that the issue was updated to users that watch it. Admin or project admin permissions are required to disable the notification',
