@@ -4,12 +4,12 @@
     "oclif-typescript"
   ],
   "rules": {
-    "object-curly-spacing": "off",
-    "semi": "off",
+    "object-curly-spacing": ["error", "always"],
+    "semi": ["error", "always"],
     "quotes": "off",
     "no-tabs": "off",
-    "indent": "off",
-    "no-trailing-spaces": "off",
+    "indent": ["error", 4],
+    "no-trailing-spaces": "warn",
     "padding-line-between-statements": "off",
     "eol-last": "off",
     "padded-blocks": "off",
