@@ -1,7 +1,7 @@
-import { Flags } from "@oclif/core";
-import { JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../../../libs/core/jiraResponse";
+import { Flags } from '@oclif/core';
+import { JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../../libs/core/jiraResponse';
 
 export default class Set extends BaseCommand {
     static description = 'Associates the given projects with the specified issue type scheme. Any existing project-associations the issue type scheme has will be overwritten. (Admin required).';
@@ -30,8 +30,7 @@ export default class Set extends BaseCommand {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.issueTypesSchemes.associations(this.flags.schema).update(this.flags.projects);
-            response.result = result;
+            await connector.issueTypesSchemes.associations(this.flags.schema).update(this.flags.projects);
             response.status = 0;
             response.message = this.getRecordCreatedText('Issue Type Scheme Associations');
             this.ux.log(response.message);

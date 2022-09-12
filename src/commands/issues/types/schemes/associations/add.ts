@@ -30,8 +30,7 @@ export default class Add extends BaseCommand {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.issueTypesSchemes.associations(this.flags.schema).create(this.flags.projects);
-            response.result = result;
+            await connector.issueTypesSchemes.associations(this.flags.schema).create(this.flags.projects);
             response.status = 0;
             response.message = 'Issue Type Scheme Associations added successfully';
             this.ux.log(response.message);
