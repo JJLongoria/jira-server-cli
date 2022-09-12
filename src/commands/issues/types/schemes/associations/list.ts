@@ -1,8 +1,9 @@
-import { Flags } from "@oclif/core";
-import { JiraServerConnector, Project } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../../../libs/core/jiraResponse";
-import { UX } from "../../../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { JiraServerConnector, Project } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../../libs/core/jiraResponse';
+import { ProjectColumns } from '../../../../../libs/core/tables';
+import { UX } from '../../../../../libs/core/ux';
 
 export default class List extends BaseCommand {
     static description = 'For the specified issue type scheme, returns all of the associated projects. (Admin required). ' + UX.processDocumentation('<doc:Project>');
@@ -16,6 +17,7 @@ export default class List extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
+        extended: BuildFlags.extended,
         expand: BuildFlags.expand(),
         scheme: Flags.string({
             description: 'The Issue Type Scheme Id retrieve associate projects',
@@ -33,6 +35,10 @@ export default class List extends BaseCommand {
             response.status = 0;
             response.message = this.getRecordsFoundText(result.length, 'Project');
             this.ux.log(response.message);
+            this.ux.table<Project>(result, ProjectColumns, {
+                csv: this.flags.csv,
+                extended: this.flags.extended || this.flags.csv,
+            });
         } catch (error) {
             this.processError(response, error);
         }

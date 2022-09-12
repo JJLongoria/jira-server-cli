@@ -1,5 +1,5 @@
 import { CliUx } from '@oclif/core';
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueType, IssueTypeScheme, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, SecurityScheme, ShareScope, User } from 'jira-server-connector';
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueType, IssueTypeScheme, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, Project, SecurityScheme, ShareScope, User } from 'jira-server-connector';
 import { Instance } from '../types';
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -913,5 +913,59 @@ export const IssueTypeSchemeColumns: CliUx.Table.table.Columns<Record<string, Is
     },
     expand: {
         header: 'Expand',
+    },
+};
+
+export const ProjectColumns: CliUx.Table.table.Columns<Record<string, Project>> = {
+    id: {
+        header: 'ID',
+    },
+    key: {
+        header: 'Key',
+    },
+    name: {
+        header: 'Name',
+    },
+    description: {
+        header: 'Description',
+    },
+    lead: {
+        header: 'Lead',
+        get(row: any) {
+            return row.lead.name;
+        },
+    },
+    url: {
+        header: 'URL',
+    },
+    email: {
+        header: 'Email',
+        extended: true,
+    },
+    assigneeType: {
+        header: 'Assignee Type',
+        extended: true,
+    },
+    projectKeys: {
+        header: 'Project Keys',
+        get(row: any) {
+            return row.projectKeys && row.projectKeys.length > 0 ? row.projectKeys.join(', ') : '';
+        },
+        extended: true,
+    },
+    projectCategory: {
+        header: 'Project Category',
+        get(row: any) {
+            return row.projectCategory ? row.projectCategory.name : '';
+        },
+        extended: true,
+    },
+    projectTypeKey: {
+        header: 'Project Type Key',
+        extended: true,
+    },
+    archived: {
+        header: 'Archived',
+        extended: true,
     },
 };
