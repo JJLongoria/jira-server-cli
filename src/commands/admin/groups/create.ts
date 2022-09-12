@@ -8,9 +8,9 @@ import { UX } from '../../../libs/core/ux';
 export default class Create extends BaseCommand {
     static description = 'Creates a group by given group parameter. ' + UX.processDocumentation('<doc:Group>');
     static examples = [
-        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName" --json',
-        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName" --csv',
-        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName"',
+        '$ jiraserver admin:groups:create -a "MyAlias" --name "theGroupName" --json',
+        '$ jiraserver admin:groups:create -a "MyAlias" --name "theGroupName" --csv',
+        '$ jiraserver admin:groups:create -a "MyAlias" --name "theGroupName"',
     ];
 
     static flags = {

@@ -6,9 +6,9 @@ import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
 export default class Remove extends BaseCommand {
     static description = 'Adds given user to a group. Returns the current state of the group.';
     static examples = [
-        '$ jiraserver groups:users:remove -a "MyAlias" --group "theGroupName" --user "theUserName" --json',
-        '$ jiraserver groups:users:remove -a "MyAlias" --group "theGroupName" --user "theUserName" --csv',
-        '$ jiraserver groups:users:remove -a "MyAlias" --group "theGroupName" --user "theUserName"',
+        '$ jiraserver admin:groups:users:remove -a "MyAlias" --group "theGroupName" --user "theUserName" --json',
+        '$ jiraserver admin:groups:users:remove -a "MyAlias" --group "theGroupName" --user "theUserName" --csv',
+        '$ jiraserver admin:groups:users:remove -a "MyAlias" --group "theGroupName" --user "theUserName"',
     ];
 
     static flags = {

@@ -6,8 +6,8 @@ import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
 export default class Update extends BaseCommand {
     static description = 'Modify logged user password.';
     static examples = [
-        '$ jiraserver myself:password:update -a "MyAlias" --old "theCurrentPassword" --new "theNewPassword" --json',
-        '$ jiraserver myself:password:update -a "MyAlias" --interactive',
+        '$ jiraserver admin:myself:password:update -a "MyAlias" --old "theCurrentPassword" --new "theNewPassword" --json',
+        '$ jiraserver admin:myself:password:update -a "MyAlias" --interactive',
     ];
 
     static flags = {

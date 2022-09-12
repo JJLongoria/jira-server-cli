@@ -8,9 +8,9 @@ import { UX } from '../../../libs/core/ux';
 export default class Pick extends BaseCommand {
     static description = 'Returns groups with substrings matching a given query. This is mainly for use with the group picker, so the returned groups contain html to be used as picker suggestions. The groups are also wrapped in a single response object that also contains a header for use in the picker, specifically Showing X of Y matching groups. ' + UX.processDocumentation('<doc:GroupSuggestions>');
     static examples = [
-        '$ jiraserver groups:pick -a "MyAlias" --query "theGroupName" --limit 50 --json',
-        '$ jiraserver groups:pick -a "MyAlias" --query "theGroupName" --inactive --csv',
-        '$ jiraserver groups:pick -a "MyAlias" --query "theGroupName" --user "theUsername"',
+        '$ jiraserver admin:groups:pick -a "MyAlias" --query "theGroupName" --limit 50 --json',
+        '$ jiraserver admin:groups:pick -a "MyAlias" --query "theGroupName" --inactive --csv',
+        '$ jiraserver admin:groups:pick -a "MyAlias" --query "theGroupName" --user "theUsername"',
     ];
 
     static flags = {

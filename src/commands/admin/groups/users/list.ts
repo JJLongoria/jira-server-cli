@@ -8,9 +8,9 @@ import { UX } from '../../../../libs/core/ux';
 export default class Create extends BaseCommand {
     static description = 'This resource returns a paginated list of users who are members of the specified group and its subgroups. Users in the page are ordered by user names. User of this resource is required to have sysadmin or admin permissions. ' + UX.processDocumentation('<doc:User>');
     static examples = [
-        '$ jiraserver groups:users:list -a "MyAlias" --group "theGroupName" --json',
-        '$ jiraserver groups:users:list -a "MyAlias" --group "theGroupName" --inactive --csv',
-        '$ jiraserver groups:users:list -a "MyAlias" --group "theGroupName"',
+        '$ jiraserver admin:groups:users:list -a "MyAlias" --group "theGroupName" --json',
+        '$ jiraserver admin:groups:users:list -a "MyAlias" --group "theGroupName" --inactive --csv',
+        '$ jiraserver admin:groups:users:list -a "MyAlias" --group "theGroupName"',
     ];
 
     static flags = {

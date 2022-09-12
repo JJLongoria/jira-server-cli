@@ -6,8 +6,8 @@ import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
 export default class Delete extends BaseCommand {
     static description = 'Removes preference of the currently logged in user.';
     static examples = [
-        '$ jiraserver myself:preferences:delete -a "MyAlias" --key "thePreferenceKey" --json',
-        '$ jiraserver myself:preferences:delete -a "MyAlias" --key "thePreferenceKey"',
+        '$ jiraserver admin:myself:preferences:delete -a "MyAlias" --key "thePreferenceKey" --json',
+        '$ jiraserver admin:myself:preferences:delete -a "MyAlias" --key "thePreferenceKey"',
     ];
 
     static flags = {

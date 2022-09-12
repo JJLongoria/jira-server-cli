@@ -6,9 +6,9 @@ import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
 export default class Create extends BaseCommand {
     static description = 'Deletes a group by given group parameter. ';
     static examples = [
-        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName" --json',
-        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName" --swap "anotherGroupName" --csv',
-        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName"',
+        '$ jiraserver admin:groups:create -a "MyAlias" --name "theGroupName" --json',
+        '$ jiraserver admin:groups:create -a "MyAlias" --name "theGroupName" --swap "anotherGroupName" --csv',
+        '$ jiraserver admin:groups:create -a "MyAlias" --name "theGroupName"',
     ];
 
     static flags = {

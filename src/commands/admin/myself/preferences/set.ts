@@ -6,8 +6,8 @@ import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
 export default class Set extends BaseCommand {
     static description = 'Sets preference of the currently logged in user.';
     static examples = [
-        '$ jiraserver myself:preferences:get -a "MyAlias" --key "thePreferenceKey" --value "theValue" --json',
-        '$ jiraserver myself:preferences:get -a "MyAlias" --key "thePreferenceKey" --value "1234"',
+        '$ jiraserver admin:myself:preferences:get -a "MyAlias" --key "thePreferenceKey" --value "theValue" --json',
+        '$ jiraserver admin:myself:preferences:get -a "MyAlias" --key "thePreferenceKey" --value "1234"',
     ];
 
     static flags = {

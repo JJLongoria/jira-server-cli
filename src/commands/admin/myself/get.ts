@@ -6,9 +6,9 @@ import { UserColumns } from '../../../libs/core/tables';
 export default class Get extends BaseCommand {
     static description = 'Returns currently logged user. This resource cannot be accessed anonymously';
     static examples = [
-        '$ jiraserver myself:get -a "MyAlias" --json',
-        '$ jiraserver myself:get -a "MyAlias" --csv',
-        '$ jiraserver myself:get -a "MyAlias"',
+        '$ jiraserver admin:myself:get -a "MyAlias" --json',
+        '$ jiraserver admin:myself:get -a "MyAlias" --csv',
+        '$ jiraserver admin:myself:get -a "MyAlias"',
     ];
 
     static flags = {

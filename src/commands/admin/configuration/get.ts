@@ -7,9 +7,9 @@ import { UX } from '../../../libs/core/ux';
 export default class Get extends BaseCommand {
     static description = 'Returns the information if the optional features in Jira are enabled or disabled. If the time tracking is enabled, it also returns the detailed information about time tracking configuration. ' + UX.processDocumentation('<doc:Configuration>');
     static examples = [
-        '$ jiraserver configuration:get -a "MyAlias" --json',
-        '$ jiraserver configuration:get -a "MyAlias" --csv',
-        '$ jiraserver configuration:get -a "MyAlias"',
+        '$ jiraserver admin:configuration:get -a "MyAlias" --json',
+        '$ jiraserver admin:configuration:get -a "MyAlias" --csv',
+        '$ jiraserver admin:configuration:get -a "MyAlias"',
     ];
 
     static flags = {

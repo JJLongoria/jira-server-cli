@@ -8,9 +8,9 @@ import { UX } from '../../../../libs/core/ux';
 export default class Add extends BaseCommand {
     static description = 'Adds given user to a group. Returns the current state of the group. ' + UX.processDocumentation('<doc:Group>');
     static examples = [
-        '$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName" --json',
-        '$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName" --csv',
-        '$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName"',
+        '$ jiraserver admin:groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName" --json',
+        '$ jiraserver admin:groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName" --csv',
+        '$ jiraserver admin:groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName"',
     ];
 
     static flags = {
