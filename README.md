@@ -147,6 +147,8 @@ Now Stil in BETA Version because is not fully tested and continue in development
   - [**StatusCategory**](#statuscategory)
   - [**SystemAvatars**](#systemavatars)
   - [**User**](#user)
+  - [**UserPermission**](#userpermission)
+  - [**UserPermissionsOutput**](#userpermissionsoutput)
   - [**Version**](#version)
   - [**Visibility**](#visibility)
   - [**IssueWorklog**](#issueworklog)
@@ -1696,6 +1698,27 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
 - See [**ListWrapper**](#listwrapper) Definition.
 - See [**Group**](#group) Definition.
 - See [**ApplicationRole**](#applicationrole) Definition.
+
+---
+## [**UserPermission**]()
+```json
+{
+    "id": "string",
+    "key": "string",
+    "name": "string",
+    "type": "string",
+    "description": "string",
+    "havePermission": "boolean",
+}
+```
+---
+## [**UserPermissionsOutput**]()
+```json
+{
+    "permisions": "{ [key: string]: UserPermission }",
+}
+```
+- See [**UserPermission**](#userpermission) Definition.
 
 ---
 ## [**Version**]()
