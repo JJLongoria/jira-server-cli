@@ -7,9 +7,9 @@ import { FileChecker, FileReader, PathUtils } from '../../libs/fileSystem';
 export default class Validate extends BaseCommand {
     static description = 'Simple validation services for a Jira license. Typically used by the setup phase of the Jira application.';
     static examples = [
-        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName" --json',
-        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName" --csv',
-        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName"',
+        '$ jiraserver license:validate -a "MyAlias" --content "License Content to validate" --json',
+        '$ jiraserver license:validate -a "MyAlias" --file "path/to/license/file" --csv',
+        '$ jiraserver license:validate -a "MyAlias" --content "License Content to validate"',
     ];
 
     static flags = {
@@ -19,11 +19,13 @@ export default class Validate extends BaseCommand {
             description: 'The license content to validate',
             required: false,
             name: 'Content',
+            exclusive: ['file'],
         }),
         file: Flags.file({
             description: 'The file with license to validate',
             required: true,
             name: 'File',
+            exclusive: ['content'],
         }),
     };
 
