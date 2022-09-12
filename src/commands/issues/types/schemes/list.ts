@@ -5,7 +5,7 @@ import { IssueTypeSchemeColumns } from '../../../../libs/core/tables';
 import { UX } from '../../../../libs/core/ux';
 
 export default class List extends BaseCommand {
-    static description = 'Returns a list of all issue types visible to the user. ' + UX.processDocumentation('<doc:IssueTypeSchemeList>');
+    static description = 'Returns a list of all issue type schemes visible to the user (must be admin). ' + UX.processDocumentation('<doc:IssueTypeSchemeList>');
     static examples = [
         '$ jiraserver issues:types:schemes:list -a "MyAlias" --json',
         '$ jiraserver issues:types:schemes:list -a "MyAlias" --expand "schemes.issueTypes" --json',
