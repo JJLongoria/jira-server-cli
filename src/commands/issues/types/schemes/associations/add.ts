@@ -14,11 +14,10 @@ export default class Add extends BaseCommand {
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
-        csv: BuildFlags.csv,
         scheme: Flags.string({
             description: 'The Issue Type Scheme Id to associate projects',
             required: true,
-            name: 'Name',
+            name: 'Issue Type Scheme Id',
         }),
         projects: BuildFlags.array({
             description: 'The Project Id or Keys to associate. (Comma Separated Values)',
