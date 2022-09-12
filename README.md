@@ -1702,5 +1702,3 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
 }
 ```
 - See [**Visibility**](#visibility) Definition.
-
-
