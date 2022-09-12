@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { Attachment, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
-import { AttachmentColumns } from "../../../libs/core/tables";
-import { UX } from "../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { Attachment, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { AttachmentColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class Upload extends BaseCommand {
     static description = 'Upload an attachment to an issue. Return the created attachment data. ' + UX.processDocumentation('<doc:Attachment>');
     static examples = [
-        `$ jiraserver issues:attachments:upload -a "MyAlias" --issue "theIssueKeyOrId" --file "path/to/the/attachment" --json`,
-        `$ jiraserver issues:attachments:upload -a "MyAlias" --issue "theIssueKeyOrId" --file "path/to/the/attachment" --csv`,
-        `$ jiraserver issues:attachments:upload -a "MyAlias" --issue "theIssueKeyOrId" --file "path/to/the/attachment"`,
+        '$ jiraserver issues:attachments:upload -a "MyAlias" --issue "theIssueKeyOrId" --file "path/to/the/attachment" --json',
+        '$ jiraserver issues:attachments:upload -a "MyAlias" --issue "theIssueKeyOrId" --file "path/to/the/attachment" --csv',
+        '$ jiraserver issues:attachments:upload -a "MyAlias" --issue "theIssueKeyOrId" --file "path/to/the/attachment"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -29,6 +30,7 @@ export default class Upload extends BaseCommand {
         }),
 
     };
+
     async run(): Promise<JiraCLIResponse<Attachment[]>> {
         const response = new JiraCLIResponse<Attachment[]>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -46,6 +48,7 @@ export default class Upload extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

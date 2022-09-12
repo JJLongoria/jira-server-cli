@@ -5,13 +5,12 @@
 /* eslint-disable unicorn/no-for-loop */
 /* eslint-disable unicorn/no-static-only-class */
 export class StrUtils {
-
     /**
      * Method to replace data from a string
      * @param {string} str String to replace the data
      * @param {string} replace String to replace
      * @param {string} replacement String to replacement
-     * 
+     *
      * @returns {string} Returns the the String with data replaced
      */
     static replace(str: string, replace: string, replacement: string): string {
@@ -22,7 +21,7 @@ export class StrUtils {
      * Method to count the ocurrences into the String
      * @param {string} str Source to check
      * @param {string} strToCheck String to check if exists on str
-     * 
+     *
      * @returns {number} true if "strToCheck" exists on "str", false in otherwise
      */
     static count(str: string, strToCheck: string): number {
@@ -33,7 +32,7 @@ export class StrUtils {
      * Method to check if a String contains other String
      * @param {string} str Source to check
      * @param {string} strToCheck String to check if exists on str
-     * 
+     *
      * @returns {boolean} true if "strToCheck" exists on "str", false in otherwise
      */
     static contains(str: string, strToCheck: string): boolean {
@@ -44,7 +43,7 @@ export class StrUtils {
      * Method to check if a String contains other String ignoring letter case
      * @param {string} str Source to check
      * @param {string} strToCheck String to check if exists on str
-     * 
+     *
      * @returns {boolean} true if "strToCheck" exists on "str", false in otherwise
      */
     static containsIgnorecase(str: string, strToCheck: string): boolean {
@@ -55,6 +54,7 @@ export class StrUtils {
         if (!value) {
             return '';
         }
+
         let normalized = value.toLowerCase();
         normalized = normalized.replace(/é/g, 'e');
         normalized = normalized.replace(/ú/g, 'u');

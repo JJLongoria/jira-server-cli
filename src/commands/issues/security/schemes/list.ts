@@ -1,15 +1,15 @@
-import { IssueSecuritySchemes, JiraServerConnector, SecurityScheme } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
-import { SecuritySchemeColumns } from "../../../../libs/core/tables";
-import { UX } from "../../../../libs/core/ux";
+import { IssueSecuritySchemes, JiraServerConnector, SecurityScheme } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
+import { SecuritySchemeColumns } from '../../../../libs/core/tables';
+import { UX } from '../../../../libs/core/ux';
 
 export default class List extends BaseCommand {
     static description = 'Returns all issue security schemes that are defined. ' + UX.processDocumentation('<doc:IssueSecuritySchemes>');
     static examples = [
-        `$ jiraserver issues:security:schemes:list -a "MyAlias" --json`,
-        `$ jiraserver issues:security:schemes:list -a "MyAlias" --csv`,
-        `$ jiraserver issues:security:schemes:list -a "MyAlias"`,
+        '$ jiraserver issues:security:schemes:list -a "MyAlias" --json',
+        '$ jiraserver issues:security:schemes:list -a "MyAlias" --csv',
+        '$ jiraserver issues:security:schemes:list -a "MyAlias"',
     ];
 
     static flags = {
@@ -33,6 +33,7 @@ export default class List extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

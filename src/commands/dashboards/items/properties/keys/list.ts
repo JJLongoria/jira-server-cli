@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { EntityPropertyKey, EntityPropertyKeys, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../../../libs/core/jiraResponse";
-import { EntityPropertyKeyColumns } from "../../../../../libs/core/tables";
-import { UX } from "../../../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { EntityPropertyKey, EntityPropertyKeys, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../../libs/core/jiraResponse';
+import { EntityPropertyKeyColumns } from '../../../../../libs/core/tables';
+import { UX } from '../../../../../libs/core/ux';
 
 export default class List extends BaseCommand {
     static description = 'Returns the keys of all properties for the dashboard item identified by the id. ' + UX.processDocumentation('<doc:EntityPropertyKeys>');
     static examples = [
-        `$ jiraserver dashboards:items:properties:keys:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId" --json`,
-        `$ jiraserver dashboards:items:properties:keys:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId" --csv`,
-        `$ jiraserver dashboards:items:properties:keys:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId"`,
+        '$ jiraserver dashboards:items:properties:keys:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId" --json',
+        '$ jiraserver dashboards:items:properties:keys:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId" --csv',
+        '$ jiraserver dashboards:items:properties:keys:get -a "MyAlias" --dashboard "theDashboardId" --item "theItemId"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -27,12 +28,13 @@ export default class List extends BaseCommand {
             name: 'Item Id',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<EntityPropertyKeys>> {
         const response = new JiraCLIResponse<EntityPropertyKeys>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
             const result = await connector.dashboards.items(this.flags.dashboard).properties(this.flags.item).list();
-            response.result = result
+            response.result = result;
             response.status = 0;
             response.message = this.getRecordsFoundText(result.keys.length, 'Property Keys');
             this.ux.log(response.message);
@@ -42,6 +44,7 @@ export default class List extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { CustomField, JiraServerConnector, Page } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
-import { CustomFieldColumns } from "../../../libs/core/tables";
-import { UX } from "../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { CustomField, JiraServerConnector, Page } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { CustomFieldColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class List extends BaseCommand {
     static description = 'Return a filtered page of Custom Fields JSON representation. ' + UX.processDocumentation('<doc:CustomField>');
     static examples = [
-        `$ jiraserver fields:custom:list -a "MyAlias" --json`,
-        `$ jiraserver fields:custom:list -a "MyAlias" --csv`,
-        `$ jiraserver fields:custom:list -a "MyAlias" `,
+        '$ jiraserver fields:custom:list -a "MyAlias" --json',
+        '$ jiraserver fields:custom:list -a "MyAlias" --csv',
+        '$ jiraserver fields:custom:list -a "MyAlias" ',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -39,6 +40,7 @@ export default class List extends BaseCommand {
             name: 'Types',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Page<CustomField>>> {
         const response = new JiraCLIResponse<Page<CustomField>>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -52,7 +54,7 @@ export default class List extends BaseCommand {
                     search: this.flags.search,
                     sortColumn: this.flags.column,
                     sortOrder: this.flags.order,
-                    pageOptions: this.allPageOptions
+                    pageOptions: this.allPageOptions,
                 });
                 result.values.push(...tmp.values);
                 result.isLast = true;
@@ -62,10 +64,11 @@ export default class List extends BaseCommand {
                         pageOptions: {
                             startAt: tmp.nextPageStart,
                             maxResults: 100,
-                        }
+                        },
                     });
                     result.values.push(...tmp.values);
                 }
+
                 result.maxResults = result.values.length;
             } else {
                 result = await connector.customFields.list({
@@ -75,10 +78,11 @@ export default class List extends BaseCommand {
                     search: this.flags.search,
                     sortColumn: this.flags.column,
                     sortOrder: this.flags.order,
-                    pageOptions: this.pageOptions
+                    pageOptions: this.pageOptions,
                 });
             }
-            response.result = result
+
+            response.result = result;
             response.status = 0;
             response.message = this.getRecordsFoundText(result.values.length, 'Custom Field');
             this.ux.log(response.message);
@@ -89,6 +93,7 @@ export default class List extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

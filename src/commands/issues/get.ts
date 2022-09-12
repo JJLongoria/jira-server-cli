@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { Issue, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../libs/core/jiraResponse";
-import { IssueColumns } from "../../libs/core/tables";
-import { UX } from "../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { Issue, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../libs/core/jiraResponse';
+import { IssueColumns } from '../../libs/core/tables';
+import { UX } from '../../libs/core/ux';
 
 export default class Delete extends BaseCommand {
     static description = 'Returns a full representation of the issue for the given issue key. ' + UX.processDocumentation('<doc:Issue>') + '. See https://docs.atlassian.com/software/jira/docs/api/REST/9.2.0/#api/2/issue-getIssue to get more info about the input parameters';
     static examples = [
-        `$ jiraserver issues:get -a "MyAlias" --issue "theIssueKeyOrId" --expand "renderedFields, schema" --json`,
-        `$ jiraserver issues:get -a "MyAlias" --issue "theIssueKeyOrId" --fields "navigable" --properties "prop1, prop1" --csv`,
-        `$ jiraserver issues:get -a "MyAlias" --issue "theIssueKeyOrId" --fields "*all,-comment" --properties "*all, -prop1"`,
+        '$ jiraserver issues:get -a "MyAlias" --issue "theIssueKeyOrId" --expand "renderedFields, schema" --json',
+        '$ jiraserver issues:get -a "MyAlias" --issue "theIssueKeyOrId" --fields "navigable" --properties "prop1, prop1" --csv',
+        '$ jiraserver issues:get -a "MyAlias" --issue "theIssueKeyOrId" --fields "*all,-comment" --properties "*all, -prop1"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -38,6 +39,7 @@ export default class Delete extends BaseCommand {
             name: 'Update History',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Issue>> {
         const response = new JiraCLIResponse<Issue>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -58,6 +60,7 @@ export default class Delete extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

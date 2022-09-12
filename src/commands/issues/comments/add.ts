@@ -1,18 +1,19 @@
-import { Flags } from "@oclif/core";
-import { timeStamp } from "console";
-import { Comment, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
-import { CommentColumns } from "../../../libs/core/tables";
-import { UX } from "../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { timeStamp } from 'node:console';
+import { Comment, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { CommentColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class Add extends BaseCommand {
     static description = 'Adds a new comment to an issue. ' + UX.processDocumentation('<doc:Comment>');
     static examples = [
-        `$ jiraserver issues:comments:add -a "MyAlias" --issue "theIssueKeyOrId" --data "{'body':'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper.','visibility':{'type':'role','value':'Administrators'}}" --json`,
-        `$ jiraserver issues:comments:add -a "MyAlias" --issue "theIssueKeyOrId" --file "path/to/the/json/data/file" --csv`,
-        `$ jiraserver issues:comments:add -a "MyAlias" --issue "theIssueKeyOrId" --body "Lorem ipsum dolor sit amet, consectetur adipiscing elit" --type group --value "myGroup"`,
+        '$ jiraserver issues:comments:add -a "MyAlias" --issue "theIssueKeyOrId" --data "{\'body\':\'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper.\',\'visibility\':{\'type\':\'role\',\'value\':\'Administrators\'}}" --json',
+        '$ jiraserver issues:comments:add -a "MyAlias" --issue "theIssueKeyOrId" --file "path/to/the/json/data/file" --csv',
+        '$ jiraserver issues:comments:add -a "MyAlias" --issue "theIssueKeyOrId" --body "Lorem ipsum dolor sit amet, consectetur adipiscing elit" --type group --value "myGroup"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -37,7 +38,7 @@ export default class Add extends BaseCommand {
             required: false,
             name: 'Visibility Type',
             options: ['role', 'group'],
-            type: "option",
+            type: 'option',
             exclusive: ['data', 'file'],
             dependsOn: ['body', 'value'],
         }),
@@ -49,23 +50,20 @@ export default class Add extends BaseCommand {
             dependsOn: ['body', 'type'],
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Comment>> {
         const response = new JiraCLIResponse<Comment>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
             let result;
-            if (this.hasInputData()) {
-                result = await connector.issues.comments(this.flags.issue).create(this.getJSONInputData());
-            } else {
-                result = await connector.issues.comments(this.flags.issue).create({
-                    body: this.flags.body,
-                    visibility: {
-                        type: this.flags.type,
-                        value: this.flags.value,
-                    }
-                });
-            }
-            response.result = result
+            result = await (this.hasInputData() ? connector.issues.comments(this.flags.issue).create(this.getJSONInputData()) : connector.issues.comments(this.flags.issue).create({
+                body: this.flags.body,
+                visibility: {
+                    type: this.flags.type,
+                    value: this.flags.value,
+                },
+            }));
+            response.result = result;
             response.status = 0;
             response.message = this.getRecordCreatedText('Comment');
             this.ux.log(response.message);
@@ -76,6 +74,7 @@ export default class Add extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

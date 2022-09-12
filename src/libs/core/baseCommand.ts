@@ -1,103 +1,109 @@
-import { Command, Flags } from "@oclif/core";
-import { AlphabetLowercase, AlphabetUppercase, OptionFlag, OutputArgs, OutputFlags } from "@oclif/core/lib/interfaces";
-import { PageOptions, JiraError } from "jira-server-connector";
-import { FileReader } from "../fileSystem";
-import { Config } from "./config";
-import { JiraCLIResponse } from "./jiraResponse";
-import { UX } from "./ux";
+import { Command, Flags } from '@oclif/core';
+import { AlphabetLowercase, AlphabetUppercase, OptionFlag, OutputArgs, OutputFlags } from '@oclif/core/lib/interfaces';
+import { PageOptions, JiraError } from 'jira-server-connector';
+import { FileReader } from '../fileSystem';
+import { Config } from './config';
+import { JiraCLIResponse } from './jiraResponse';
+import { UX } from './ux';
 
-export class BuildFlags {
+export const BuildFlags = {
 
-    static async parseArray(str: string) {
+    async parseArray(str: string) {
         if (!str || str.length === 0) {
             return [];
         }
-        const regex = new RegExp(`"(.*?)"|\'(.*?)\'|,`);
-        return str.split(regex).filter((i) => !!i).map((i) => i.trim());
-    }
-    static async parseKeyValue(str: string) {
+
+        const regex = new RegExp('"(.*?)"|\'(.*?)\'|,');
+        return str.split(regex).filter(i => Boolean(i)).map(i => i.trim());
+    },
+    async parseKeyValue(str: string) {
         const obj: any = {};
-        const keyValueRegexp = new RegExp(`"(.*?)"|\'(.*?)\'|=`);
+        const keyValueRegexp = new RegExp('"(.*?)"|\'(.*?)\'|=');
         const arrayValues = await BuildFlags.parseArray(str);
         for (const value of arrayValues) {
-            const keyValuePair = value.split(keyValueRegexp).filter((i) => !!i).map((i) => i.trim());
+            const keyValuePair = value.split(keyValueRegexp).filter(i => Boolean(i)).map(i => i.trim());
             obj[keyValuePair[0]] = keyValuePair[1];
         }
+
         return obj;
-    }
-    static alias = Flags.string({
+    },
+    alias: Flags.string({
         description: 'The Jira instance alias to identify user and instance to connect with',
         required: true,
         char: 'a',
-        name: 'Alias'
-    });
-    static csv = Flags.boolean({
+        name: 'Alias',
+    }),
+    csv: Flags.boolean({
         description: 'Format output as CSV format',
         required: false,
         name: 'CSV',
-        exclusive: ['json']
-    });
-    static array = (options: Partial<OptionFlag<string>>) => {
+        exclusive: ['json'],
+    }),
+    array: (options: Partial<OptionFlag<string>>) => {
         options.parse = (input): any => {
             return BuildFlags.parseArray(input);
-        }
+        };
+
         return Flags.string(options);
-    }
-    static extended = Flags.boolean({ char: 'x', description: 'Show extra columns when format output as table. (Format by default)', name: 'Extended' });
-    static filter = (description: string) => {
+    },
+    extended: Flags.boolean({ char: 'x', description: 'Show extra columns when format output as table. (Format by default)', name: 'Extended' }),
+    filter: (description: string) => {
         return Flags.string({
             description: description,
             required: false,
-            name: 'Filter'
+            name: 'Filter',
         });
-    };
-    static context = (description: string) => {
+    },
+    context: (description: string) => {
         return Flags.string({
             description: description,
             required: false,
-            name: 'Context'
+            name: 'Context',
         });
-    };
-    static input = {
+    },
+    input: {
         keyvalue: (doc: string, required?: boolean, exclusive?: string[]) => {
             const exclusives = ['file', 'data'];
-            if (exclusive && exclusive.length) {
+            if (exclusive && exclusive.length > 0) {
                 exclusives.push(...exclusive);
             }
+
             return Flags.string({
-                description: 'Key-Value pair data. (key1=value1,key2=value2...). ' + (exclusives && exclusives.length ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
+                description: 'Key-Value pair data. (key1=value1,key2=value2...). ' + (exclusives && exclusives.length > 0 ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
                 required: required,
                 name: 'Keyvalue',
                 char: 'k',
                 exclusive: exclusives,
                 parse: (input, context) => {
                     return BuildFlags.parseKeyValue(input);
-                }
+                },
             });
         },
         jsonData: (doc: string, required?: boolean, exclusive?: string[]) => {
             const exclusives = ['file', 'keyvalue'];
-            if (exclusive && exclusive.length) {
+            if (exclusive && exclusive.length > 0) {
                 exclusives.push(...exclusive);
             }
+
             return Flags.string({
-                description: 'JSON Input data. ' + (exclusives && exclusives.length ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
+                description: 'JSON Input data. ' + (exclusives && exclusives.length > 0 ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
                 required: required,
                 name: 'Data',
                 char: 'd',
                 exclusive: exclusives,
                 parse: (input, context) => {
                     return eval('(' + input + ')');
-                }
+                },
             });
         },
         data: (doc: string, required?: boolean, exclusive?: string[]) => {
             const exclusives = ['file', 'keyvalue'];
-            if (exclusive && exclusive.length) {
+            if (exclusive && exclusive.length > 0) {
                 exclusives.push(...exclusive);
             }
+
             return Flags.string({
-                description: 'Input data. ' + (exclusives && exclusives.length ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
+                description: 'Input data. ' + (exclusives && exclusives.length > 0 ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
                 required: required,
                 name: 'Data',
                 char: 'd',
@@ -106,36 +112,38 @@ export class BuildFlags {
         },
         jsonFile: (doc: string, required?: boolean, exclusive?: string[]) => {
             const exclusives = ['data', 'keyvalue'];
-            if (exclusive && exclusive.length) {
+            if (exclusive && exclusive.length > 0) {
                 exclusives.push(...exclusive);
             }
+
             return Flags.file({
-                description: 'JSON Input data file path. ' + (exclusives && exclusives.length ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
+                description: 'JSON Input data file path. ' + (exclusives && exclusives.length > 0 ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
                 required: required,
                 exclusive: exclusives,
                 name: 'File',
-                char: 'f'
+                char: 'f',
             });
         },
         file: (doc: string, required?: boolean, exclusive?: string[]) => {
             const exclusives = ['data', 'keyvalue'];
-            if (exclusive && exclusive.length) {
+            if (exclusive && exclusive.length > 0) {
                 exclusives.push(...exclusive);
             }
+
             return Flags.file({
-                description: 'Input data file path. ' + (exclusives && exclusives.length ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
+                description: 'Input data file path. ' + (exclusives && exclusives.length > 0 ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
                 required: required,
                 exclusive: exclusives,
                 name: 'File',
-                char: 'f'
+                char: 'f',
             });
         },
 
-    }
-    static output = {
+    },
+    output: {
         file: (doc: string, required?: boolean, exclusive?: string[]) => {
             return Flags.file({
-                description: 'Output file path. ' + (exclusive && exclusive.length ? UX.cannotUseWith(exclusive) + '. ' : '') + UX.processDocumentation(doc),
+                description: 'Output file path. ' + (exclusive && exclusive.length > 0 ? UX.cannotUseWith(exclusive) + '. ' : '') + UX.processDocumentation(doc),
                 required: required,
                 exclusive: exclusive,
                 name: 'Output File',
@@ -143,14 +151,14 @@ export class BuildFlags {
         },
         folder: (doc: string, required?: boolean, exclusive?: string[]) => {
             return Flags.directory({
-                description: 'Output folder path. ' + (exclusive && exclusive.length ? UX.cannotUseWith(exclusive) + '. ' : '') + UX.processDocumentation(doc),
+                description: 'Output folder path. ' + (exclusive && exclusive.length > 0 ? UX.cannotUseWith(exclusive) + '. ' : '') + UX.processDocumentation(doc),
                 required: required,
                 exclusive: exclusive,
                 name: 'Output Folder',
             });
         },
-    }
-    static expand = (description?: string) => {
+    },
+    expand: (description?: string) => {
         return Flags.string({
             description: description || 'Extra parameters to expand',
             required: false,
@@ -158,8 +166,8 @@ export class BuildFlags {
             char: 'e',
             exclusive: [],
         });
-    }
-    static pagination = (allowExpand?: boolean, allowOrder?: boolean, allowColumn?: boolean) => {
+    },
+    pagination: (allowExpand?: boolean, allowOrder?: boolean, allowColumn?: boolean) => {
         const flags: any = {
             all: Flags.boolean({
                 description: 'Return all records on the same page (instead paginate results)',
@@ -184,7 +192,7 @@ export class BuildFlags {
                 exclusive: [],
                 default: 0,
             }),
-        }
+        };
         if (allowExpand) {
             flags.expand = Flags.string({
                 description: 'Extra parameters to expand',
@@ -194,6 +202,7 @@ export class BuildFlags {
                 exclusive: [],
             });
         }
+
         if (allowOrder && !allowColumn) {
             flags.order = Flags.string({
                 description: 'Ordering can be ascending or descending. By default it\'s ascending. To specify the ordering use "-" or "+" sign. Examples: --order "+name"; --order "name"; --order "-name"',
@@ -211,6 +220,7 @@ export class BuildFlags {
                 exclusive: [],
             });
         }
+
         if (allowColumn) {
             flags.column = Flags.string({
                 description: 'The column to order results',
@@ -220,23 +230,23 @@ export class BuildFlags {
                 exclusive: [],
             });
         }
+
         return flags;
-    };
-}
+    },
+};
 
 export class BaseCommand extends Command {
-
-
     protected localConfig: Config = new Config(this.config.dataDir);
     protected flags!: OutputFlags<any>;
     protected args!: OutputArgs;
     static flags: OutputFlags<any> = {
         loglevel: Flags.string({
             description: 'The logging level for this command execution',
-            type: "option",
+            type: 'option',
             options: ['error', 'warn', 'info', 'debug'],
         }),
     }
+
     static loginRequired = true;
     static enableJsonFlag = true;
     protected ux = new UX();
@@ -252,8 +262,9 @@ export class BaseCommand extends Command {
                 startAt: this.flags.start,
                 expand: this.flags.expand,
                 orderBy: this.flags.order,
-            }
+            };
         }
+
         return undefined;
     }
 
@@ -267,6 +278,7 @@ export class BaseCommand extends Command {
             };
             return options;
         }
+
         return undefined;
     }
 
@@ -275,9 +287,9 @@ export class BaseCommand extends Command {
             if (flagName === 'csv' || flagName === 'json')
                 continue;
             const flagConfig = flagsConfig[flagName];
-            if (!this.flags[flagName] && flagConfig.exclusive && flagConfig.exclusive.length) {
+            if (!this.flags[flagName] && flagConfig.exclusive && flagConfig.exclusive.length > 0) {
                 let nExclusives = 0;
-                let flags = ['--' + flagName];
+                const flags = ['--' + flagName];
                 for (const exclusive of flagConfig.exclusive) {
                     if (this.flags[exclusive]) {
                         nExclusives++;
@@ -285,6 +297,7 @@ export class BaseCommand extends Command {
                         flags.push('--' + exclusive);
                     }
                 }
+
                 if (nExclusives === 0) {
                     throw new Error('Missing Required flags. Must indicate at least one of the following: ' + flags.join(', '));
                 }
@@ -305,19 +318,19 @@ export class BaseCommand extends Command {
     }
 
     parseArray(str: string): string[] {
-        const regex = new RegExp(`"(.*?)"|\'(.*?)\'|,`);
+        const regex = new RegExp('"(.*?)"|\'(.*?)\'|,');
         return str
             .split(regex)
-            .filter((i) => !!i)
-            .map((i) => i.trim());
+            .filter(i => Boolean(i))
+            .map(i => i.trim());
     }
 
     getRecordsFoundText(recordSize: number, recordName: string) {
         if (recordSize > 0) {
             return recordSize + ' ' + recordName + ' records found';
-        } else {
-            return 'Not ' + recordName + ' records found';
         }
+
+        return 'Not ' + recordName + ' records found';
     }
 
     getRecordRetrievedText(recordName: string) {
@@ -337,39 +350,41 @@ export class BaseCommand extends Command {
     }
 
     checkLogin() {
-        if (this.flags.alias && this.localConfig.instances) {
-            if (!this.localConfig.instances[this.flags.alias]) {
-                throw new Error('Not found instance with alias ' + this.flags.alias + '. Check spelling name or login as new instance');
-            }
+        if (this.flags.alias && this.localConfig.instances && !this.localConfig.instances[this.flags.alias]) {
+            throw new Error('Not found instance with alias ' + this.flags.alias + '. Check spelling name or login as new instance');
         }
     }
 
     log(message: string, level: 'info' | 'debug' | 'warn' | 'error') {
         switch (this.flags.loglevel) {
-            case 'error':
-                if (level === 'error') {
-                    this.error(message);
-                }
-                break;
-            case 'debug':
-                if (level === 'debug') {
-                    this.ux.log(message);
-                }
-                break;
-            case 'warn':
-                if (level === 'warn') {
-                    this.warn(message);
-                }
-                break;
-            case 'info':
-                if (level === 'info') {
-                    this.warn(message);
-                }
-                break;
+        case 'error':
+            if (level === 'error') {
+                this.error(message);
+            }
+
+            break;
+        case 'debug':
+            if (level === 'debug') {
+                this.ux.log(message);
+            }
+
+            break;
+        case 'warn':
+            if (level === 'warn') {
+                this.warn(message);
+            }
+
+            break;
+        case 'info':
+            if (level === 'info') {
+                this.warn(message);
+            }
+
+            break;
         }
     }
 
-    /*public async _run<T>(): Promise<any> {
+    /* public async _run<T>(): Promise<any> {
         // If a result is defined for the command, use that.  Otherwise check for a
         // tableColumnData definition directly on the command.
         let err: any;
@@ -382,7 +397,7 @@ export class BaseCommand extends Command {
         } finally {
             await this.finally(err);
         }
-    }*/
+    } */
 
     async init() {
         // do some initialization
@@ -396,6 +411,7 @@ export class BaseCommand extends Command {
         if (this.statics.loginRequired) {
             this.checkLogin();
         }
+
         this.validateRequiredAndExclusives(this.statics.flags);
     }
 
@@ -427,13 +443,11 @@ export class BaseCommand extends Command {
         process.exitCode = process.exitCode || err.exitCode || 1;
         console.error('ERROR: ' + err.message);
     }
+
     async finally(err: any) {
         // called after run and catch regardless of whether or not the command errored
         return super.finally(err);
     }
 
-    async run(): Promise<any> {
-
-    }
-
+    async run(): Promise<any> {}
 }

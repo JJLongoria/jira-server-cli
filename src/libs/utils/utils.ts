@@ -5,24 +5,24 @@
 /* eslint-disable unicorn/no-for-loop */
 /* eslint-disable unicorn/no-static-only-class */
 export class Utils {
-
     /**
      * Method to force to put the data into an array if the data must be an array
      * @param {any} data Data to force be an array
-     * 
+     *
      * @returns {Array<any>} Returns an array with the data or undefined if data is undefined
      */
     static forceArray(data: any): any[] {
         if (data === undefined) {
             return data;
         }
+
         return (Array.isArray(data)) ? data : [data];
     }
 
     /**
      * Method to clone an object
      * @param {any} obj Object to clone
-     * 
+     *
      * @returns {any} Returns the cloned object
      */
     static clone(obj: any): any {
@@ -32,7 +32,7 @@ export class Utils {
     /**
      * Method to check if the value is an object
      * @param {any} value Value to check
-     * 
+     *
      * @returns {boolean} true if the value is an object, false in otherwise
      */
     static isObject(value: any): boolean {
@@ -42,7 +42,7 @@ export class Utils {
     /**
      * Method to check if the value is a string
      * @param {any} value Value to check
-     * 
+     *
      * @returns {boolean} true if the value is a string, false in otherwise
      */
     static isString(value: any): boolean {
@@ -52,7 +52,7 @@ export class Utils {
     /**
      * Method to check if the value is a number
      * @param {any} value Value to check
-     * 
+     *
      * @returns {boolean} true if the value is a number, false in otherwise
      */
     static isNumber(value: any): boolean {
@@ -62,7 +62,7 @@ export class Utils {
     /**
      * Method to check if the value is a BigInt
      * @param {any} value Value to check
-     * 
+     *
      * @returns {boolean} true if the value is a BigInt, false in otherwise
      */
     static isBigInt(value: any): boolean {
@@ -72,7 +72,7 @@ export class Utils {
     /**
      * Method to check if the value is a symbol
      * @param {any} value Value to check
-     * 
+     *
      * @returns {boolean} true if the value is a symbol, false in otherwise
      */
     static isSymbol(value: any): boolean {
@@ -82,7 +82,7 @@ export class Utils {
     /**
      * Method to check if the value is a boolean
      * @param {any} value Value to check
-     * 
+     *
      * @returns {boolean} true if the value is a boolean, false in otherwise
      */
     static isBoolean(value: any): boolean {
@@ -92,7 +92,7 @@ export class Utils {
     /**
      * Method to check if the value is a function
      * @param {any} value Value to check
-     * 
+     *
      * @returns {boolean} true if the value is a function, false in otherwise
      */
     static isFunction(value: any): boolean {
@@ -102,7 +102,7 @@ export class Utils {
     /**
      * Method to check if the value is an array
      * @param {any} value Value to check
-     * 
+     *
      * @returns {boolean} true if the value is an array, false in otherwise
      */
     static isArray(value: any): boolean {
@@ -112,7 +112,7 @@ export class Utils {
     /**
      * Method to check if the value is null or undefined
      * @param {any} value Value to check
-     * 
+     *
      * @returns {boolean} true if the value is null or undefined, false in otherwise
      */
     static isNull(value: any): boolean {
@@ -122,7 +122,7 @@ export class Utils {
     /**
      * Method to check if an object has keys
      * @param {any} value Object to check
-     * 
+     *
      * @returns {boolean} true if the object has keys, false in otherwise
      */
     static hasKeys(value: any): boolean {
@@ -132,7 +132,7 @@ export class Utils {
     /**
      * Method to count the keys from an object
      * @param {any} value Object to get the keys
-     * 
+     *
      * @returns {number} Returns the keys from the object
      */
     static countKeys(value: any): number {
@@ -142,7 +142,7 @@ export class Utils {
     /**
      * Method to get the first element from an object
      * @param {any} value Object to get the first element
-     * 
+     *
      * @returns {any} Returns the first element data
      */
     static getFirstElement(value: any): any {
@@ -152,7 +152,7 @@ export class Utils {
     /**
      * Method to get the last element from an object
      * @param {any} value Object to get the last element
-     * 
+     *
      * @returns {any} Returns the last element data
      */
     static getLastElement(value: any): any {
@@ -164,7 +164,7 @@ export class Utils {
      * @param {Array<any>} elements Array with the elements to sort
      * @param {Array<string>} [fields] fields from child to sort
      * @param {boolean} [caseSensitive] true if want sort data with case sensitive
-     * 
+     *
      * @returns {Array<any>} Returns the array sorted
      */
     static sort(elements: any[], fields?: string[], caseSensitive?: boolean): any[] {
@@ -175,8 +175,8 @@ export class Utils {
                     let nameB = '';
                     let counter = 0;
                     for (const field of fields) {
-                        const valA = (a[field] !== undefined) ? a[field] : "";
-                        const valB = (b[field] !== undefined) ? b[field] : "";
+                        const valA = (a[field] !== undefined) ? a[field] : '';
+                        const valB = (b[field] !== undefined) ? b[field] : '';
                         if (counter === 0) {
                             nameA = valA;
                             nameB = valB;
@@ -184,36 +184,43 @@ export class Utils {
                             nameA += '_' + valA;
                             nameB += '_' + valB;
                         }
+
                         counter++;
                     }
+
                     if (Utils.isNumber(nameA) && Utils.isNumber(nameB)) {
                         if (nameA > nameB) {
                             return 1;
-                        } else if (nameA < nameB) {
-                            return -1;
-                        } else {
-                            return 0;
                         }
-                    } else {
-                        nameA = '' + nameA;
-                        nameB = '' + nameB;
-                        return caseSensitive ? nameA.localeCompare(nameB) : nameA.toLowerCase().localeCompare(nameB.toLowerCase());
-                    }
-                } else {
-                    if (Utils.isNumber(a) && Utils.isNumber(b)) {
-                        if (a > b) {
-                            return 1;
-                        } else if (b < a) {
+
+                        if (nameA < nameB) {
                             return -1;
-                        } else {
-                            return 0;
                         }
-                    } else {
-                        return caseSensitive ? a.localeCompare(b) : a.toLowerCase().localeCompare(b.toLowerCase());
+
+                        return 0;
                     }
+
+                    nameA = String(nameA);
+                    nameB = String(nameB);
+                    return caseSensitive ? nameA.localeCompare(nameB) : nameA.toLowerCase().localeCompare(nameB.toLowerCase());
                 }
+
+                if (Utils.isNumber(a) && Utils.isNumber(b)) {
+                    if (a > b) {
+                        return 1;
+                    }
+
+                    if (b < a) {
+                        return -1;
+                    }
+
+                    return 0;
+                }
+
+                return caseSensitive ? a.localeCompare(b) : a.toLowerCase().localeCompare(b.toLowerCase());
             });
         }
+
         return elements;
     }
 
@@ -222,7 +229,7 @@ export class Utils {
      * @param {Array<any>} elements Array with the elements to sort
      * @param {Array<string>} [fields] fields from child to sort
      * @param {boolean} [caseSensitive] true if want sort data with case sensitive
-     * 
+     *
      * @returns {Array<any>} Returns the array sorted
      */
     static sortReverse(elements: any[], fields?: string[], caseSensitive?: boolean): any[] {
@@ -233,8 +240,8 @@ export class Utils {
                     let nameB = '';
                     let counter = 0;
                     for (const field of fields) {
-                        const valA = (a[field] !== undefined) ? a[field] : "";
-                        const valB = (b[field] !== undefined) ? b[field] : "";
+                        const valA = (a[field] !== undefined) ? a[field] : '';
+                        const valB = (b[field] !== undefined) ? b[field] : '';
                         if (counter === 0) {
                             nameA = valA;
                             nameB = valB;
@@ -242,35 +249,43 @@ export class Utils {
                             nameA += '_' + valA;
                             nameB += '_' + valB;
                         }
+
                         counter++;
                     }
+
                     if (Utils.isNumber(nameA) && Utils.isNumber(nameB)) {
                         if (nameA < nameB) {
                             return 1;
-                        } else if (nameA > nameB) {
-                            return -1;
-                        } else {
-                            return 0;
                         }
-                    } else {
-                        nameA = '' + nameA;
-                        nameB = '' + nameB;
-                        return caseSensitive ? nameB.localeCompare(nameA) : nameB.toLowerCase().localeCompare(nameA.toLowerCase());
-                    }
-                } else {
-                    if (Utils.isNumber(a) && Utils.isNumber(b)) {
-                        if (a > b) {
+
+                        if (nameA > nameB) {
                             return -1;
-                        } else if (a < b) {
-                            return 1;
                         }
+
                         return 0;
-                    } else {
-                        return caseSensitive ? b.localeCompare(a) : b.toLowerCase().localeCompare(a.toLowerCase());
                     }
+
+                    nameA = String(nameA);
+                    nameB = String(nameB);
+                    return caseSensitive ? nameB.localeCompare(nameA) : nameB.toLowerCase().localeCompare(nameA.toLowerCase());
                 }
+
+                if (Utils.isNumber(a) && Utils.isNumber(b)) {
+                    if (a > b) {
+                        return -1;
+                    }
+
+                    if (a < b) {
+                        return 1;
+                    }
+
+                    return 0;
+                }
+
+                return caseSensitive ? b.localeCompare(a) : b.toLowerCase().localeCompare(a.toLowerCase());
             });
         }
+
         return elements;
     }
 
@@ -281,6 +296,7 @@ export class Utils {
                 result[key] = new Type(object[key]);
             }
         }
+
         return result;
     }
 
@@ -291,6 +307,7 @@ export class Utils {
                 result.push(new Type(data));
             }
         }
+
         return result;
     }
 
@@ -313,17 +330,18 @@ export class Utils {
 
     static toNumber(value: number | string | null): number {
         if (value !== null) {
-            const strValue = '' + value;
+            const strValue = String(value);
             if (strValue.indexOf(',')) {
                 return Number(strValue.split(',').join('.'));
             }
+
             return Number(strValue);
         }
+
         return 0;
     }
 
     static randomColor(): string {
         return '#' + Math.floor(Math.random() * 16777215).toString(16);
     }
-
 }

@@ -1,15 +1,16 @@
-import { Flags } from "@oclif/core";
-import { JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
+import { Flags } from '@oclif/core';
+import { JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
 
 export default class Delete extends BaseCommand {
     static description = 'Deletes an existing comment. ';
     static examples = [
-        `$ jiraserver issues:comments:delete -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId" --json`,
-        `$ jiraserver issues:comments:delete -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId" --csv`,
-        `$ jiraserver issues:comments:delete -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId"`,
+        '$ jiraserver issues:comments:delete -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId" --json',
+        '$ jiraserver issues:comments:delete -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId" --csv',
+        '$ jiraserver issues:comments:delete -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -24,6 +25,7 @@ export default class Delete extends BaseCommand {
             name: 'Comment Id',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<any>> {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -35,6 +37,7 @@ export default class Delete extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

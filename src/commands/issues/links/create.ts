@@ -1,16 +1,17 @@
-import { Flags } from "@oclif/core";
-import { JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
+import { Flags } from '@oclif/core';
+import { JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
 
 export default class Create extends BaseCommand {
     static description = 'Creates an issue link between two issues. The user requires the link issue permission for the issue which will be linked to another issue.';
     static examples = [
-        `$ jiraserver issues:links:create -a "MyAlias" --data "{'type':{'name':'Duplicate'},'inwardIssue':{'key':'HSP-1'},'outwardIssue':{'key':'MKY-1'},'comment':{'body':'Linked related issue!','visibility':{'type':'group','value':'jira-software-users'}}}" --json`,
-        `$ jiraserver issues:links:create -a "MyAlias" --file "path/to/the/json/data/file"`,
-        `$ jiraserver issues:links:create -a "MyAlias" --inward "theInwarIssue" --outward "theOutwardIssue"`,
-        `$ jiraserver issues:links:create -a "MyAlias" --inward "theInwarIssue" --outward "theOutwardIssue" --comment "Comment Body" --visibility "role" --value "roleName" --json`,
+        '$ jiraserver issues:links:create -a "MyAlias" --data "{\'type\':{\'name\':\'Duplicate\'},\'inwardIssue\':{\'key\':\'HSP-1\'},\'outwardIssue\':{\'key\':\'MKY-1\'},\'comment\':{\'body\':\'Linked related issue!\',\'visibility\':{\'type\':\'group\',\'value\':\'jira-software-users\'}}}" --json',
+        '$ jiraserver issues:links:create -a "MyAlias" --file "path/to/the/json/data/file"',
+        '$ jiraserver issues:links:create -a "MyAlias" --inward "theInwarIssue" --outward "theOutwardIssue"',
+        '$ jiraserver issues:links:create -a "MyAlias" --inward "theInwarIssue" --outward "theOutwardIssue" --comment "Comment Body" --visibility "role" --value "roleName" --json',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -42,7 +43,7 @@ export default class Create extends BaseCommand {
             required: false,
             name: 'Visibility Type',
             options: ['role', 'group'],
-            type: "option",
+            type: 'option',
             exclusive: ['data', 'file'],
             dependsOn: ['body', 'value', 'inward', 'outward'],
         }),
@@ -54,19 +55,20 @@ export default class Create extends BaseCommand {
             dependsOn: ['body', 'type', 'inward', 'outward'],
         }),
     };
+
     async run(): Promise<JiraCLIResponse<any>> {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
             const result = await connector.issues.remoteLinks(this.flags.issue).upsert(this.getJSONInputData());
-            response.result = result
+            response.result = result;
             response.status = 0;
             response.message = this.getRecordCreatedText('Issue Link');
             this.ux.log(response.message);
-
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

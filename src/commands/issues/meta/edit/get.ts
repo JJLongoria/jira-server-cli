@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { EditMeta, FieldMeta, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
-import { FieldMetaColumns } from "../../../../libs/core/tables";
-import { UX } from "../../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { EditMeta, FieldMeta, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
+import { FieldMetaColumns } from '../../../../libs/core/tables';
+import { UX } from '../../../../libs/core/ux';
 
 export default class Get extends BaseCommand {
     static description = 'Returns the meta data for editing an issue. The fields in the editmeta correspond to the fields in the edit screen for the issue. Fields not in the screen will not be in the editmeta. ' + UX.processDocumentation('<doc:EditMeta>');
     static examples = [
-        `$ jiraserver issues:meta:edit:get -a "MyAlias" --issue "theIssueKeyOrId" --json`,
-        `$ jiraserver issues:meta:edit:get -a "MyAlias" --issue "theIssueKeyOrId" --csv`,
-        `$ jiraserver issues:meta:edit:get -a "MyAlias" --issue "theIssueKeyOrId"`,
+        '$ jiraserver issues:meta:edit:get -a "MyAlias" --issue "theIssueKeyOrId" --json',
+        '$ jiraserver issues:meta:edit:get -a "MyAlias" --issue "theIssueKeyOrId" --csv',
+        '$ jiraserver issues:meta:edit:get -a "MyAlias" --issue "theIssueKeyOrId"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -22,6 +23,7 @@ export default class Get extends BaseCommand {
             name: 'Issue Key or Id',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<EditMeta>> {
         const response = new JiraCLIResponse<EditMeta>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -37,6 +39,7 @@ export default class Get extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

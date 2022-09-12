@@ -1,10 +1,9 @@
-import { CliUx } from "@oclif/core";
-import { OutputFlags } from "@oclif/core/lib/interfaces";
+import { CliUx } from '@oclif/core';
+import { OutputFlags } from '@oclif/core/lib/interfaces';
 import * as notifier from 'node-notifier';
-import { StrUtils } from "../utils/strUtils";
+import { StrUtils } from '../utils/strUtils';
 
 export class UX {
-
     flags: OutputFlags<any>;
 
     constructor(flags?: OutputFlags<any>) {
@@ -38,7 +37,7 @@ export class UX {
     notify(title: string, message?: string) {
         notifier.notify({
             title: title,
-            message: message
+            message: message,
         });
     }
 
@@ -52,24 +51,28 @@ export class UX {
                 const message = 'See the JSON Schema on: ' + readmeURL + '#' + doctype.toLowerCase();
                 desc = StrUtils.replace(desc, docData, message);
             }
+
             return desc;
         }
+
         return undefined;
     }
 
     static cannotUseWith(flags: string[]) {
-        let convertedFlags = [];
+        const convertedFlags = [];
         for (const flag of flags) {
             convertedFlags.push('--' + flag);
         }
+
         return 'Cannot use with ' + convertedFlags.join(', ') + ' flag' + (flags.length > 1 ? 's' : '');
     }
 
     static dependsOn(flags: string[]) {
-        let convertedFlags = [];
+        const convertedFlags = [];
         for (const flag of flags) {
             convertedFlags.push('--' + flag);
         }
+
         return 'Depends on ' + convertedFlags.join(', ') + ' flag' + (flags.length > 1 ? 's' : '');
     }
 }

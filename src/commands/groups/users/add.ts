@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { Group, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
-import { GroupColumns } from "../../../libs/core/tables";
-import { UX } from "../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { Group, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { GroupColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class Add extends BaseCommand {
     static description = 'Adds given user to a group. Returns the current state of the group. ' + UX.processDocumentation('<doc:Group>');
     static examples = [
-        `$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName" --json`,
-        `$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName" --csv`,
-        `$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName"`,
+        '$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName" --json',
+        '$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName" --csv',
+        '$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -27,12 +28,13 @@ export default class Add extends BaseCommand {
             name: 'User',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Group>> {
         const response = new JiraCLIResponse<Group>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
             const result = await connector.groups.members(this.flags.group).create(this.flags.user);
-            response.result = result
+            response.result = result;
             response.status = 0;
             response.message = this.getRecordCreatedText('Group Member');
             this.ux.log(response.message);
@@ -42,6 +44,7 @@ export default class Add extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { IssueWorklog, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
-import { IssueWorklogColumns } from "../../../libs/core/tables";
-import { UX } from "../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { IssueWorklog, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { IssueWorklogColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class Update extends BaseCommand {
     static description = 'Updates an existing worklog entry. Fields possible for editing are: comment, visibility, started, timeSpent and timeSpentSeconds. Either timeSpent or timeSpentSeconds can be set. ' + UX.processDocumentation('<doc:IssueWorklog>');
     static examples = [
-        `$ jiraserver issues:worklogs:update -a "MyAlias" --issue "theIssueKeyOrId" --worklog "theWorklogId" --data "{'comment':'I did some work here.','visibility':{'type':'group','value':'jira-developers'},'started':'2022-08-25T12:37:29.683+0000','timeSpentSeconds':12000}" --json`,
-        `$ jiraserver issues:worklogs:update -a "MyAlias" --issue "theIssueKeyOrId" --worklog "theWorklogId" --adjust "new" --new "4d" --file "path/to/the/json/data/file" --csv`,
-        `$ jiraserver issues:worklogs:update -a "MyAlias" --issue "theIssueKeyOrId" --worklog "theWorklogId" --file "path/to/the/json/data/file"`,
+        '$ jiraserver issues:worklogs:update -a "MyAlias" --issue "theIssueKeyOrId" --worklog "theWorklogId" --data "{\'comment\':\'I did some work here.\',\'visibility\':{\'type\':\'group\',\'value\':\'jira-developers\'},\'started\':\'2022-08-25T12:37:29.683+0000\',\'timeSpentSeconds\':12000}" --json',
+        '$ jiraserver issues:worklogs:update -a "MyAlias" --issue "theIssueKeyOrId" --worklog "theWorklogId" --adjust "new" --new "4d" --file "path/to/the/json/data/file" --csv',
+        '$ jiraserver issues:worklogs:update -a "MyAlias" --issue "theIssueKeyOrId" --worklog "theWorklogId" --file "path/to/the/json/data/file"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -34,16 +35,17 @@ export default class Update extends BaseCommand {
             required: false,
             options: ['new', 'leave', 'auto'],
             default: 'auto',
-            type: "option",
+            type: 'option',
             name: 'Adjust Estimate',
         }),
         new: Flags.string({
             description: 'The new value for the remaining estimate field. (e.g. "2d"). Required when "new" is selected for --adjust.',
             required: false,
             name: 'New Estimate',
-            dependsOn: ['adjust']
+            dependsOn: ['adjust'],
         }),
     };
+
     async run(): Promise<JiraCLIResponse<IssueWorklog>> {
         const response = new JiraCLIResponse<IssueWorklog>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -64,6 +66,7 @@ export default class Update extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { Comment, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
-import { CommentColumns } from "../../../libs/core/tables";
-import { UX } from "../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { Comment, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { CommentColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class Update extends BaseCommand {
     static description = 'Updates an existing comment using its JSON representation. ' + UX.processDocumentation('<doc:Comment>');
     static examples = [
-        `$ jiraserver issues:comments:update -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId" --data "{'body':'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper.','visibility':{'type':'role','value':'Administrators'}}" --json`,
-        `$ jiraserver issues:comments:update -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId" --file "path/to/the/json/data/file" --csv`,
-        `$ jiraserver issues:comments:update -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId" --body "Lorem ipsum dolor sit amet, consectetur adipiscing elit" --type group --value "myGroup"`,
+        '$ jiraserver issues:comments:update -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId" --data "{\'body\':\'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper.\',\'visibility\':{\'type\':\'role\',\'value\':\'Administrators\'}}" --json',
+        '$ jiraserver issues:comments:update -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId" --file "path/to/the/json/data/file" --csv',
+        '$ jiraserver issues:comments:update -a "MyAlias" --issue "theIssueKeyOrId" --comment "theCommentId" --body "Lorem ipsum dolor sit amet, consectetur adipiscing elit" --type group --value "myGroup"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -42,7 +43,7 @@ export default class Update extends BaseCommand {
             required: false,
             name: 'Visibility Type',
             options: ['role', 'group'],
-            type: "option",
+            type: 'option',
             exclusive: ['data', 'file'],
             dependsOn: ['body', 'value'],
         }),
@@ -54,23 +55,20 @@ export default class Update extends BaseCommand {
             dependsOn: ['body', 'type'],
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Comment>> {
         const response = new JiraCLIResponse<Comment>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
             let result;
-            if (this.hasInputData()) {
-                result = await connector.issues.comments(this.flags.issue).update(this.flags.comment, this.getJSONInputData(), this.flags.expand);
-            } else {
-                result = await connector.issues.comments(this.flags.issue).update(this.flags.comment, {
-                    body: this.flags.body,
-                    visibility: {
-                        type: this.flags.type,
-                        value: this.flags.value,
-                    }
-                }, this.flags.expand);
-            }
-            response.result = result
+            result = await (this.hasInputData() ? connector.issues.comments(this.flags.issue).update(this.flags.comment, this.getJSONInputData(), this.flags.expand) : connector.issues.comments(this.flags.issue).update(this.flags.comment, {
+                body: this.flags.body,
+                visibility: {
+                    type: this.flags.type,
+                    value: this.flags.value,
+                },
+            }, this.flags.expand));
+            response.result = result;
             response.status = 0;
             response.message = this.getRecordCreatedText('Comment');
             this.ux.log(response.message);
@@ -81,6 +79,7 @@ export default class Update extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

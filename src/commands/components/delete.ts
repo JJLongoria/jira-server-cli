@@ -1,15 +1,16 @@
-import { Flags } from "@oclif/core";
-import { JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../libs/core/jiraResponse";
+import { Flags } from '@oclif/core';
+import { JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../libs/core/jiraResponse';
 
 export default class Get extends BaseCommand {
     static description = 'Delete a project component.';
     static examples = [
-        `$ jiraserver components:delete -a "MyAlias" --component "theComponentId" --json`,
-        `$ jiraserver components:delete -a "MyAlias" --component "theComponentId" --move-to "OtherComponent" --csv`,
-        `$ jiraserver components:delete -a "MyAlias" --component "theComponentId"`,
+        '$ jiraserver components:delete -a "MyAlias" --component "theComponentId" --json',
+        '$ jiraserver components:delete -a "MyAlias" --component "theComponentId" --move-to "OtherComponent" --csv',
+        '$ jiraserver components:delete -a "MyAlias" --component "theComponentId"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -26,6 +27,7 @@ export default class Get extends BaseCommand {
             name: 'Move To Component Id',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<any>> {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -37,6 +39,7 @@ export default class Get extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

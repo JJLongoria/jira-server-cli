@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { Component, JiraServerConnector, Page } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../libs/core/jiraResponse";
-import { ComponentColumns } from "../../libs/core/tables";
-import { UX } from "../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { Component, JiraServerConnector, Page } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../libs/core/jiraResponse';
+import { ComponentColumns } from '../../libs/core/tables';
+import { UX } from '../../libs/core/ux';
 
 export default class List extends BaseCommand {
     static description = 'Returns paginated list of filtered active components. ' + UX.processDocumentation('<doc:Component>');
     static examples = [
-        `$ jiraserver components:list -a "MyAlias" --query "theQuery" --all --json`,
-        `$ jiraserver components:list -a "MyAlias" --projects "theProjects" --limit 50 --csv`,
-        `$ jiraserver components:list -a "MyAlias" --query "theQuery" --projects "theProjects" --start 25 --limit 50`,
+        '$ jiraserver components:list -a "MyAlias" --query "theQuery" --all --json',
+        '$ jiraserver components:list -a "MyAlias" --projects "theProjects" --limit 50 --csv',
+        '$ jiraserver components:list -a "MyAlias" --query "theQuery" --projects "theProjects" --start 25 --limit 50',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -21,14 +22,15 @@ export default class List extends BaseCommand {
         query: Flags.string({
             description: 'The string that components names will be matched with',
             required: false,
-            name: 'Query'
+            name: 'Query',
         }),
         projects: Flags.string({
             description: 'The set of project ids to filter components',
             required: false,
-            name: 'Project Ids'
+            name: 'Project Ids',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Page<Component>>> {
         const response = new JiraCLIResponse<Page<Component>>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -51,6 +53,7 @@ export default class List extends BaseCommand {
                     });
                     result.values.push(...tmp.values);
                 }
+
                 result.maxResults = result.values.length;
             } else {
                 result = await connector.components.list({
@@ -60,6 +63,7 @@ export default class List extends BaseCommand {
                     query: this.flags.query,
                 });
             }
+
             response.result = result;
             response.status = 0;
             response.message = this.getRecordsFoundText(result.values.length, 'Component');
@@ -71,6 +75,7 @@ export default class List extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

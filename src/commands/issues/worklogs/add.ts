@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { IssueWorklog, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
-import { IssueWorklogColumns } from "../../../libs/core/tables";
-import { UX } from "../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { IssueWorklog, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { IssueWorklogColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class Add extends BaseCommand {
     static description = 'Adds a new worklog entry to an issue. ' + UX.processDocumentation('<doc:IssueWorklog>');
     static examples = [
-        `$ jiraserver issues:worklogs:add -a "MyAlias" --issue "theIssueKeyOrId" --data "{'comment':'I did some work here.','visibility':{'type':'group','value':'jira-developers'},'started':'2022-08-25T12:37:29.683+0000','timeSpentSeconds':12000}" --json`,
-        `$ jiraserver issues:worklogs:add -a "MyAlias" --issue "theIssueKeyOrId" --adjust "new" --new "4d" --file "path/to/the/json/data/file" --csv`,
-        `$ jiraserver issues:worklogs:add -a "MyAlias" --issue "theIssueKeyOrId" --adjust "manual" --reduce "2d" --file "path/to/the/json/data/file"`,
+        '$ jiraserver issues:worklogs:add -a "MyAlias" --issue "theIssueKeyOrId" --data "{\'comment\':\'I did some work here.\',\'visibility\':{\'type\':\'group\',\'value\':\'jira-developers\'},\'started\':\'2022-08-25T12:37:29.683+0000\',\'timeSpentSeconds\':12000}" --json',
+        '$ jiraserver issues:worklogs:add -a "MyAlias" --issue "theIssueKeyOrId" --adjust "new" --new "4d" --file "path/to/the/json/data/file" --csv',
+        '$ jiraserver issues:worklogs:add -a "MyAlias" --issue "theIssueKeyOrId" --adjust "manual" --reduce "2d" --file "path/to/the/json/data/file"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -29,7 +30,7 @@ export default class Add extends BaseCommand {
             required: false,
             options: ['new', 'leave', 'manual', 'auto'],
             default: 'auto',
-            type: "option",
+            type: 'option',
             name: 'Adjust Estimate',
         }),
         new: Flags.string({
@@ -37,16 +38,17 @@ export default class Add extends BaseCommand {
             required: false,
             name: 'New Estimate',
             exclusive: ['reduce'],
-            dependsOn: ['adjust']
+            dependsOn: ['adjust'],
         }),
         reduce: Flags.string({
             description: 'The amount to reduce the remaining estimate by (e.g. "2d"). Required when "manual" is selected for --adjust',
             required: false,
             name: 'Reduce By',
             exclusive: ['new'],
-            dependsOn: ['adjust']
+            dependsOn: ['adjust'],
         }),
     };
+
     async run(): Promise<JiraCLIResponse<IssueWorklog>> {
         const response = new JiraCLIResponse<IssueWorklog>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -68,6 +70,7 @@ export default class Add extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

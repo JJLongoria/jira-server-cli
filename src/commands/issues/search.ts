@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { Issue, JiraServerConnector, Page } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../libs/core/jiraResponse";
-import { IssueColumns } from "../../libs/core/tables";
-import { UX } from "../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { Issue, JiraServerConnector, Page } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../libs/core/jiraResponse';
+import { IssueColumns } from '../../libs/core/tables';
+import { UX } from '../../libs/core/ux';
 
 export default class Search extends BaseCommand {
     static description = 'Performs a search using JQL to get a issue pages. ' + UX.processDocumentation('<doc:Issue>') + '. See https://docs.atlassian.com/software/jira/docs/api/REST/9.2.0/#api/2/search-searchUsingSearchRequest to get more info about parameters';
     static examples = [
-        `$ jiraserver issues:search -a "MyAlias" --jql "theJQL" --no-validate -s 20 -l 100 --json`,
-        `$ jiraserver issues:search -a "MyAlias" --jql "theJQL" --validate --fields "*all" --all --csv`,
-        `$ jiraserver issues:search -a "MyAlias" --jql "theJQL" --fields "summary, status, assignee" -l 100`,
+        '$ jiraserver issues:search -a "MyAlias" --jql "theJQL" --no-validate -s 20 -l 100 --json',
+        '$ jiraserver issues:search -a "MyAlias" --jql "theJQL" --validate --fields "*all" --all --csv',
+        '$ jiraserver issues:search -a "MyAlias" --jql "theJQL" --fields "summary, status, assignee" -l 100',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -36,6 +37,7 @@ export default class Search extends BaseCommand {
             name: 'Validate',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Page<Issue>>> {
         const response = new JiraCLIResponse<Page<Issue>>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -64,6 +66,7 @@ export default class Search extends BaseCommand {
                     });
                     result.values.push(...tmp.values);
                 }
+
                 result.maxResults = result.values.length;
             } else {
                 result = await connector.issues.search({
@@ -75,7 +78,8 @@ export default class Search extends BaseCommand {
                     expand: this.allPageOptions?.expand,
                 });
             }
-            response.result = result
+
+            response.result = result;
             response.status = 0;
             response.message = this.getRecordsFoundText(result.values.length, 'Issue');
             this.ux.log(response.message);
@@ -86,6 +90,7 @@ export default class Search extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

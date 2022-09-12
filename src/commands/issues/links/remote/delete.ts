@@ -1,15 +1,16 @@
-import { Flags } from "@oclif/core";
-import { JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
+import { Flags } from '@oclif/core';
+import { JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
 
 export default class Delete extends BaseCommand {
     static description = 'Delete the remote issue link with the given global id on the issue.';
     static examples = [
-        `$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --global --link "theLinkGlobalId" --json`,
-        `$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkId" --csv`,
-        `$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkId"`,
+        '$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --global --link "theLinkGlobalId" --json',
+        '$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkId" --csv',
+        '$ jiraserver issues:links:remote:delete -a "MyAlias" --issue "theIssueKeyOrId" --link "theLinkId"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -30,6 +31,7 @@ export default class Delete extends BaseCommand {
             dependsOn: ['link'],
         }),
     };
+
     async run(): Promise<JiraCLIResponse<any>> {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -41,6 +43,7 @@ export default class Delete extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

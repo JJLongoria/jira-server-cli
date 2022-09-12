@@ -4,20 +4,30 @@
     "oclif-typescript"
   ],
   "rules": {
-    "object-curly-spacing": ["error", "always"],
-    "semi": ["error", "always"],
-    "quotes": "off",
-    "no-tabs": "off",
-    "indent": ["error", 4],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "quotes": "warn",
+    "no-tabs": "warn",
+    "indent": [
+      "error",
+      4
+    ],
     "no-trailing-spaces": "warn",
-    "padding-line-between-statements": "off",
-    "eol-last": "off",
-    "padded-blocks": "off",
-    "no-negated-condition": "off",
-    "no-else-return": "off",
-    "no-implicit-coercion": "off",
-    "no-lonely-if": "off",
+    "padding-line-between-statements": "warn",
+    "eol-last": "warn",
+    "padded-blocks": "warn",
+    "no-negated-condition": "warn",
+    "no-else-return": "warn",
+    "no-implicit-coercion": "warn",
+    "no-lonely-if": "warn",
     "eqeqeq": "off",
-    "space-before-blocks": "off",
+    "space-before-blocks": "warn",
+    "lines-between-class-members": "warn",
   }
 }

@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { CreateMeta, JiraServerConnector, Page } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
-import { CreateMetaColumns } from "../../../../libs/core/tables";
-import { UX } from "../../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { CreateMeta, JiraServerConnector, Page } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
+import { CreateMetaColumns } from '../../../../libs/core/tables';
+import { UX } from '../../../../libs/core/ux';
 
 export default class List extends BaseCommand {
     static description = 'Returns the metadata for issue types used for creating issues. Data will not be returned if the user does not have permission to create issues in that project. ' + UX.processDocumentation('<doc:CreateMeta>');
     static examples = [
-        `$ jiraserver issues:meta:create:list -a "MyAlias" --project "theProjectKeyOrId" --json`,
-        `$ jiraserver issues:meta:create:list -a "MyAlias" --project "theProjectKeyOrId" --csv`,
-        `$ jiraserver issues:meta:create:list -a "MyAlias" --project "theProjectKeyOrId"`,
+        '$ jiraserver issues:meta:create:list -a "MyAlias" --project "theProjectKeyOrId" --json',
+        '$ jiraserver issues:meta:create:list -a "MyAlias" --project "theProjectKeyOrId" --csv',
+        '$ jiraserver issues:meta:create:list -a "MyAlias" --project "theProjectKeyOrId"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -23,6 +24,7 @@ export default class List extends BaseCommand {
             name: 'Project Key or Id',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Page<CreateMeta>>> {
         const response = new JiraCLIResponse<Page<CreateMeta>>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -40,10 +42,12 @@ export default class List extends BaseCommand {
                     });
                     result.values.push(...tmp.values);
                 }
+
                 result.maxResults = result.values.length;
             } else {
                 result = await connector.issues.createMeta().list(this.flags.project, this.pageOptions);
             }
+
             response.result = result;
             response.status = 0;
             response.message = this.getRecordsFoundText(result.values.length, 'Create Meta');
@@ -54,6 +58,7 @@ export default class List extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

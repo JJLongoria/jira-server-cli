@@ -1,11 +1,11 @@
-import { CliUx } from "@oclif/core";
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EditMeta, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, GroupSuggestions, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, SecurityScheme, ShareScope, User } from "jira-server-connector";
-import { Instance } from "../types";
+import { CliUx } from '@oclif/core';
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueType, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, SecurityScheme, ShareScope, User } from 'jira-server-connector';
+import { Instance } from '../types';
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
     alias: {
         header: 'Alias',
-        minWidth: 10
+        minWidth: 10,
     },
     host: {
         header: 'Host URL',
@@ -14,7 +14,7 @@ export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>
     token: {
         header: 'Token',
         minWidth: 20,
-    }
+    },
 };
 
 export const AppPropertyColumns: CliUx.Table.table.Columns<Record<string, ApplicationProperty>> = {
@@ -27,7 +27,7 @@ export const AppPropertyColumns: CliUx.Table.table.Columns<Record<string, Applic
     groups: {
         header: 'Groups',
         get: (row: any) => {
-            return row.groups && row.groups.length ? row.groups.join(', ') : '';
+            return row.groups && row.groups.length > 0 ? row.groups.join(', ') : '';
         },
     },
     defaultGroups: {
@@ -99,9 +99,9 @@ export const AppRoleColumns: CliUx.Table.table.Columns<Record<string, Applicatio
     allowedValues: {
         header: 'Allowed Values',
         get: (row: any) => {
-            return row.allowedValues && row.allowedValues.length ? row.allowedValues.join(', ') : '';
+            return row.allowedValues && row.allowedValues.length > 0 ? row.allowedValues.join(', ') : '';
         },
-    }
+    },
 };
 
 export const AttachmentColumns: CliUx.Table.table.Columns<Record<string, Attachment>> = {
@@ -306,14 +306,14 @@ export const CustomFieldColumns: CliUx.Table.table.Columns<Record<string, Custom
     projectIds: {
         header: 'Project Ids',
         get(row: any) {
-            return row.projectIds && row.projectIds.length ? row.projectIds.join(', ') : '';
+            return row.projectIds && row.projectIds.length > 0 ? row.projectIds.join(', ') : '';
         },
         extended: true,
     },
     issueTypeIds: {
         header: 'Issue Type Ids',
         get(row: any) {
-            return row.issueTypeIds && row.issueTypeIds.length ? row.issueTypeIds.join(', ') : '';
+            return row.issueTypeIds && row.issueTypeIds.length > 0 ? row.issueTypeIds.join(', ') : '';
         },
         extended: true,
     },
@@ -362,13 +362,13 @@ export const DeletedFieldsColumns: CliUx.Table.table.Columns<Record<string, Dele
     deletedCustomFields: {
         header: 'Deleted Fields',
         get(row: any) {
-            return row.deletedCustomFields && row.deletedCustomFields.length ? row.deletedCustomFields.join(', ') : '';
+            return row.deletedCustomFields && row.deletedCustomFields.length > 0 ? row.deletedCustomFields.join(', ') : '';
         },
     },
     notDeletedCustomFields: {
         header: 'Not Deleted Fields',
         get(row: any) {
-            return row.notDeletedCustomFields && row.notDeletedCustomFields.length ? row.notDeletedCustomFields.join(', ') : '';
+            return row.notDeletedCustomFields && row.notDeletedCustomFields.length > 0 ? row.notDeletedCustomFields.join(', ') : '';
         },
     },
 };
@@ -419,7 +419,7 @@ export const FieldColumns: CliUx.Table.table.Columns<Record<string, Field>> = {
     clauseNames: {
         header: 'Clause Names',
         get(row: any) {
-            return row.clauseNames && row.clauseNames.length ? row.clauseNames.join(', ') : '';
+            return row.clauseNames && row.clauseNames.length > 0 ? row.clauseNames.join(', ') : '';
         },
         extended: true,
     },
@@ -558,7 +558,7 @@ export const UserColumns: CliUx.Table.table.Columns<Record<string, User>> = {
     expand: {
         header: 'Expand',
         extended: true,
-    }
+    },
 };
 
 export const GroupSuggestionColumns: CliUx.Table.table.Columns<Record<string, GroupSuggestion>> = {
@@ -690,7 +690,7 @@ export const FieldMetaColumns: CliUx.Table.table.Columns<Record<string, FieldMet
     operations: {
         header: 'Operations',
         get(row: any) {
-            return row.operations && row.operations.length ? row.operations.join(', ') : '';
+            return row.operations && row.operations.length > 0 ? row.operations.join(', ') : '';
         },
     },
 };
@@ -863,5 +863,26 @@ export const SecuritySchemeColumns: CliUx.Table.table.Columns<Record<string, Sec
     },
     defaultSecurityLevelId: {
         header: 'Default Level Id',
+    },
+};
+
+export const IssueTypeColumns: CliUx.Table.table.Columns<Record<string, IssueType>> = {
+    id: {
+        header: 'ID',
+    },
+    name: {
+        header: 'Name',
+    },
+    description: {
+        header: 'Description',
+    },
+    iconUrl: {
+        header: 'Icon URL',
+    },
+    subtask: {
+        header: 'Subtask',
+    },
+    avatarId: {
+        header: 'Avatar Id',
     },
 };

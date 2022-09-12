@@ -1,12 +1,11 @@
-import { BasicAuth } from "jira-server-connector";
-import { FileChecker, FileReader, FileWriter } from "../fileSystem";
-import { Instance } from "../types";
+import { BasicAuth } from 'jira-server-connector';
+import { FileChecker, FileReader, FileWriter } from '../fileSystem';
+import { Instance } from '../types';
 
 const INSTANCES_FILE = 'instances.json';
 
 export class Config {
-
-    private folderPath: string = '';
+    private folderPath = '';
     public instances: { [key: string]: Instance } = {};
 
     constructor(folderPath: string, load?: boolean) {
@@ -24,7 +23,7 @@ export class Config {
             host: instance.host,
             user: splits[0],
             password: splits[1],
-        }
+        };
     }
 
     load() {
@@ -32,10 +31,12 @@ export class Config {
         if (!FileChecker.isExists(this.folderPath)) {
             FileWriter.createFolderSync(this.folderPath);
         }
+
         if (!FileChecker.isExists(filePath)) {
             FileWriter.createFileSync(filePath, JSON.stringify({}));
         }
-        this.instances = JSON.parse(FileReader.readFileSync(filePath))
+
+        this.instances = JSON.parse(FileReader.readFileSync(filePath));
     }
 
     save() {
@@ -43,10 +44,11 @@ export class Config {
         if (!FileChecker.isExists(this.folderPath)) {
             FileWriter.createFolderSync(this.folderPath);
         }
+
         if (!FileChecker.isExists(filePath)) {
             FileWriter.createFileSync(filePath, JSON.stringify({}));
         }
+
         FileWriter.createFileSync(filePath, JSON.stringify(this.instances, null, 2));
     }
-
 }

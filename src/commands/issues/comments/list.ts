@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { Comment, JiraServerConnector, Page } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
-import { CommentColumns } from "../../../libs/core/tables";
-import { UX } from "../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { Comment, JiraServerConnector, Page } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { CommentColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class List extends BaseCommand {
     static description = 'Returns all comments for an issue. Results can be ordered by the "created" field which means the date a comment was added. Results are paginated' + UX.processDocumentation('<doc:Comment>');
     static examples = [
-        `$ jiraserver issues:comments:list -a "MyAlias" --issue "theIssueKeyOrId" -s 50 --json`,
-        `$ jiraserver issues:comments:list -a "MyAlias" --issue "theIssueKeyOrId" -s 25 -l 50 --csv`,
-        `$ jiraserver issues:comments:list -a "MyAlias" --issue "theIssueKeyOrId" --all`,
+        '$ jiraserver issues:comments:list -a "MyAlias" --issue "theIssueKeyOrId" -s 50 --json',
+        '$ jiraserver issues:comments:list -a "MyAlias" --issue "theIssueKeyOrId" -s 25 -l 50 --csv',
+        '$ jiraserver issues:comments:list -a "MyAlias" --issue "theIssueKeyOrId" --all',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -24,6 +25,7 @@ export default class List extends BaseCommand {
             name: 'Issue Key or Id',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Page<Comment>>> {
         const response = new JiraCLIResponse<Page<Comment>>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -43,11 +45,13 @@ export default class List extends BaseCommand {
                     });
                     result.values.push(...tmp.values);
                 }
+
                 result.maxResults = result.values.length;
             } else {
                 result = await connector.issues.comments(this.flags.issue).list(this.pageOptions);
             }
-            response.result = result
+
+            response.result = result;
             response.status = 0;
             response.message = this.getRecordsFoundText(result.values.length, 'Comment');
             this.ux.log(response.message);
@@ -58,6 +62,7 @@ export default class List extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

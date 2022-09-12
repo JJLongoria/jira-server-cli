@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { FieldMeta, JiraServerConnector, Page } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../../../libs/core/jiraResponse";
-import { FieldMetaColumns } from "../../../../../libs/core/tables";
-import { UX } from "../../../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { FieldMeta, JiraServerConnector, Page } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../../libs/core/jiraResponse';
+import { FieldMetaColumns } from '../../../../../libs/core/tables';
+import { UX } from '../../../../../libs/core/ux';
 
 export default class List extends BaseCommand {
     static description = 'Returns the metadata for issue types used for creating issues. Data will not be returned if the user does not have permission to create issues in that project. ' + UX.processDocumentation('<doc:FieldMeta>');
     static examples = [
-        `$ jiraserver issues:meta:create:fields:list -a "MyAlias" --project "theProjectKeyOrId" --json`,
-        `$ jiraserver issues:meta:create:fields:list -a "MyAlias" --project "theProjectKeyOrId" --csv`,
-        `$ jiraserver issues:meta:create:fields:list -a "MyAlias" --project "theProjectKeyOrId"`,
+        '$ jiraserver issues:meta:create:fields:list -a "MyAlias" --project "theProjectKeyOrId" --json',
+        '$ jiraserver issues:meta:create:fields:list -a "MyAlias" --project "theProjectKeyOrId" --csv',
+        '$ jiraserver issues:meta:create:fields:list -a "MyAlias" --project "theProjectKeyOrId"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -28,6 +29,7 @@ export default class List extends BaseCommand {
             name: 'Issue Type Id',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Page<FieldMeta>>> {
         const response = new JiraCLIResponse<Page<FieldMeta>>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -45,10 +47,12 @@ export default class List extends BaseCommand {
                     });
                     result.values.push(...tmp.values);
                 }
+
                 result.maxResults = result.values.length;
             } else {
                 result = await connector.issues.createMeta().listFields(this.flags.project, this.flags.type, this.pageOptions);
             }
+
             response.result = result;
             response.status = 0;
             response.message = this.getRecordsFoundText(result.values.length, 'Create Meta');
@@ -59,6 +63,7 @@ export default class List extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

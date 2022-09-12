@@ -102,8 +102,8 @@ Now Stil in BETA Version because is not fully tested and continue in development
   - [**IssueInput**](#issueinput)
   - [**IssueLink**](#issuelink)
   - [**IssueLinks**](#issuelinks)
+  - [**IssueLinkType**](#issuelinktype)
   - [**IssueLinkTypes**](#issuelinktypes)
-  - [**IssueLinkTypes**](#issuelinktypes-1)
   - [**IssuePicker**](#issuepicker)
   - [**IssuePickerOutput**](#issuepickeroutput)
   - [**IssuePickerSection**](#issuepickersection)
@@ -1141,7 +1141,7 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
 - See [**IssueLink**](#issuelink) Definition.
 
 ---
-## [**IssueLinkTypes**]()
+## [**IssueLinkType**]()
 ```json
 {
     "id": "string",

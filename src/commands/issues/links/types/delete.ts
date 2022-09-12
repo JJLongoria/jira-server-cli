@@ -1,15 +1,16 @@
-import { Flags } from "@oclif/core";
-import { JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
+import { Flags } from '@oclif/core';
+import { JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
 
 export default class Delete extends BaseCommand {
     static description = 'Delete the specified issue link type.';
     static examples = [
-        `$ jiraserver issues:links:types:delete -a "MyAlias" --type "theIssueLinkTypeId" --json`,
-        `$ jiraserver issues:links:types:delete -a "MyAlias" --type "theIssueLinkTypeId" --csv`,
-        `$ jiraserver issues:links:types:delete -a "MyAlias" --type "theIssueLinkTypeId"`,
+        '$ jiraserver issues:links:types:delete -a "MyAlias" --type "theIssueLinkTypeId" --json',
+        '$ jiraserver issues:links:types:delete -a "MyAlias" --type "theIssueLinkTypeId" --csv',
+        '$ jiraserver issues:links:types:delete -a "MyAlias" --type "theIssueLinkTypeId"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -19,6 +20,7 @@ export default class Delete extends BaseCommand {
             name: 'Issue Link Type',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<any>> {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -30,6 +32,7 @@ export default class Delete extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

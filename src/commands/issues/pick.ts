@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { IssuePickerOutput, IssuePickerSection, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../libs/core/jiraResponse";
-import { IssuePickerSectionColumns } from "../../libs/core/tables";
-import { UX } from "../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { IssuePickerOutput, IssuePickerSection, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../libs/core/jiraResponse';
+import { IssuePickerSectionColumns } from '../../libs/core/tables';
+import { UX } from '../../libs/core/ux';
 
 export default class Pick extends BaseCommand {
     static description = 'Returns suggested issues which match the auto-completion query for the user which executes this request. This REST method will check the user\'s history and the user\'s browsing context and select this issues, which match the query. ' + UX.processDocumentation('<doc:IssuePickerOutput>');
     static examples = [
-        `$ jiraserver issues:pick -a "MyAlias" --issue "theIssueKeyOrId" --query "theQuery" --json`,
-        `$ jiraserver issues:pick -a "MyAlias" --issue "theIssueKeyOrId" --jql "TheJql" --issue "theIssueKey" --subtasks-parent --csv`,
-        `$ jiraserver issues:pick -a "MyAlias" --issue "theIssueKeyOrId" --project "theProjectId" --subtasks`,
+        '$ jiraserver issues:pick -a "MyAlias" --issue "theIssueKeyOrId" --query "theQuery" --json',
+        '$ jiraserver issues:pick -a "MyAlias" --issue "theIssueKeyOrId" --jql "TheJql" --issue "theIssueKey" --subtasks-parent --csv',
+        '$ jiraserver issues:pick -a "MyAlias" --issue "theIssueKeyOrId" --project "theProjectId" --subtasks',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -50,6 +51,7 @@ export default class Pick extends BaseCommand {
             allowNo: true,
         }),
     };
+
     async run(): Promise<JiraCLIResponse<IssuePickerOutput>> {
         const response = new JiraCLIResponse<IssuePickerOutput>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -72,6 +74,7 @@ export default class Pick extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

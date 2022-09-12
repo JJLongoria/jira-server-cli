@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { JiraServerConnector, Page, User } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
-import { UserColumns } from "../../../libs/core/tables";
-import { UX } from "../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { JiraServerConnector, Page, User } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { UserColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class Create extends BaseCommand {
     static description = 'This resource returns a paginated list of users who are members of the specified group and its subgroups. Users in the page are ordered by user names. User of this resource is required to have sysadmin or admin permissions. ' + UX.processDocumentation('<doc:User>');
     static examples = [
-        `$ jiraserver groups:users:list -a "MyAlias" --group "theGroupName" --json`,
-        `$ jiraserver groups:users:list -a "MyAlias" --group "theGroupName" --inactive --csv`,
-        `$ jiraserver groups:users:list -a "MyAlias" --group "theGroupName"`,
+        '$ jiraserver groups:users:list -a "MyAlias" --group "theGroupName" --json',
+        '$ jiraserver groups:users:list -a "MyAlias" --group "theGroupName" --inactive --csv',
+        '$ jiraserver groups:users:list -a "MyAlias" --group "theGroupName"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -29,6 +30,7 @@ export default class Create extends BaseCommand {
             name: 'Inactive',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<Page<User>>> {
         const response = new JiraCLIResponse<Page<User>>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -51,15 +53,17 @@ export default class Create extends BaseCommand {
                     });
                     result.values.push(...tmp.values);
                 }
+
                 result.maxResults = result.values.length;
             } else {
                 result = await connector.groups.members(this.flags.group).list({
                     maxResults: this.flags.limit,
                     startAt: this.flags.start,
-                    includeInactiveUsers: this.flags.inactive
+                    includeInactiveUsers: this.flags.inactive,
                 });
             }
-            response.result = result
+
+            response.result = result;
             response.status = 0;
             response.message = this.getRecordsFoundText(result.values.length, 'User');
             this.ux.log(response.message);
@@ -70,6 +74,7 @@ export default class Create extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

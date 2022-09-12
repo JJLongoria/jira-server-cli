@@ -1,17 +1,18 @@
-import { Flags } from "@oclif/core";
-import { IssueLinkType, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../../libs/core/jiraResponse";
-import { IssueLinkTypeColumns } from "../../../../libs/core/tables";
-import { UX } from "../../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { IssueLinkType, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
+import { IssueLinkTypeColumns } from '../../../../libs/core/tables';
+import { UX } from '../../../../libs/core/ux';
 
 export default class Update extends BaseCommand {
     static description = 'Update the specified issue link type. ' + UX.processDocumentation('<doc:IssueLinkType>');
     static examples = [
-        `$ jiraserver issues:links:types:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue" --json`,
-        `$ jiraserver issues:links:types:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue" --csv`,
-        `$ jiraserver issues:links:types:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue"`,
+        '$ jiraserver issues:links:types:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue" --json',
+        '$ jiraserver issues:links:types:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue" --csv',
+        '$ jiraserver issues:links:types:update -a "MyAlias" --type "theIssueLinkTypeId" --name "Duplicate" --inward "inwardValue" --outward "outwardValue"',
     ];
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -37,6 +38,7 @@ export default class Update extends BaseCommand {
             name: 'Outward',
         }),
     };
+
     async run(): Promise<JiraCLIResponse<IssueLinkType>> {
         const response = new JiraCLIResponse<IssueLinkType>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
@@ -46,7 +48,7 @@ export default class Update extends BaseCommand {
                 outward: this.flags.outward,
                 name: this.flags.name,
             });
-            response.result = result
+            response.result = result;
             response.status = 0;
             response.message = this.getRecordUpdatedText('Issue Link Type');
             this.ux.log(response.message);
@@ -56,6 +58,7 @@ export default class Update extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }

@@ -1,18 +1,18 @@
-import { Flags } from "@oclif/core";
-import { Issue, JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
-import { IssueColumns } from "../../../libs/core/tables";
-import { UX } from "../../../libs/core/ux";
+import { Flags } from '@oclif/core';
+import { Issue, JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { IssueColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class List extends BaseCommand {
     static description = 'Returns an issue\'s subtask list. ' + UX.processDocumentation('<doc:Issue>');
     static examples = [
-        `$ jiraserver issues:subtasks:list -a "MyAlias" --issue "theIssueKeyOrId" --json`,
-        `$ jiraserver issues:subtasks:list -a "MyAlias" --issue "theIssueKeyOrId" --csv`,
-        `$ jiraserver issues:subtasks:list -a "MyAlias" --issue "theIssueKeyOrId"`,
+        '$ jiraserver issues:subtasks:list -a "MyAlias" --issue "theIssueKeyOrId" --json',
+        '$ jiraserver issues:subtasks:list -a "MyAlias" --issue "theIssueKeyOrId" --csv',
+        '$ jiraserver issues:subtasks:list -a "MyAlias" --issue "theIssueKeyOrId"',
     ];
-    
+
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
@@ -39,6 +39,7 @@ export default class List extends BaseCommand {
         } catch (error) {
             this.processError(response, error);
         }
+
         return response;
     }
 }
