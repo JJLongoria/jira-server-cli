@@ -1,5 +1,5 @@
 import { CliUx } from '@oclif/core';
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueType, IssueTypeScheme, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, Permission, Project, SecurityScheme, ShareScope, User, UserPermission } from 'jira-server-connector';
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueType, IssueTypeScheme, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, Permission, PermissionScheme, Project, SecurityScheme, ShareScope, User, UserPermission } from 'jira-server-connector';
 import { Instance } from '../types';
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -1003,5 +1003,20 @@ export const UserPermissionColumns: CliUx.Table.table.Columns<Record<string, Use
     },
     havePermission: {
         header: 'Have Permission',
+    },
+};
+
+export const PermissionSchemeColumns: CliUx.Table.table.Columns<Record<string, PermissionScheme>> = {
+    key: {
+        header: 'Key',
+    },
+    name: {
+        header: 'Name',
+    },
+    description: {
+        header: 'Description',
+    },
+    expand: {
+        header: 'Expand',
     },
 };

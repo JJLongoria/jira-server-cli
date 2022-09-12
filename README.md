@@ -130,7 +130,11 @@ Now Stil in BETA Version because is not fully tested and continue in development
   - [**ListWrapper**](#listwrapper)
   - [**Participant**](#participant)
   - [**Permission**](#permission)
+  - [**PermissionGrant**](#permissiongrant)
+  - [**PermissionHolder**](#permissionholder)
   - [**PermissionsOutput**](#permissionsoutput)
+  - [**PermissionScheme**](#permissionscheme)
+  - [**PermissionSchemes**](#permissionschemes)
   - [**Priority**](#priority)
   - [**Project**](#project)
   - [**ProjectCategory**](#projectcategory)
@@ -1492,6 +1496,36 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
 }
 ```
 ---
+## [**PermissionGrant**]()
+```json
+{
+    "id": "number",
+    "holder": "PermissionHolder",
+    "permission": "string",
+    "self?": "string",
+}
+```
+- See [**PermissionHolder**](#permissionholder) Definition.
+
+---
+## [**PermissionHolder**]()
+```json
+{
+    "type": "string",
+    "parameter": "string",
+    "user": "User",
+    "group": "Group",
+    "field": "Field",
+    "projecRtole": "ProjectRole",
+    "expand": "string",
+}
+```
+- See [**ProjectRole**](#projectrole) Definition.
+- See [**Field**](#field) Definition.
+- See [**Group**](#group) Definition.
+- See [**User**](#user) Definition.
+
+---
 ## [**PermissionsOutput**]()
 ```json
 {
@@ -1499,6 +1533,29 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
 }
 ```
 - See [**Permission**](#permission) Definition.
+
+---
+## [**PermissionScheme**]()
+```json
+{
+    "id": "number",
+    "name": "string",
+    "description": "string",
+    "permissions": "PermissionGrant[]",
+    "expand": "string",
+    "self?": "string",
+}
+```
+- See [**PermissionGrant**](#permissiongrant) Definition.
+
+---
+## [**PermissionSchemes**]()
+```json
+{
+    "permissionSchemes": "{ [key: string]: PermissionScheme }",
+}
+```
+- See [**PermissionScheme**](#permissionscheme) Definition.
 
 ---
 ## [**Priority**]()
