@@ -119,6 +119,8 @@ Now Stil in BETA Version because is not fully tested and continue in development
   - [**IssueTransitions**](#issuetransitions)
   - [**IssueTransitionInput**](#issuetransitioninput)
   - [**IssueType**](#issuetype)
+  - [**IssueTypeScheme**](#issuetypescheme)
+  - [**IssueTypeSchemeList**](#issuetypeschemelist)
   - [**IssueVotes**](#issuevotes)
   - [**IssueWatchers**](#issuewatchers)
   - [**JsonType**](#jsontype)
@@ -1344,6 +1346,30 @@ All JSON Schemes used by the Jira Server CLI application as response or data inp
     "avatarId?": "number",
 }
 ```
+---
+## [**IssueTypeScheme**]()
+```json
+{
+    "id": "string",
+    "name": "string",
+    "description": "string",
+    "defaultIssueType": "IssueType",
+    "issueTypes": "IssueType[]",
+    "expand": "string",
+}
+```
+- See [**IssueType**](#issuetype) Definition.
+
+---
+## [**IssueTypeSchemeList**]()
+```json
+{
+    "schemes": "IssueTypeScheme[]",
+    "self?": "string",
+}
+```
+- See [**IssueTypeScheme**](#issuetypescheme) Definition.
+
 ---
 ## [**IssueVotes**]()
 ```json

@@ -1,5 +1,5 @@
 import { CliUx } from '@oclif/core';
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueType, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, SecurityScheme, ShareScope, User } from 'jira-server-connector';
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueType, IssueTypeScheme, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, SecurityScheme, ShareScope, User } from 'jira-server-connector';
 import { Instance } from '../types';
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -884,5 +884,34 @@ export const IssueTypeColumns: CliUx.Table.table.Columns<Record<string, IssueTyp
     },
     avatarId: {
         header: 'Avatar Id',
+    },
+};
+
+export const IssueTypeSchemeColumns: CliUx.Table.table.Columns<Record<string, IssueTypeScheme>> = {
+    id: {
+        header: 'ID',
+    },
+    name: {
+        header: 'Name',
+    },
+    description: {
+        header: 'Description',
+    },
+    defaultIssueType: {
+        header: 'Default Issue Type',
+        get(row: any) {
+            return row.defaultIssueType.name;
+        },
+    },
+    issueTypes: {
+        header: 'Subtask',
+        get(row: any) {
+            return row.issueTypes.map((element: any) => {
+                return element.name;
+            });
+        },
+    },
+    expand: {
+        header: 'Expand',
     },
 };
