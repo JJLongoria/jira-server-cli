@@ -1,3 +1,4 @@
+import { Flags } from '@oclif/core';
 import { JiraServerConnector } from 'jira-server-connector';
 import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
 import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
@@ -14,12 +15,12 @@ export default class Delete extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
-        type: BuildFlags.array({
+        type: Flags.string({
             description: 'The Issue Type Id to delete',
             required: true,
             name: 'Issue Type Id',
         }),
-        swap: BuildFlags.array({
+        swap: Flags.string({
             description: 'The id of an issue type to which issues associated with the removed issue type will be migrated.',
             required: false,
             name: 'Swap Issue Type Id',

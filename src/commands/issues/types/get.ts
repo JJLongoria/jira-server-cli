@@ -1,3 +1,4 @@
+import { Flags } from '@oclif/core';
 import { IssueType, JiraServerConnector } from 'jira-server-connector';
 import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
 import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
@@ -16,7 +17,7 @@ export default class Get extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
-        type: BuildFlags.array({
+        type: Flags.string({
             description: 'The Issue Type Id to retrieve',
             required: true,
             name: 'Issue Type Id',

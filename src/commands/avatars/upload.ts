@@ -7,9 +7,9 @@ import { FileChecker, PathUtils } from '../../libs/fileSystem';
 export default class Upload extends BaseCommand {
     static description = 'Upload new system avatar. This process include all steps to upload new avatar, that is, upload the file, and crop the avatar.';
     static examples = [
-        '$ jiraserver avatars:upload -a "MyAlias" --type "avatarType" --json',
-        '$ jiraserver avatars:upload -a "MyAlias" --type "avatarType" --csv',
-        '$ jiraserver avatars:upload -a "MyAlias" --type "avatarType" ',
+        '$ jiraserver avatars:upload -a "MyAlias" --type "avatarType" --filename "path/to/avatar" --json',
+        '$ jiraserver avatars:upload -a "MyAlias" --type "avatarType" --filename "path/to/avatar" --csv',
+        '$ jiraserver avatars:upload -a "MyAlias" --type "avatarType" --filename "path/to/avatar"',
     ];
 
     static flags = {
@@ -27,7 +27,7 @@ export default class Upload extends BaseCommand {
         }),
         size: Flags.integer({
             description: 'Size of file',
-            required: true,
+            required: false,
             name: 'Size',
         }),
     };

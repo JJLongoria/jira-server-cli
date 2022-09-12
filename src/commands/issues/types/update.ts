@@ -17,7 +17,7 @@ export default class Update extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
-        type: BuildFlags.array({
+        type: Flags.string({
             description: 'The Issue Type Id to update',
             required: true,
             name: 'Issue Type Id',
