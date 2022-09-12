@@ -1,23 +1,23 @@
+/* eslint-disable no-negated-condition */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable unicorn/numeric-separators-style */
 /* eslint-disable unicorn/prefer-date-now */
 /* eslint-disable unicorn/prefer-math-trunc */
 /* eslint-disable no-mixed-operators */
-/* eslint-disable unicorn/no-for-loop */
-/* eslint-disable unicorn/no-static-only-class */
-export class Utils {
+export const Utils = {
     /**
      * Method to force to put the data into an array if the data must be an array
      * @param {any} data Data to force be an array
      *
      * @returns {Array<any>} Returns an array with the data or undefined if data is undefined
      */
-    static forceArray(data: any): any[] {
+    forceArray(data: any): any[] {
         if (data === undefined) {
             return data;
         }
 
         return (Array.isArray(data)) ? data : [data];
-    }
+    },
 
     /**
      * Method to clone an object
@@ -25,9 +25,9 @@ export class Utils {
      *
      * @returns {any} Returns the cloned object
      */
-    static clone(obj: any): any {
+    clone(obj: any): any {
         return JSON.parse(JSON.stringify(obj));
-    }
+    },
 
     /**
      * Method to check if the value is an object
@@ -35,9 +35,9 @@ export class Utils {
      *
      * @returns {boolean} true if the value is an object, false in otherwise
      */
-    static isObject(value: any): boolean {
+    isObject(value: any): boolean {
         return !Utils.isArray(value) && typeof value === 'object';
-    }
+    },
 
     /**
      * Method to check if the value is a string
@@ -45,9 +45,9 @@ export class Utils {
      *
      * @returns {boolean} true if the value is a string, false in otherwise
      */
-    static isString(value: any): boolean {
+    isString(value: any): boolean {
         return !Utils.isNull(value) && typeof value === 'string';
-    }
+    },
 
     /**
      * Method to check if the value is a number
@@ -55,9 +55,9 @@ export class Utils {
      *
      * @returns {boolean} true if the value is a number, false in otherwise
      */
-    static isNumber(value: any): boolean {
+    isNumber(value: any): boolean {
         return !Utils.isNull(value) && typeof value === 'number';
-    }
+    },
 
     /**
      * Method to check if the value is a BigInt
@@ -65,9 +65,9 @@ export class Utils {
      *
      * @returns {boolean} true if the value is a BigInt, false in otherwise
      */
-    static isBigInt(value: any): boolean {
+    isBigInt(value: any): boolean {
         return !Utils.isNull(value) && typeof value === 'bigint';
-    }
+    },
 
     /**
      * Method to check if the value is a symbol
@@ -75,9 +75,9 @@ export class Utils {
      *
      * @returns {boolean} true if the value is a symbol, false in otherwise
      */
-    static isSymbol(value: any): boolean {
+    isSymbol(value: any): boolean {
         return !Utils.isNull(value) && typeof value === 'symbol';
-    }
+    },
 
     /**
      * Method to check if the value is a boolean
@@ -85,9 +85,9 @@ export class Utils {
      *
      * @returns {boolean} true if the value is a boolean, false in otherwise
      */
-    static isBoolean(value: any): boolean {
+    isBoolean(value: any): boolean {
         return !Utils.isNull(value) && typeof value === 'boolean';
-    }
+    },
 
     /**
      * Method to check if the value is a function
@@ -95,9 +95,9 @@ export class Utils {
      *
      * @returns {boolean} true if the value is a function, false in otherwise
      */
-    static isFunction(value: any): boolean {
+    isFunction(value: any): boolean {
         return !Utils.isNull(value) && typeof value === 'function';
-    }
+    },
 
     /**
      * Method to check if the value is an array
@@ -105,9 +105,9 @@ export class Utils {
      *
      * @returns {boolean} true if the value is an array, false in otherwise
      */
-    static isArray(value: any): boolean {
+    isArray(value: any): boolean {
         return !Utils.isNull(value) && Array.isArray(value);
-    }
+    },
 
     /**
      * Method to check if the value is null or undefined
@@ -115,9 +115,9 @@ export class Utils {
      *
      * @returns {boolean} true if the value is null or undefined, false in otherwise
      */
-    static isNull(value: any): boolean {
+    isNull(value: any): boolean {
         return value === undefined || value === null;
-    }
+    },
 
     /**
      * Method to check if an object has keys
@@ -125,9 +125,9 @@ export class Utils {
      *
      * @returns {boolean} true if the object has keys, false in otherwise
      */
-    static hasKeys(value: any): boolean {
+    hasKeys(value: any): boolean {
         return !Utils.isNull(value) && Utils.isObject(value) && Object.keys(value).length > 0;
-    }
+    },
 
     /**
      * Method to count the keys from an object
@@ -135,9 +135,9 @@ export class Utils {
      *
      * @returns {number} Returns the keys from the object
      */
-    static countKeys(value: any): number {
+    countKeys(value: any): number {
         return (Utils.hasKeys(value)) ? Object.keys(value).length : 0;
-    }
+    },
 
     /**
      * Method to get the first element from an object
@@ -145,9 +145,9 @@ export class Utils {
      *
      * @returns {any} Returns the first element data
      */
-    static getFirstElement(value: any): any {
+    getFirstElement(value: any): any {
         return (Utils.hasKeys(value)) ? value[Object.keys(value)[0]] : 0;
-    }
+    },
 
     /**
      * Method to get the last element from an object
@@ -155,9 +155,9 @@ export class Utils {
      *
      * @returns {any} Returns the last element data
      */
-    static getLastElement(value: any): any {
+    getLastElement(value: any): any {
         return (Utils.hasKeys(value)) ? value[Object.keys(value)[Object.keys(value).length - 1]] : 0;
-    }
+    },
 
     /**
      * Method to sort an Array. You can use fields from elements to sort and sort with case sensitive or insensitive
@@ -167,7 +167,7 @@ export class Utils {
      *
      * @returns {Array<any>} Returns the array sorted
      */
-    static sort(elements: any[], fields?: string[], caseSensitive?: boolean): any[] {
+    sort(elements: any[], fields?: string[], caseSensitive?: boolean): any[] {
         if (Array.isArray(elements) && elements.length > 0) {
             elements.sort(function (a, b) {
                 if (fields && fields.length > 0) {
@@ -222,7 +222,7 @@ export class Utils {
         }
 
         return elements;
-    }
+    },
 
     /**
      * Method to sort an Array. You can use fields from elements to sort and sort with case sensitive or insensitive
@@ -232,7 +232,7 @@ export class Utils {
      *
      * @returns {Array<any>} Returns the array sorted
      */
-    static sortReverse(elements: any[], fields?: string[], caseSensitive?: boolean): any[] {
+    sortReverse(elements: any[], fields?: string[], caseSensitive?: boolean): any[] {
         if (Array.isArray(elements) && elements.length > 0) {
             elements.sort(function (a, b) {
                 if (fields && fields.length > 0) {
@@ -287,9 +287,9 @@ export class Utils {
         }
 
         return elements;
-    }
+    },
 
-    static deserializeObject<T>(object: any, Type: new (a?: any) => T): { [key: string]: T } {
+    deserializeObject<T>(object: any, Type: new (a?: any) => T): { [key: string]: T } {
         const result: { [key: string]: T } = {};
         if (Utils.isObject(object) && Utils.hasKeys(object)) {
             for (const key of Object.keys(object)) {
@@ -298,9 +298,9 @@ export class Utils {
         }
 
         return result;
-    }
+    },
 
-    static deserializeArray<T>(collection: any[], Type: new (a?: any) => T): T[] {
+    deserializeArray<T>(collection: any[], Type: new (a?: any) => T): T[] {
         const result: T[] = [];
         if (collection && collection.length > 0) {
             for (const data of collection) {
@@ -309,16 +309,16 @@ export class Utils {
         }
 
         return result;
-    }
+    },
 
-    static moveArrayElement(collection: any[], from: number, to: number) {
+    moveArrayElement(collection: any[], from: number, to: number) {
         const element = collection[from];
         collection.splice(from, 1);
         collection.splice(to, 0, element);
         return collection;
-    }
+    },
 
-    static createUUID(): string {
+    createUUID(): string {
         let dt = new Date().getTime();
         const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             const r = (dt + Math.random() * 16) % 16 | 0;
@@ -326,9 +326,9 @@ export class Utils {
             return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
         });
         return uuid;
-    }
+    },
 
-    static toNumber(value: number | string | null): number {
+    toNumber(value: number | string | null): number {
         if (value !== null) {
             const strValue = String(value);
             if (strValue.indexOf(',')) {
@@ -339,9 +339,9 @@ export class Utils {
         }
 
         return 0;
-    }
+    },
 
-    static randomColor(): string {
+    randomColor(): string {
         return '#' + Math.floor(Math.random() * 16777215).toString(16);
-    }
-}
+    },
+};

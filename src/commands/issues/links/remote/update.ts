@@ -1,8 +1,7 @@
 import { Flags } from '@oclif/core';
-import { IssueRemoteLink, JiraServerConnector } from 'jira-server-connector';
+import { JiraServerConnector } from 'jira-server-connector';
 import { BaseCommand, BuildFlags } from '../../../../libs/core/baseCommand';
 import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
-import { IssueRemoteLinkColumns } from '../../../../libs/core/tables';
 
 export default class Update extends BaseCommand {
     static description = 'Updates a remote issue link from a JSON representation. Any fields not provided are set to null.';
@@ -34,7 +33,7 @@ export default class Update extends BaseCommand {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.issues.remoteLinks(this.flags.issue).update(this.flags.link, this.getJSONInputData());
+            await connector.issues.remoteLinks(this.flags.issue).update(this.flags.link, this.getJSONInputData());
             response.status = 0;
             response.message = this.getRecordUpdatedText('Issue Remote Link');
             this.ux.log(response.message);

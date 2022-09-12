@@ -29,5 +29,6 @@
     "eqeqeq": "off",
     "space-before-blocks": "warn",
     "lines-between-class-members": "warn",
+    "no-await-in-loop": "off",
   }
 }

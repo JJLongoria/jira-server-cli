@@ -25,7 +25,7 @@ export default class Vote extends BaseCommand {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.issues.votes(this.flags.issue).vote();
+            await connector.issues.votes(this.flags.issue).vote();
             response.status = 0;
             response.message = 'Issue voted successfully';
             this.ux.log(response.message);

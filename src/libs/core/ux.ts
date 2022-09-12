@@ -10,31 +10,31 @@ export class UX {
         this.flags = flags || {};
     }
 
-    startSpinner(message: string) {
+    startSpinner(message: string): void {
         CliUx.ux.action.start(message);
     }
 
-    stopSpinner(message?: string) {
+    stopSpinner(message?: string): void {
         CliUx.ux.action.stop(message);
     }
 
-    log(message: string | any) {
+    log(message: string | any): void {
         if (!this.flags.json) {
             console.log(message);
         }
     }
 
-    table<T>(data: any[], columns: CliUx.Table.table.Columns<Record<string, T>>, options: CliUx.Table.table.Options = {}) {
+    table<T>(data: any[], columns: CliUx.Table.table.Columns<Record<string, T>>, options: CliUx.Table.table.Options = {}): void {
         if (!this.flags.json) {
             CliUx.ux.table(data, columns, options);
         }
     }
 
-    prompt(text: string, options?: CliUx.IPromptOptions) {
+    prompt(text: string, options?: CliUx.IPromptOptions): Promise<any> {
         return CliUx.ux.prompt(text, options);
     }
 
-    notify(title: string, message?: string) {
+    notify(title: string, message?: string): void {
         notifier.notify({
             title: title,
             message: message,
@@ -45,6 +45,7 @@ export class UX {
         const readmeURL = 'https://github.com/JJLongoria/jira-server-cli/blob/main/README.md';
         if (desc) {
             if (StrUtils.containsIgnorecase(desc, '<doc:')) {
+                // eslint-disable-next-line unicorn/prefer-string-slice
                 const docData = desc.substring(desc.indexOf('<doc:'), desc.indexOf('>') + 1);
                 let doctype = StrUtils.replace(docData, '<doc:', '');
                 doctype = StrUtils.replace(doctype, '>', '');
@@ -58,7 +59,7 @@ export class UX {
         return undefined;
     }
 
-    static cannotUseWith(flags: string[]) {
+    static cannotUseWith(flags: string[]): string {
         const convertedFlags = [];
         for (const flag of flags) {
             convertedFlags.push('--' + flag);
@@ -67,7 +68,7 @@ export class UX {
         return 'Cannot use with ' + convertedFlags.join(', ') + ' flag' + (flags.length > 1 ? 's' : '');
     }
 
-    static dependsOn(flags: string[]) {
+    static dependsOn(flags: string[]): string {
         const convertedFlags = [];
         for (const flag of flags) {
             convertedFlags.push('--' + flag);

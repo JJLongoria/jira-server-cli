@@ -30,7 +30,7 @@ export default class Remove extends BaseCommand {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.issues.watchers(this.flags.issue).remove(this.flags.user);
+            await connector.issues.watchers(this.flags.issue).remove(this.flags.user);
             response.status = 0;
             response.message = 'Unwatch Issue successfully';
             this.ux.log(response.message);

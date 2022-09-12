@@ -30,7 +30,7 @@ export default class Add extends BaseCommand {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.issues.watchers(this.flags.issue).add(this.flags.user);
+            await connector.issues.watchers(this.flags.issue).add(this.flags.user);
             response.status = 0;
             response.message = 'Watch Issue successfully';
             this.ux.log(response.message);

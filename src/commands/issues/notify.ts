@@ -27,7 +27,7 @@ export default class Notify extends BaseCommand {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.issues.notify(this.flags.issue, this.getJSONInputData());
+            await connector.issues.notify(this.flags.issue, this.getJSONInputData());
             response.status = 0;
             response.message = 'Issue Notified successfully';
             this.ux.log(response.message);

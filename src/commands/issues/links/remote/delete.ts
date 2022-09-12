@@ -36,7 +36,7 @@ export default class Delete extends BaseCommand {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = this.flags.global ? await connector.issues.remoteLinks(this.flags.issue).deleteByGlobalId(this.flags.link) : await connector.issues.remoteLinks(this.flags.issue).delete(this.flags.link);
+            this.flags.global ? await connector.issues.remoteLinks(this.flags.issue).deleteByGlobalId(this.flags.link) : await connector.issues.remoteLinks(this.flags.issue).delete(this.flags.link);
             response.status = 0;
             response.message = this.getRecordDeletedText('Issue Remote Link');
             this.ux.log(response.message);

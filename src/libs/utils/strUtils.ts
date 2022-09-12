@@ -1,10 +1,5 @@
-/* eslint-disable unicorn/numeric-separators-style */
-/* eslint-disable unicorn/prefer-date-now */
-/* eslint-disable unicorn/prefer-math-trunc */
-/* eslint-disable no-mixed-operators */
-/* eslint-disable unicorn/no-for-loop */
-/* eslint-disable unicorn/no-static-only-class */
-export class StrUtils {
+/* eslint-disable unicorn/filename-case */
+export const StrUtils = {
     /**
      * Method to replace data from a string
      * @param {string} str String to replace the data
@@ -13,9 +8,9 @@ export class StrUtils {
      *
      * @returns {string} Returns the the String with data replaced
      */
-    static replace(str: string, replace: string, replacement: string): string {
+    replace(str: string, replace: string, replacement: string): string {
         return str.split(replace).join(replacement);
-    }
+    },
 
     /**
      * Method to count the ocurrences into the String
@@ -24,9 +19,9 @@ export class StrUtils {
      *
      * @returns {number} true if "strToCheck" exists on "str", false in otherwise
      */
-    static count(str: string, strToCheck: string): number {
+    count(str: string, strToCheck: string): number {
         return (str.match(new RegExp(strToCheck, 'g')) || []).length;
-    }
+    },
 
     /**
      * Method to check if a String contains other String
@@ -35,9 +30,9 @@ export class StrUtils {
      *
      * @returns {boolean} true if "strToCheck" exists on "str", false in otherwise
      */
-    static contains(str: string, strToCheck: string): boolean {
+    contains(str: string, strToCheck: string): boolean {
         return str.includes(strToCheck);
-    }
+    },
 
     /**
      * Method to check if a String contains other String ignoring letter case
@@ -46,11 +41,11 @@ export class StrUtils {
      *
      * @returns {boolean} true if "strToCheck" exists on "str", false in otherwise
      */
-    static containsIgnorecase(str: string, strToCheck: string): boolean {
+    containsIgnorecase(str: string, strToCheck: string): boolean {
         return str.toLowerCase().includes(strToCheck.toLowerCase());
-    }
+    },
 
-    static normalize(value: string | null, toUpper?: boolean): string {
+    normalize(value: string | null, toUpper?: boolean): string {
         if (!value) {
             return '';
         }
@@ -63,5 +58,5 @@ export class StrUtils {
         normalized = normalized.replace(/ó/g, 'o');
         normalized = normalized.replace(/[^\d\sA-Za-z]/g, '').trim();
         return toUpper ? normalized.toUpperCase() : normalized;
-    }
-}
+    },
+};

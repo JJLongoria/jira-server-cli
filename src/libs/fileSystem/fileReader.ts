@@ -1,32 +1,17 @@
+/* eslint-disable unicorn/filename-case */
+/* eslint-disable max-depth */
+/* eslint-disable complexity */
 import { Stats } from 'node:fs';
 import { FileFilters } from '../types';
 import { StrUtils } from '../utils/strUtils';
 import { FileChecker } from './fileChecker';
-const fs = require('fs');
-const path = require('path');
+import fs = require('fs');
+import path = require('path');
 
 /**
  * Class to read files, documents and folders from file system
  */
 export const FileReader = {
-
-    /**
-     * Method to read a Document Object and get the entire text
-     * @param {any} document document to read
-     *
-     * @returns {string} Return the document content string
-     */
-    readDocument(document: any): string {
-        const lines = [];
-        for (let i = 0; i < document.lineCount; i++) {
-            const line = document.lineAt(i);
-            if (line) {
-                lines.push(line.text);
-            }
-        }
-
-        return lines.join('\n');
-    },
 
     /**
      * Method to read a file synchronously
@@ -38,6 +23,7 @@ export const FileReader = {
         return fs.readFileSync(filePath, 'utf8');
     },
 
+    // eslint-disable-next-line valid-jsdoc
     /**
      * Method to read a file asynchronously
      * @param {string} filePath file to read
@@ -97,7 +83,7 @@ export const FileReader = {
     getAllFiles(folderPath: string, filters?: string[]): Promise<string[]> {
         return new Promise<string[]>(function (resolve, rejected) {
             let results: string[] = [];
-            fs.readdir(folderPath, function (err: Error, list: string[]) {
+            fs.readdir(folderPath, (err: any, list: string[]) => {
                 if (err) {
                     rejected(err);
                     return;
@@ -110,9 +96,10 @@ export const FileReader = {
 
                 for (let file of list) {
                     file = path.resolve(folderPath, file);
-                    fs.stat(file, async function (_err: Error, stat: Stats) {
+                    fs.stat(file, async function (_err: any, stat: Stats) {
                         if (stat && stat.isDirectory()) {
                             const res = await FileReader.getAllFiles(file, filters);
+                            // eslint-disable-next-line unicorn/prefer-spread
                             results = results.concat(res);
                             if (!--pending) {
                                 resolve(results);

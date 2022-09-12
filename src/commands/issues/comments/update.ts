@@ -60,8 +60,7 @@ export default class Update extends BaseCommand {
         const response = new JiraCLIResponse<Comment>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            let result;
-            result = await (this.hasInputData() ? connector.issues.comments(this.flags.issue).update(this.flags.comment, this.getJSONInputData(), this.flags.expand) : connector.issues.comments(this.flags.issue).update(this.flags.comment, {
+            const result = await (this.hasInputData() ? connector.issues.comments(this.flags.issue).update(this.flags.comment, this.getJSONInputData(), this.flags.expand) : connector.issues.comments(this.flags.issue).update(this.flags.comment, {
                 body: this.flags.body,
                 visibility: {
                     type: this.flags.type,

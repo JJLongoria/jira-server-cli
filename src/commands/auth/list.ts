@@ -1,4 +1,3 @@
-import { JiraServerConnector } from 'jira-server-connector';
 import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
 import { JiraCLIResponse } from '../../libs/core/jiraResponse';
 import { InstanceColumns } from '../../libs/core/tables';
@@ -19,7 +18,6 @@ export default class List extends BaseCommand {
 
     async run(): Promise<JiraCLIResponse<Instance[]>> {
         const response = new JiraCLIResponse<Instance[]>();
-        const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
             response.result = Object.values(this.localConfig.instances);
             response.status = 0;

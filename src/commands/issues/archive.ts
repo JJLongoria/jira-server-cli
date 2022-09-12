@@ -34,7 +34,7 @@ export default class Archive extends BaseCommand {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = this.flags.issues && this.flags.issue.length > 1 ? await connector.issues.archiveBulk(this.flags.issue, this.flags.notify) : await connector.issues.archive(this.flags.issue[0], this.flags.notify);
+            this.flags.issues && this.flags.issue.length > 1 ? await connector.issues.archiveBulk(this.flags.issue, this.flags.notify) : await connector.issues.archive(this.flags.issue[0], this.flags.notify);
             response.status = 0;
             response.message = 'Issue(s) Archived successfully';
             this.ux.log(response.message);

@@ -1,5 +1,5 @@
 import { Flags } from '@oclif/core';
-import { IssueWorklog, JiraServerConnector } from 'jira-server-connector';
+import { JiraServerConnector } from 'jira-server-connector';
 import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
 import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
 
@@ -52,7 +52,7 @@ export default class Delete extends BaseCommand {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.issues.worklogs(this.flags.issue).delete(this.flags.worklog, {
+            await connector.issues.worklogs(this.flags.issue).delete(this.flags.worklog, {
                 adjustEstimate: this.flags.adjust,
                 increaseBy: this.flags.increase,
                 newEstimate: this.flags.new,

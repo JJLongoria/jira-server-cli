@@ -34,7 +34,7 @@ export default class Restore extends BaseCommand {
         const response = new JiraCLIResponse<any>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.issues.restore(this.flags.issue, this.flags.notify);
+            await connector.issues.restore(this.flags.issue, this.flags.notify);
             response.status = 0;
             response.message = 'Issue Restored successfully';
             this.ux.log(response.message);

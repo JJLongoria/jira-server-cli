@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/filename-case */
+/* eslint-disable valid-jsdoc */
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
@@ -67,12 +69,13 @@ export const FileWriter = {
     delete(pathToDelete: string): void {
         if (fs.existsSync(pathToDelete)) {
             if (fs.lstatSync(pathToDelete).isDirectory()) {
+                // eslint-disable-next-line unicorn/no-array-for-each
                 fs.readdirSync(pathToDelete).forEach(function (entry: string) {
-                    const entry_path = path.join(pathToDelete, entry);
-                    if (fs.lstatSync(entry_path).isDirectory()) {
-                        FileWriter.delete(entry_path);
+                    const entryPath = path.join(pathToDelete, entry);
+                    if (fs.lstatSync(entryPath).isDirectory()) {
+                        FileWriter.delete(entryPath);
                     } else {
-                        fs.unlinkSync(entry_path);
+                        fs.unlinkSync(entryPath);
                     }
                 });
                 fs.rmdirSync(pathToDelete);

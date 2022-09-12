@@ -44,10 +44,10 @@ export default class Login extends BaseCommand {
     };
 
     async run(): Promise<JiraCLIResponse<Instance>> {
-        const { host, alias, username, password } = this.flags;
+        const { host, alias, username, password, override, csv } = this.flags;
         const response = new JiraCLIResponse<Instance>();
         if (this.localConfig.instances && this.localConfig.instances[alias]) {
-            if (this.flags.override) {
+            if (override) {
                 this.localConfig.instances[alias] = {
                     host: host.href,
                     alias: alias,
@@ -70,7 +70,7 @@ export default class Login extends BaseCommand {
         response.message = message;
         response.result = this.localConfig.instances[alias];
         this.ux.table<Instance>([response.result], InstanceColumns, {
-            csv: this.flags.csv,
+            csv: csv,
         });
         return response;
     }

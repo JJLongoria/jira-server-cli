@@ -26,7 +26,7 @@ export class Config {
         };
     }
 
-    load() {
+    load(): void {
         const filePath = this.folderPath + '/' + INSTANCES_FILE;
         if (!FileChecker.isExists(this.folderPath)) {
             FileWriter.createFolderSync(this.folderPath);
@@ -39,7 +39,7 @@ export class Config {
         this.instances = JSON.parse(FileReader.readFileSync(filePath));
     }
 
-    save() {
+    save(): void {
         const filePath = this.folderPath + '/' + INSTANCES_FILE;
         if (!FileChecker.isExists(this.folderPath)) {
             FileWriter.createFolderSync(this.folderPath);

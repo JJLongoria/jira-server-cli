@@ -1,5 +1,8 @@
+/* eslint-disable unicorn/filename-case */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable prefer-regex-literals */
 import { Command, Flags } from '@oclif/core';
-import { AlphabetLowercase, AlphabetUppercase, OptionFlag, OutputArgs, OutputFlags } from '@oclif/core/lib/interfaces';
+import { OptionFlag, OutputArgs, OutputFlags } from '@oclif/core/lib/interfaces';
 import { PageOptions, JiraError } from 'jira-server-connector';
 import { FileReader } from '../fileSystem';
 import { Config } from './config';
@@ -8,7 +11,7 @@ import { UX } from './ux';
 
 export const BuildFlags = {
 
-    async parseArray(str: string) {
+    async parseArray(str: string): Promise<string[]> {
         if (!str || str.length === 0) {
             return [];
         }
@@ -16,7 +19,7 @@ export const BuildFlags = {
         const regex = new RegExp('"(.*?)"|\'(.*?)\'|,');
         return str.split(regex).filter(i => Boolean(i)).map(i => i.trim());
     },
-    async parseKeyValue(str: string) {
+    async parseKeyValue(str: string): Promise<any> {
         const obj: any = {};
         const keyValueRegexp = new RegExp('"(.*?)"|\'(.*?)\'|=');
         const arrayValues = await BuildFlags.parseArray(str);
@@ -74,7 +77,7 @@ export const BuildFlags = {
                 name: 'Keyvalue',
                 char: 'k',
                 exclusive: exclusives,
-                parse: (input, context) => {
+                parse: (input: any) => {
                     return BuildFlags.parseKeyValue(input);
                 },
             });
@@ -91,7 +94,8 @@ export const BuildFlags = {
                 name: 'Data',
                 char: 'd',
                 exclusive: exclusives,
-                parse: (input, context) => {
+                parse: (input: any) => {
+                    // eslint-disable-next-line no-eval
                     return eval('(' + input + ')');
                 },
             });
@@ -449,5 +453,7 @@ export class BaseCommand extends Command {
         return super.finally(err);
     }
 
-    async run(): Promise<any> {}
+    async run(): Promise<any> {
+        console.log();
+    }
 }

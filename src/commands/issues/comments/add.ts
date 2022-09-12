@@ -1,5 +1,4 @@
 import { Flags } from '@oclif/core';
-import { timeStamp } from 'node:console';
 import { Comment, JiraServerConnector } from 'jira-server-connector';
 import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
 import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
@@ -55,8 +54,7 @@ export default class Add extends BaseCommand {
         const response = new JiraCLIResponse<Comment>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            let result;
-            result = await (this.hasInputData() ? connector.issues.comments(this.flags.issue).create(this.getJSONInputData()) : connector.issues.comments(this.flags.issue).create({
+            const result = await (this.hasInputData() ? connector.issues.comments(this.flags.issue).create(this.getJSONInputData()) : connector.issues.comments(this.flags.issue).create({
                 body: this.flags.body,
                 visibility: {
                     type: this.flags.type,

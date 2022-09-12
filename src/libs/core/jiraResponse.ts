@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/filename-case */
 
 export class JiraCLIResponse<T> {
     status: 0 | -1 = 0;

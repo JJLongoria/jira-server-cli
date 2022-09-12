@@ -1,12 +1,6 @@
-/* eslint-disable unicorn/prefer-node-protocol */
+/* eslint-disable unicorn/filename-case */
 /* eslint-disable unicorn/import-style */
-/* eslint-disable unicorn/numeric-separators-style */
-/* eslint-disable unicorn/prefer-date-now */
-/* eslint-disable unicorn/prefer-math-trunc */
-/* eslint-disable no-mixed-operators */
-/* eslint-disable unicorn/no-for-loop */
-/* eslint-disable unicorn/no-static-only-class */
-
+/* eslint-disable unicorn/prefer-node-protocol */
 import { StrUtils } from './strUtils';
 import * as path from 'path';
 import * as os from 'os';
@@ -14,7 +8,7 @@ import * as os from 'os';
 /**
  * Class with Utils methods for handle paths
  */
-export class PathUtils {
+export const PathUtils = {
     /**
      * Method to get the file name from a path
      * @param {string} filePath path to process
@@ -22,9 +16,9 @@ export class PathUtils {
      *
      * @returns {string} Returns the file name
      */
-    static getBasename(filePath: string, extension?: string): string {
+    getBasename(filePath: string, extension?: string): string {
         return path.basename(filePath, extension);
-    }
+    },
 
     /**
      * Method to get an absolute path from a file or folder path and replace \\ characters with /
@@ -32,9 +26,9 @@ export class PathUtils {
      *
      * @returns {string} Returns the absolute file path
      */
-    static getAbsolutePath(filePath: string): string {
+    getAbsolutePath(filePath: string): string {
         return StrUtils.replace(path.resolve(filePath), '\\', '/');
-    }
+    },
 
     /**
      * Method to get the directory name from a path
@@ -42,9 +36,9 @@ export class PathUtils {
      *
      * @returns {string} Return the folder name
      */
-    static getDirname(filePath: string): string {
+    getDirname(filePath: string): string {
         return StrUtils.replace(path.dirname(filePath), '\\', '/');
-    }
+    },
 
     /**
      * Method to remove a file extension from file path
@@ -52,15 +46,15 @@ export class PathUtils {
      *
      * @returns {string} Returns the path without extension file
      */
-    static removeFileExtension(file: string): string {
+    removeFileExtension(file: string): string {
         return file.split('.').slice(0, -1).join('.');
-    }
+    },
 
-    static getFileExtension(file: string): string {
+    getFileExtension(file: string): string {
         return path.extname(file);
-    }
+    },
 
-    static homeDir() {
+    homeDir(): string {
         return os.homedir();
-    }
-}
+    },
+};
