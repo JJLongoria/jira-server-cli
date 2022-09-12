@@ -1,8 +1,8 @@
-import { JiraServerConnector } from "jira-server-connector";
-import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
-import { JiraCLIResponse } from "../../../libs/core/jiraResponse";
+import { JiraServerConnector } from 'jira-server-connector';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
 
-export default class Get extends BaseCommand {
+export default class Delete extends BaseCommand {
     static description = 'Deletes the specified issue type. If the issue type has any associated issues, these issues will be migrated to the alternative issue type specified in the parameter. You can determine the alternative issue types by calling the issues:types:alternatives:list command';
     static examples = [
         '$ jiraserver issues:types:delete -a "MyAlias" --type "theIssueTypeId" --swap "theIssueTypeIdToSwap" --json',
@@ -15,7 +15,7 @@ export default class Get extends BaseCommand {
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
         type: BuildFlags.array({
-            description: 'The Issue Type Id to retrieve',
+            description: 'The Issue Type Id to delete',
             required: true,
             name: 'Issue Type Id',
         }),
@@ -32,7 +32,7 @@ export default class Get extends BaseCommand {
         try {
             await connector.issueTypes.delete(this.flags.type, this.flags.swap);
             response.status = 0;
-            response.message = this.getRecordRetrievedText('Issue Type');
+            response.message = this.getRecordDeletedText('Issue Type');
             this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
