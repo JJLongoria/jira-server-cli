@@ -7,7 +7,6 @@ export default class Get extends BaseCommand {
     static description = 'Returns preference of the currently logged in user. The value is returned exactly as it is.';
     static examples = [
         '$ jiraserver myself:preferences:get -a "MyAlias" --key "thePreferenceKey" --json',
-        '$ jiraserver myself:preferences:get -a "MyAlias" --key "thePreferenceKey" --csv',
         '$ jiraserver myself:preferences:get -a "MyAlias" --key "thePreferenceKey"',
     ];
 
