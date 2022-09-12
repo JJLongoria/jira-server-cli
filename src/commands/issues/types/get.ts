@@ -9,7 +9,7 @@ export default class Get extends BaseCommand {
     static examples = [
         '$ jiraserver issues:types:get -a "MyAlias" --type "theIssueTypeId" --json',
         '$ jiraserver issues:types:get -a "MyAlias" --type "theIssueTypeId" --csv',
-        '$ jiraserver issues:types:get -a "MyAlias"',
+        '$ jiraserver issues:types:get -a "MyAlias" --type "theIssueTypeId"',
     ];
 
     static flags = {
