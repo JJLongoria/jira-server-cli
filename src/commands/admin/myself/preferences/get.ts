@@ -1,7 +1,7 @@
 import { Flags } from '@oclif/core';
 import { JiraServerConnector } from 'jira-server-connector';
-import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
-import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { BaseCommand, BuildFlags } from '../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
 
 export default class Get extends BaseCommand {
     static description = 'Returns preference of the currently logged in user. The value is returned exactly as it is.';

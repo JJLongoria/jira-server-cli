@@ -1,15 +1,15 @@
 import { Flags } from '@oclif/core';
 import { JiraServerConnector } from 'jira-server-connector';
-import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
-import { JiraCLIResponse } from '../../libs/core/jiraResponse';
-import { FileChecker, FileReader, PathUtils } from '../../libs/fileSystem';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { FileChecker, FileReader, PathUtils } from '../../../libs/fileSystem';
 
 export default class Validate extends BaseCommand {
     static description = 'Simple validation services for a Jira license. Typically used by the setup phase of the Jira application.';
     static examples = [
-        '$ jiraserver license:validate -a "MyAlias" --content "License Content to validate" --json',
-        '$ jiraserver license:validate -a "MyAlias" --file "path/to/license/file" --csv',
-        '$ jiraserver license:validate -a "MyAlias" --content "License Content to validate"',
+        '$ jiraserver admin:license:validate -a "MyAlias" --content "License Content to validate" --json',
+        '$ jiraserver admin:license:validate -a "MyAlias" --file "path/to/license/file" --csv',
+        '$ jiraserver admin:license:validate -a "MyAlias" --content "License Content to validate"',
     ];
 
     static flags = {

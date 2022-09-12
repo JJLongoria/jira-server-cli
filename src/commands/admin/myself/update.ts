@@ -1,9 +1,9 @@
 import { Flags } from '@oclif/core';
 import { JiraServerConnector, User } from 'jira-server-connector';
-import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
-import { JiraCLIResponse } from '../../libs/core/jiraResponse';
-import { UserColumns } from '../../libs/core/tables';
-import { UX } from '../../libs/core/ux';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { UserColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class Update extends BaseCommand {
     static description = 'Modify currently logged user. The "value" fields present will override the existing value. Fields skipped in request will not be changed. Only email and display name can be change that way. ' + UX.processDocumentation('<doc:User>');

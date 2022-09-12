@@ -5,27 +5,22 @@ import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
 import { GroupColumns } from '../../../libs/core/tables';
 import { UX } from '../../../libs/core/ux';
 
-export default class Add extends BaseCommand {
-    static description = 'Adds given user to a group. Returns the current state of the group. ' + UX.processDocumentation('<doc:Group>');
+export default class Create extends BaseCommand {
+    static description = 'Creates a group by given group parameter. ' + UX.processDocumentation('<doc:Group>');
     static examples = [
-        '$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName" --json',
-        '$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName" --csv',
-        '$ jiraserver groups:users:add -a "MyAlias" --group "theGroupName" --user "theUserName"',
+        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName" --json',
+        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName" --csv',
+        '$ jiraserver groups:create -a "MyAlias" --name "theGroupName"',
     ];
 
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
-        group: Flags.string({
-            description: 'The group name to add the user',
+        name: Flags.string({
+            description: 'The group name to create',
             required: true,
-            name: 'Group',
-        }),
-        user: Flags.string({
-            description: 'The user name to add',
-            required: true,
-            name: 'User',
+            name: 'Name',
         }),
     };
 
@@ -33,10 +28,10 @@ export default class Add extends BaseCommand {
         const response = new JiraCLIResponse<Group>();
         const connector = new JiraServerConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.groups.members(this.flags.group).create(this.flags.user);
+            const result = await connector.groups.create(this.flags.name);
             response.result = result;
             response.status = 0;
-            response.message = this.getRecordCreatedText('Group Member');
+            response.message = this.getRecordCreatedText('Group');
             this.ux.log(response.message);
             this.ux.table<Group>([result], GroupColumns, {
                 csv: this.flags.csv,

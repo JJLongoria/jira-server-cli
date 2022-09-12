@@ -1,7 +1,7 @@
 import { JiraServerConnector, User } from 'jira-server-connector';
-import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
-import { JiraCLIResponse } from '../../libs/core/jiraResponse';
-import { UserColumns } from '../../libs/core/tables';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { UserColumns } from '../../../libs/core/tables';
 
 export default class Get extends BaseCommand {
     static description = 'Returns currently logged user. This resource cannot be accessed anonymously';

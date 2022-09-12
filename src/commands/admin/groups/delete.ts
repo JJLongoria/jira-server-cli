@@ -1,7 +1,7 @@
 import { Flags } from '@oclif/core';
 import { JiraServerConnector } from 'jira-server-connector';
-import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
-import { JiraCLIResponse } from '../../libs/core/jiraResponse';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
 
 export default class Create extends BaseCommand {
     static description = 'Deletes a group by given group parameter. ';

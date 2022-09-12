@@ -1,8 +1,8 @@
 import { Configuration, JiraServerConnector } from 'jira-server-connector';
-import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
-import { JiraCLIResponse } from '../../libs/core/jiraResponse';
-import { ConfigurationColumns } from '../../libs/core/tables';
-import { UX } from '../../libs/core/ux';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { ConfigurationColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class Get extends BaseCommand {
     static description = 'Returns the information if the optional features in Jira are enabled or disabled. If the time tracking is enabled, it also returns the detailed information about time tracking configuration. ' + UX.processDocumentation('<doc:Configuration>');

@@ -1,9 +1,9 @@
 import { Flags } from '@oclif/core';
 import { JiraServerConnector, Page, User } from 'jira-server-connector';
-import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
-import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
-import { UserColumns } from '../../../libs/core/tables';
-import { UX } from '../../../libs/core/ux';
+import { BaseCommand, BuildFlags } from '../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
+import { UserColumns } from '../../../../libs/core/tables';
+import { UX } from '../../../../libs/core/ux';
 
 export default class Create extends BaseCommand {
     static description = 'This resource returns a paginated list of users who are members of the specified group and its subgroups. Users in the page are ordered by user names. User of this resource is required to have sysadmin or admin permissions. ' + UX.processDocumentation('<doc:User>');

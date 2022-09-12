@@ -1,7 +1,7 @@
 import { Flags } from '@oclif/core';
 import { JiraServerConnector } from 'jira-server-connector';
-import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
-import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { BaseCommand, BuildFlags } from '../../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../../libs/core/jiraResponse';
 
 export default class Remove extends BaseCommand {
     static description = 'Adds given user to a group. Returns the current state of the group.';

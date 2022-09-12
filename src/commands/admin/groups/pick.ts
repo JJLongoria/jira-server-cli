@@ -1,9 +1,9 @@
 import { Flags } from '@oclif/core';
 import { GroupSuggestion, GroupSuggestions, JiraServerConnector } from 'jira-server-connector';
-import { BaseCommand, BuildFlags } from '../../libs/core/baseCommand';
-import { JiraCLIResponse } from '../../libs/core/jiraResponse';
-import { GroupSuggestionColumns } from '../../libs/core/tables';
-import { UX } from '../../libs/core/ux';
+import { BaseCommand, BuildFlags } from '../../../libs/core/baseCommand';
+import { JiraCLIResponse } from '../../../libs/core/jiraResponse';
+import { GroupSuggestionColumns } from '../../../libs/core/tables';
+import { UX } from '../../../libs/core/ux';
 
 export default class Pick extends BaseCommand {
     static description = 'Returns groups with substrings matching a given query. This is mainly for use with the group picker, so the returned groups contain html to be used as picker suggestions. The groups are also wrapped in a single response object that also contains a header for use in the picker, specifically Showing X of Y matching groups. ' + UX.processDocumentation('<doc:GroupSuggestions>');
