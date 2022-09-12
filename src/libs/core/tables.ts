@@ -1,5 +1,5 @@
 import { CliUx } from '@oclif/core';
-import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueType, IssueTypeScheme, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, Project, SecurityScheme, ShareScope, User } from 'jira-server-connector';
+import { ApplicationProperty, ApplicationRole, Attachment, AttachmentMeta, Avatar, ColumnItem, Comment, Component, ComponentIssuesCount, Configuration, CreateMeta, CustomField, CustomFieldOption, Dashboard, DeletedFieldsOutput, EntityProperty, EntityPropertyKey, Field, FieldMeta, Filter, FilterPermission, Group, GroupSuggestion, Issue, IssueLink, IssueLinkType, IssuePickerSection, IssueRemoteLink, IssueTransition, IssueType, IssueTypeScheme, IssueVotes, IssueWatchers, IssueWorklog, LinkIssue, Permission, Project, SecurityScheme, ShareScope, User } from 'jira-server-connector';
 import { Instance } from '../types';
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -967,5 +967,20 @@ export const ProjectColumns: CliUx.Table.table.Columns<Record<string, Project>> 
     archived: {
         header: 'Archived',
         extended: true,
+    },
+};
+
+export const PermissionColumns: CliUx.Table.table.Columns<Record<string, Permission>> = {
+    key: {
+        header: 'Key',
+    },
+    name: {
+        header: 'Name',
+    },
+    type: {
+        header: 'Type',
+    },
+    description: {
+        header: 'Description',
     },
 };

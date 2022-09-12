@@ -129,6 +129,8 @@ Now Stil in BETA Version because is not fully tested and continue in development
   - [**LinkIssueRequest**](#linkissuerequest)
   - [**ListWrapper**](#listwrapper)
   - [**Participant**](#participant)
+  - [**Permission**](#permission)
+  - [**PermissionsOutput**](#permissionsoutput)
   - [**Priority**](#priority)
   - [**Project**](#project)
   - [**ProjectCategory**](#projectcategory)
@@ -1477,6 +1479,25 @@ This type support **Generic Types** (**`T`**). That means can be of many types (
     "url": "string",
 }
 ```
+---
+## [**Permission**]()
+```json
+{
+    "key": "string",
+    "name": "string",
+    "type": "'GLOBAL' | 'PROJECT'",
+    "description": "string",
+}
+```
+---
+## [**PermissionsOutput**]()
+```json
+{
+    "permisions": "{ [key: string]: Permission }",
+}
+```
+- See [**Permission**](#permission) Definition.
+
 ---
 ## [**Priority**]()
 ```json
