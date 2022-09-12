@@ -2,7 +2,7 @@
   "name": "jira-server-cli",
   "productName": "Jira Server CLI",
   "displayName": "Jira Server CLI",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "CLI application to manage and work with Atlassian Jira. Work with your Jira projects and issues (amonth to many other options) from Command lines.",
   "author": "Juan José Longoria López <Kanko>",
   "bin": {
@@ -26,7 +26,7 @@
     "@oclif/plugin-plugins": "^2.0.1",
     "@oclif/plugin-update": "^3.0.0",
     "@oclif/plugin-warn-if-update-available": "^2.0.4",
-    "jira-server-connector": "^0.0.2",
+    "jira-server-connector": "^0.0.3",
     "node-notifier": "^10.0.1"
   },
   "devDependencies": {
