@@ -21,7 +21,7 @@ export default class Delete extends BaseCommand {
         }),
         project: Flags.string({
             description: 'The Project Id or Key to remove delete association',
-            required: true,
+            required: false,
             name: 'Project Id or Key',
             exclusive: ['all'],
         }),
