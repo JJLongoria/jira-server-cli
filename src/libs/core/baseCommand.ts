@@ -42,6 +42,15 @@ export const BuildFlags = {
         name: 'CSV',
         exclusive: ['json'],
     }),
+    interactive: (exclusive?: string[]) => {
+        return Flags.string({
+            description: 'Make interactive inputs (Allow to the user to set data with prompts)',
+            required: false,
+            name: 'Interactive',
+            char: 'i',
+            exclusive: exclusive,
+        });
+    },
     array: (options: Partial<OptionFlag<string>>) => {
         options.parse = (input): any => {
             return BuildFlags.parseArray(input);
